@@ -51,8 +51,10 @@ function processXml(xml) {
             var ind =$(xml).find("lom\\:location").length;
             console.log(ind);
 
+
+
             //lom.location= $(xml).each("lom\\:location").text();
-            //
+            
            $.each($(xml).find("lom\\:location"), function( index, value ) {
                     for (var i = 0; i <= 0; i--) {
                         lom.location[i]=value.text();
@@ -85,7 +87,7 @@ function processXml(xml) {
         }
 
 
-/*function reusabilidad(objeto1){
+function reusabilidad(objeto1){
                     // extrae las variables nesesarias para la evaluacion
                    var densidadsemantica1=objeto1.semanticdensity;
                    var general1=objeto1.aggregationlevel;
@@ -180,11 +182,11 @@ function processXml(xml) {
                         }
                     }
                     r++;
-                    if (can_contex==1) {
+                    if (can_contex===1) {
                         pesor4=0.2;
-                        }elseif(can_contex==2){
+                        }else if(can_contex===2){
                              pesor4=0.6;
-                             }elseif(can_contex>=3){
+                             }else if(can_contex>=3){
                                     pesor4=1;
                                 }
                         
@@ -199,11 +201,11 @@ function processXml(xml) {
                         // valida que calidad de objeto es
                         if (m_reusabilidad<0.25) {
                             evaluacion="Regular";
-                        }elseif (m_reusabilidad>=0.25 && m_reusabilidad<0.5) {
+                        }else if (m_reusabilidad>=0.25 && m_reusabilidad<0.5) {
                                 evaluacion="Buena";
-                            }elseif (m_reusabilidad>=0.5 && m_reusabilidad<0.75) {
+                            }else if (m_reusabilidad>=0.5 && m_reusabilidad<0.75) {
                                     evaluacion="Muy buena";
-                                }elseif (m_reusabilidad>=0.75 ) {
+                                }else if (m_reusabilidad>=0.75 ) {
                                         evaluacion="Exelente";
                                 }
 
@@ -218,10 +220,10 @@ function processXml(xml) {
                         echo "* La métrica de reusabilidad no se puede aplicar no se cumple ninguna regla";
                     }
 
-   }*/
+   }
 
   // funcion encargada de verificar si la ruta  si conduce a un objeto
-            function disponibilidad(ruta){
+function disponibilidad(ruta){
                     var cantidad=ruta.length;
                     echo "* Cantidad rutas ".cantidad."<br>";
                     var campos=0;
@@ -244,11 +246,11 @@ function processXml(xml) {
                         // valida que calidad de la completitud del objeto 
                         if (m_disponibilidad<0.25) {
                             evaluacion="Regular";
-                        }elseif (m_disponibilidad>=0.25 && m_disponibilidad<0.5) {
+                        }else if (m_disponibilidad>=0.25 && m_disponibilidad<0.5) {
                                 evaluacion="Buena";
-                            }elseif (m_disponibilidad>=0.5 && m_disponibilidad<0.75) {
+                            }else if (m_disponibilidad>=0.5 && m_disponibilidad<0.75) {
                                     $evaluacion="Muy buena";
-                                }elseif (m_disponibilidad>=0.75 ) {
+                                }else if (m_disponibilidad>=0.75 ) {
                                         evaluacion="Exelente";
                                 }
                         echo "      -Disponibilidad: ".evaluacion."<br>";
@@ -257,37 +259,40 @@ function processXml(xml) {
                     }
 
             //verfica la existenca del objeto
-            function isURL(url){
-                var pattern='|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i';
+    function isURL(url){
+
+        var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+        return regexp.test(url);
+                /*var pattern='|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i';
                 if(preg_match(pattern, url) > 0) return true;
-                else return false;
+                else return false;*/
             }
 
 
             // verifica que tan completo es el oa en sus metadatos
-             function completitud(oa){
+function completitud(oa){
                     var titulo=0; var keyword=0; var descripcion=0; var autor=0;
                     var tipoRE=0; var formato=0; var contexto=0; var idioma=0;
                     var tipointer=0; var rangoedad=0; var nivelagregacion=0;
                     var ubicacion=0; var costo=0; var estado=0; var copyright=0;
 
                     // verifica que la variable tenga  un valor y asigna el peso a las variables
-                    if (trim(oa.title)!="") {
+                    if (oa.title.trim()!="") {
                         titulo=0.15;
                     }
-                    if (trim(oa.keyword)!="") {
+                    if (oa.keyword.trim()!="") {
                         keyword=0.14;
                     }
-                    if (trim(oa.description)!="") {
+                    if (oa.description.trim()!="") {
                         descripcion=0.12;
                     }
-                    if (trim(oa.entity)!="") {
+                    if (oa.entity.trim()!="") {
                         autor=0.11;
                     }
-                    if (trim(oa.learningresourcetype)!="") {
+                    if (oa.learningresourcetype.trim()!="") {
                         tipoRE=0.09;
                     }
-                    if (trim(oa.format)!="") {
+                    if (oa.format.trim()!="") {
                         formato=0.08;
                     }
 
@@ -300,7 +305,7 @@ function processXml(xml) {
                     var pesocontexto=0.06/can;
                     // comprueba  que los contextos sean diferentes a  vacio o a espacio 
                     for (var w=0; w <can ; w++) { 
-                        if (trim(context[w])!="") {
+                        if (context[w].trim()!="") {
                             // calcula el nuevo peso para entregar para el calculo de la metrica
                             contexto=contexto+pesocontexto;
                         }
@@ -310,16 +315,16 @@ function processXml(xml) {
 
 
 
-                    if (trim(oa.language)!="") {
+                    if (oa.language.trim()!="") {
                         idioma=0.05;
                     }
-                    if (trim(oa.interactivitytype)!="") {
+                    if (oa.interactivitytype.trim()!="") {
                         tipointer=0.04;
                     }
-                    if (trim(oa.typicalagerange)!="") {
+                    if (oa.typicalagerange.trim()!="") {
                         rangoedad=0.03;
                     }
-                    if (trim(oa.aggregationlevel)!="") {
+                    if (oa.aggregationlevel.trim()!="") {
                         nivelagregacion=0.03;
                     }
                     // hace la  comprobacion cuantas ubicaciones existe  en el objeto
@@ -330,20 +335,20 @@ function processXml(xml) {
                     var peso=0.03/can;
                     // comprueba  que las ubicaciones sean diferentes a  vacio o a espacio 
                     for (var i=0; i <can ; i++) { 
-                        if (trim(location[i])!="") {
+                        if (location[i].trim()!="") {
                             // calcula el nuevo peso para entregar para el calculo de la metrica
                             ubicacion=ubicacion+peso;
                         }
                     }
                     
 
-                    if (trim(oa.cost)!="") {
+                    if (oa.cost.trim()!="") {
                         costo=0.03;
                     }
-                    if (trim(oa.status)!="") {
+                    if (oa.status.trim()!="") {
                         estado=0.02;
                     }
-                    if (trim(oa.copyrightandotherrestrictions)!="") {
+                    if (oa.copyrightandotherrestrictions.trim()!="") {
                         copyright=0.02;
                     }
 
@@ -375,117 +380,316 @@ function consistencia(oa){
                 var tiporecursoeducativo=0; var nivelinter=0; var densidadsemantica=0; var rolusuariofinal=0;
                 var contexto=0; var dificultad=0; var copyright=0; var costo=0; var proposito=0; var r=14;
 
-                if (trim(oa.aggregationlevel)==1 || trim(oa.aggregationlevel)==2 || trim(oa.aggregationlevel)==3 ||trim(oa.aggregationlevel)==4  ) {
+                if (oa.aggregationlevel.trim()===1 || 
+                    oa.aggregationlevel.trim()===2 || 
+                    oa.aggregationlevel.trim()===3 ||
+                    oa.aggregationlevel.trim()===4  ) {
                         nivelagregacion=1;
                 }
-                if (trim(oa.structure)=="atomic" || trim(oa.structure)=="collection" || trim(oa.structure)=="networked" ||trim(oa.structure)=="hierarchical" || trim(oa.structure)=="linear" ) {
+                if (oa.structure.trim()==="atomic" || 
+                    oa.structure.trim()==="collection" || 
+                    oa.structure.trim()==="networked" ||
+                    oa.structure.trim()==="hierarchical" || 
+                    oa.structure.trim()==="linear" ) {
                         $estructura=1;
                 }
-                if (trim(oa.role)=="author" ||
-                    trim(oa.role)=="publisher" || 
-                    trim(oa.role)=="unknown" ||
-                    trim(oa.role)=="initiator" || 
-                    trim(oa.role)=="terminator" || 
-                    trim(oa.role)=="validator" || 
-                    trim(oa.role)=="editor" || 
-                    trim(oa.role)=="graphical designer" || 
-                    trim(oa.role)=="technical implementer" || 
-                    trim(oa.role)=="content provider" || 
-                    trim(oa.role)=="technical validator" || 
-                    trim(oa.role)=="educational validator" || 
-                    trim(oa.role)=="script writer" || 
-                    trim(oa.role)=="instructional designer" || 
-                    trim(oa.role)=="subject matter expert" ) {
+                if (oa.role.trim()==="author" ||
+                    oa.role.trim()==="publisher" || 
+                    oa.role.trim()==="unknown" ||
+                    oa.role.trim()==="initiator" || 
+                    oa.role.trim()==="terminator" || 
+                    oa.role.trim()==="validator" || 
+                    oa.role.trim()==="editor" || 
+                    oa.role.trim()==="graphical designer" || 
+                    oa.role.trim()==="technical implementer" || 
+                    oa.role.trim()==="content provider" || 
+                    oa.role.trim()==="technical validator" || 
+                    oa.role.trim()==="educational validator" || 
+                    oa.role.trim()==="script writer" || 
+                    oa.role.trim()==="instructional designer" || 
+                    oa.role.trim()==="subject matter expert" ) {
                         rol=1;
                 }
-                if (trim($oa[$pos][15])=="draft" || trim($oa[$pos][15])=="final" || trim($oa[$pos][15])=="revised" ||trim($oa[$pos][15])=="unavailable" ) {
-                        $estado=1;
+                if (oa.status.trim()==="draft" || 
+                    oa.status.trim()==="final" || 
+                    oa.status.trim()==="revised" ||
+                    oa.status.trim()==="unavailable" ) {
+                        estado=1;
                 }
-                if (trim($oa[$pos][18])=="creator" || trim($oa[$pos][18])=="validator"  ) {
-                        $metarol=1;
+                if (oa.role.trim()==="creator" || 
+                    oa.role.trim()==="validator"  ) {
+                        metarol=1;
                 }
-                if (trim($oa[$pos][12])=="active" || trim($oa[$pos][12])=="expositive" || trim($oa[$pos][12])=="mixed" ) {
-                        $tipointer=1;
+                if (oa.interactivitytype.trim()==="active" || 
+                    oa.interactivitytype.trim()==="expositive" || 
+                    oa.interactivitytype.trim()==="mixed" ) {
+                        tipointer=1;
                 }
-                if (trim($oa[$pos][9])=="exercise" ||
-                    trim($oa[$pos][9])=="simulation" || 
-                    trim($oa[$pos][9])=="questionnaire" ||
-                    trim($oa[$pos][9])=="diagram" || 
-                    trim($oa[$pos][9])=="figure" || 
-                    trim($oa[$pos][9])=="graph" || 
-                    trim($oa[$pos][9])=="index" || 
-                    trim($oa[$pos][9])=="slide" || 
-                    trim($oa[$pos][9])=="table" || 
-                    trim($oa[$pos][9])=="narrative text" || 
-                    trim($oa[$pos][9])=="exam" || 
-                    trim($oa[$pos][9])=="experiment" || 
-                    trim($oa[$pos][9])=="problem" || 
-                    trim($oa[$pos][9])=="statement" || 
-                    trim($oa[$pos][9])=="self assessment" || 
-                    trim($oa[$pos][9])=="lecture" ) {
-                        $tiporecursoeducativo=1;
+                if (oa.learningresourcetype.trim()==="exercise" ||
+                    oa.learningresourcetype.trim()==="simulation" || 
+                    oa.learningresourcetype.trim()==="questionnaire" ||
+                    oa.learningresourcetype.trim()==="diagram" || 
+                    oa.learningresourcetype.trim()==="figure" || 
+                    oa.learningresourcetype.trim()==="graph" || 
+                    oa.learningresourcetype.trim()==="index" || 
+                    oa.learningresourcetype.trim()==="slide" || 
+                    oa.learningresourcetype.trim()==="table" || 
+                    oa.learningresourcetype.trim()==="narrative text" || 
+                    oa.learningresourcetype.trim()==="exam" || 
+                    oa.learningresourcetype.trim()==="experiment" || 
+                    oa.learningresourcetype.trim()==="problem" || 
+                    oa.learningresourcetype.trim()==="statement" || 
+                    oa.learningresourcetype.trim()==="self assessment" || 
+                    oa.learningresourcetype.trim()==="lecture" ) {
+                        tiporecursoeducativo=1;
                 }
-                if (trim($oa[$pos][19])=="very low" || trim($oa[$pos][19])=="low" || trim($oa[$pos][19])=="medium" || trim($oa[$pos][19])=="high" || trim($oa[$pos][19])=="very high" ) {
-                        $nivelinter=1;
+                if (oa.interactivitylevel.trim()==="very low" ||
+                    oa.interactivitylevel.trim()==="low" || 
+                    oa.interactivitylevel.trim()==="medium" || 
+                    oa.interactivitylevel.trim()==="high" || 
+                    oa.interactivitylevel.trim()==="very high" ) {
+                        nivelinter=1;
                 }
-                if (trim($oa[$pos][0])=="very low" || trim($oa[$pos][0])=="low" || trim($oa[$pos][0])=="medium" || trim($oa[$pos][0])=="high" || trim($oa[$pos][0])=="very high" ) {
-                        $densidadsemantica=1;
+                if (oa.semanticdensity.trim()==="very low" || 
+                    oa.semanticdensity.trim()==="low" || 
+                    oa.semanticdensity.trim()==="medium" || 
+                    oa.semanticdensity.trim()==="high" || 
+                    oa.semanticdensity.trim()==="very high" ) {
+                        densidadsemantica=1;
                 }
-                if (trim($oa[$pos][20])=="teacher" || trim($oa[$pos][20])=="author" || trim($oa[$pos][20])=="learner" || trim($oa[$pos][20])=="manager" ) {
-                        $rolusuariofinal=1;
+                if (oa.intendedenduserrole.trim()==="teacher" || 
+                    oa.intendedenduserrole.trim()==="author" || 
+                    oa.intendedenduserrole.trim()==="learner" || 
+                    oa.intendedenduserrole.trim()==="manager" ) {
+                        rolusuariofinal=1;
                 }
 
                 // analisa cada uno de los contextos existentes en el objeto 
                 // verifica que sea consistente  de lo contrario entrega 0
-                $context=$oa[$pos][3];
-                $cantidad=count($context);
-                $cumple=true;
-                $s=0;
-                while ( $cumple && $s<$cantidad) {
-                    if (trim($context[$s])=="school" || trim($context[$s])=="higher education" || trim($context[$s])=="training" || trim($context[$s])=="other" ) {
-                        $cumple=false;
-                        $contexto=1;
+                var context=oa.context;
+                var cantidad=context.length;
+                var cumple=true;
+                var s=0;
+                while ( cumple && s<cantidad) {
+                    if (context[s].trim()==="school" || 
+                        context[s].trim()==="higher education" || 
+                        context[s].trim()==="training" || 
+                        context[s].trim()==="other" ) {
+                        cumple=false;
+                        contexto=1;
                     }else{
-                        $s++;
+                        s++;
                     }
                 }
                 
-                if (trim($oa[$pos][21])=="very easy" || trim($oa[$pos][21])=="easy" || trim($oa[$pos][21])=="medium" || trim($oa[$pos][21])=="difficult" || trim($oa[$pos][21])=="very difficult" ) {
-                        $dificultad=1;
+                if (oa.difficulty.trim()==="very easy" || 
+                    oa.difficulty.trim()==="easy" || 
+                    oa.difficulty.trim()==="medium" || 
+                    oa.difficulty.trim()==="difficult" || 
+                    oa.difficulty.trim()==="very difficult" ) {
+                        dificultad=1;
                 }
-                if (trim($oa[$pos][16])=="yes" || trim($oa[$pos][16])=="no"  ) {
-                        $copyright=1;
+                if (oa.copyrightandotherrestrictions.trim()==="yes" || 
+                    oa.copyrightandotherrestrictions.trim()==="no"  ) {
+                        copyright=1;
                 }
-                if (trim($oa[$pos][14])=="yes" || trim($oa[$pos][14])=="no"  ) {
-                        $costo=1;
+                if (oa.cost.trim()==="yes" || 
+                    oa.cost.trim()==="no"  ) {
+                        costo=1;
                 }
-                if (trim($oa[$pos][22])=="discipline" ||
-                    trim($oa[$pos][22])=="idea" || 
-                    trim($oa[$pos][22])=="prerequisite" ||
-                    trim($oa[$pos][22])=="educational objective" || 
-                    trim($oa[$pos][9])=="accessibility" || 
-                    trim($oa[$pos][9])=="restrictions" || 
-                    trim($oa[$pos][9])=="educational level" || 
-                    trim($oa[$pos][9])=="skill level" || 
-                    trim($oa[$pos][9])=="security level" || 
-                    trim($oa[$pos][9])=="competency"  ) {
-                        $proposito=1;
+                if (oa.learningresourcetype.trim()==="discipline" ||
+                    oa.learningresourcetype.trim()==="idea" || 
+                    oa.learningresourcetype.trim()==="prerequisite" ||
+                    oa.learningresourcetype.trim()==="educational objective" || 
+                    oa.learningresourcetype.trim()==="accessibility" || 
+                    oa.learningresourcetype.trim()==="restrictions" || 
+                    oa.learningresourcetype.trim()==="educational level" || 
+                    oa.learningresourcetype.trim()==="skill level" || 
+                    oa.learningresourcetype.trim()==="security level" || 
+                    oa.learningresourcetype.trim()==="competency"  ) {
+                        proposito=1;
                 }
-                $m_consistencia=($nivelagregacion + $estructura + $rol + $estado + $metarol + $tipointer +
-                                $tiporecursoeducativo + $nivelinter + $densidadsemantica + $rolusuariofinal + 
-                                $contexto + $dificultad + $copyright + $costo + $proposito) /  $r;
+                var m_consistencia=(nivelagregacion + estructura + rol + estado + metarol + tipointer +
+                                tiporecursoeducativo + nivelinter + densidadsemantica + rolusuariofinal + 
+                                contexto + dificultad + copyright + costo + proposito) /  r;
 
                 // valida que calidad de la completitud del objeto 
-                        if ($m_consistencia<0.25) {
-                            $evaluacion="Regular";
-                        }elseif ($m_consistencia>=0.25 && $m_consistencia<0.5) {
-                                $evaluacion="Buena";
-                            }elseif ($m_consistencia>=0.5 && $m_consistencia<0.75) {
-                                    $evaluacion="Muy buena";
-                                }elseif ($m_consistencia>=0.75 ) {
-                                        $evaluacion="Exelente";
+                        if (m_consistencia<0.25) {
+                            evaluacion="Regular";
+                        }else if (m_consistencia>=0.25 && m_consistencia<0.5) {
+                                evaluacion="Buena";
+                            }else if (m_consistencia>=0.5 && m_consistencia<0.75) {
+                                    evaluacion="Muy buena";
+                                }else if (m_consistencia>=0.75 ) {
+                                        evaluacion="Exelente";
                                 }
 
                                 // imprime  la evaluacion de la metrica
-                        echo "* Consistencia de: ".$m_consistencia."; ".$evaluacion."<br>";
+                        echo "* Consistencia de: ".m_consistencia."; ".evaluacion."<br>";
+            }
+
+            // verifica que tan coherente son los metadatos del oa
+function coherencia(objeto){
+                // extrae las variables nesesarias para la evaluacion
+                var estructura= objeto.structure;
+                var nivelagregacion=objeto.aggregationlevel;
+                var tipointeractividad=objeto.interactivitytype; 
+                var nivelinteractivo=objeto.interactivitylevel;
+                var tiporecursoeducativo=objeto.learningresourcetype;
+                
+                //inicializa las reglas y las variables de los pesos
+                var r=0;
+                var pesor1=0;
+                var pesor2=0;
+                var pesor3=0;
+
+                //verifica las reglas que se van a evaluar
+                if (estructura.trim()==="atomic" && nivelagregacion.trim()===1){
+                    r++;
+                    pesor1=1;
+                }else if (estructura.trim()==="atomic" && nivelagregacion.trim()===2){
+                        r++;
+                        pesor1=0.5;
+                    }else if (estructura.trim()==="atomic" && nivelagregacion.trim()===3){
+                            r++;
+                            pesor1=0.25;
+                        }else if (estructura.trim()==="atomic" && nivelagregacion.trim()===4){
+                                r++;
+                                pesor1=0.125;
+                            }else if (estructura.trim()==="collection" && nivelagregacion.trim()===1){
+                                    r++;
+                                    pesor1=0.5;
+                                }else if (estructura.trim()==="networked" && nivelagregacion.trim()===1){
+                                        r++;
+                                        pesor1=0.5;    
+                                    }else if (estructura.trim()==="hierarchical" && nivelagregacion.trim()===1){
+                                            r++;
+                                            pesor1=0.5;    
+                                        }else if (estructura.trim()==="linear" && nivelagregacion.trim()===1){
+                                                r++;
+                                                pesor1=0.5;    
+                                            }else if (estructura.trim()==="collection" && (nivelagregacion.trim()===2 || 
+                                                                                        nivelagregacion.trim()===3 || 
+                                                                                        nivelagregacion.trim()===4) ){
+                                                    r++;
+                                                    pesor1=1;  
+                                                }else if (estructura.trim()==="networked" && (nivelagregacion.trim()===2 || 
+                                                                                           nivelagregacion.trim()===3 || 
+                                                                                           nivelagregacion.trim()===4) ){
+                                                        r++;
+                                                        pesor1=1;  
+                                                    }else if (estructura.trim()==="hierarchical" && (nivelagregacion.trim()===2 || 
+                                                                                                  nivelagregacion.trim()===3 || 
+                                                                                                  nivelagregacion.trim()===4) ){
+                                                            r++;
+                                                            pesor1=1;  
+                                                        }else if (estructura.trim()==="linear" && (nivelagregacio.trim()===2 || 
+                                                                                                nivelagregacio.trim()===3 || 
+                                                                                                nivelagregacio.trim() ===4) ){
+                                                                r++;
+                                                                pesor1=1;  
+                                                        }
+
+                if (tipointeractividad.trim()==="active" && (nivelinteractivo.trim()==="very high" || 
+                                                            nivelinteractivo.trim()==="high" || 
+                                                            nivelinteractivo.trim()==="medium" || 
+                                                            nivelinteractivo.trim()==="low" ||
+                                                            nivelinteractivo.trim()==="very low") ){
+                        $r++;
+                        $pesor2=1;  
+                }else if (tipointeractividad.trim()==="mixed" && (nivelinteractivo.trim()==="very high" || 
+                                                            nivelinteractivo.trim()==="high" || 
+                                                            nivelinteractivo.trim()==="medium" || 
+                                                            nivelinteractivo.trim()==="low" ||
+                                                            nivelinteractivo.trim()==="very low") ){
+                        r++;
+                        pesor2=1;
+                    }else if (tipointeractividad.trim()==="expositive" && (nivelinteractivo.trim()==="very high" || 
+                                                                         nivelinteractivo.trim()==="high") ){
+                             r++;
+                             pesor2=0;
+                        }else if (tipointeractividad.trim()==="expositive" && nivelinteractivo.trim()==="medium" ){
+                                 r++;
+                                 pesor2=0.5;
+                            }else if (tipointeractividad.trim()==="expositive" && ( nivelinteractivo.trim()==="low" ||
+                                                                                    nivelinteractivo.trim()==="very low") ){
+                                     r++;
+                                     pesor2=1;
+                            }   
+                if ( tipointeractividad.trim()==="active" && (tiporecursoeducativo.trim()==="exercise" || 
+                                                            tiporecursoeducativo.trim()==="simulation" || 
+                                                            tiporecursoeducativo.trim()==="questionnaire" || 
+                                                            tiporecursoeducativo.trim()==="exam" ||
+                                                            tiporecursoeducativo.trim()==="experiment" ||
+                                                            tiporecursoeducativo.trim()==="problem statement" ||
+                                                            tiporecursoeducativo.trim()==="self assessment") ){
+                         r++;
+                         pesor3=1;  
+                }else if (tiporecursoeducativo.trim()==="active" && (tiporecursoeducativo.trim()==="diagram" || 
+                                                                 tiporecursoeducativo.trim()==="figure" || 
+                                                                 tiporecursoeducativo.trim()==="graph" || 
+                                                                 tiporecursoeducativo.trim()==="index" ||
+                                                                 tiporecursoeducativo.trim()==="slide" ||
+                                                                 tiporecursoeducativo.trim()==="table" ||
+                                                                 tiporecursoeducativo.trim()==="narrative text" ||
+                                                                 tiporecursoeducativo.trim()==="lecture") ){
+                         r++;
+                         pesor3=0;
+                    
+                    }else if (tipointeractividad.trim()==="expositive" && (tiporecursoeducativo.trim()==="exercise" || 
+                                                                         tiporecursoeducativo.trim()==="simulation" || 
+                                                                         tiporecursoeducativo.trim()==="questionnaire" || 
+                                                                         tiporecursoeducativo.trim()==="exam" ||
+                                                                         tiporecursoeducativo.trim()==="experiment" ||
+                                                                         tiporecursoeducativo.trim()==="problem statement" ||
+                                                                         tiporecursoeducativo.trim()==="self assessment") ){
+                             r++;
+                             pesor3=0;  
+                        }else if (tipointeractividad.trim()==="expositive" && (tiporecursoeducativo.trim()==="diagram" || 
+                                                                             tiporecursoeducativo.trim()==="figure" || 
+                                                                             tiporecursoeducativo.trim()==="graph" || 
+                                                                             tiporecursoeducativo.trim()==="index" ||
+                                                                             tiporecursoeducativo.trim()==="slide" ||
+                                                                             tiporecursoeducativo.trim()==="table" ||
+                                                                             tiporecursoeducativo.trim()==="narrative text" ||
+                                                                             tiporecursoeducativo.trim()==="lecture") ){
+                                 r++;
+                                 pesor3=1;
+                            }else if (tipointeractividad.trim)==="mixed" && (tiporecursoeducativo.trim()==="exercise" || 
+                                                                         tiporecursoeducativo.trim()==="simulation" || 
+                                                                         tiporecursoeducativo.trim()==="questionnaire" || 
+                                                                         tiporecursoeducativo.trim()==="exam" ||
+                                                                         tiporecursoeducativo.trim()==="experiment" ||
+                                                                         tiporecursoeducativo.trim()==="problem statement" ||
+                                                                         tiporecursoeducativo.trim()==="self assessment" ||
+                                                                         tiporecursoeducativo.trim()==="diagram" ||
+                                                                         tiporecursoeducativo.trim()==="figure" ||
+                                                                         tiporecursoeducativo.trim()==="graph" ||
+                                                                         tiporecursoeducativo.trim()==="index" ||
+                                                                         tiporecursoeducativo.trim()==="slide" ||
+                                                                         tiporecursoeducativo.trim()==="table" ||
+                                                                         tiporecursoeducativo.trim()==="narrative text" ||
+                                                                         tiporecursoeducativo.trim()==="lecture" ){
+                                     r++;
+                                     pesor3=1;  
+                            }   
+
+
+                // hace la sumatoria de los pesos 
+                         m_coherencia= ( pesor1 +  pesor2 +  pesor3) /  r;
+
+                    // valida que calidad de objeto es
+                        if ( m_coherencia<0.25) {
+                             evaluacion="Regular";
+                        }else if ( m_coherencia>=0.25 &&  m_coherencia<0.5) {
+                                 evaluacion="Buena";
+                            }else if ( m_coherencia>=0.5 &&  m_coherencia<0.75) {
+                                     evaluacion="Muy buena";
+                                }else if ( m_coherencia>=0.75 ) {
+                                         evaluacion="Exelente";
+                                }
+
+                        // imprime  la evaluacion de la metrica
+                            echo "* Coherencia de: ". m_coherencia."; ". evaluacion."<br><br>";
+
             }
