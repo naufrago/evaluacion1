@@ -1,0 +1,100 @@
+<?php
+
+
+$xml = <<<EOD
+<lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>NBC</lom:catalog>
+		<lom:entry>03.01.10</lom:entry>
+	</lom:identifier>
+	<lom:title>Los colores en embera chami</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>En el objeto de aprendizaje se da a conocer los colores conocidos por la  comunidad indígena Embera Chami, junto a su pronunciación en lengua propia, ademas de la traduccion al español e imagenes representativas</lom:description>
+	<lom:keyword>embera</lom:keyword>
+	<lom:keyword>embera chami</lom:keyword>
+	<lom:keyword>colores</lom:keyword>
+	<lom:structure>atomic</lom:structure>
+	<lom:aggregationlevel>1</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1.0</lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2015-03-24</lom:date>
+		<lom:entity>Grupo de Ambientes Inteligentes Adaptativos-GAIA</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:identifier>
+		<lom:catalog>http://froac.manizales.unal.edu.co/embera/diccionario/colores.php</lom:catalog>
+		<lom:entry>http://froac.manizales.unal.edu.co/embera/diccionario/colores.php</lom:entry>
+	</lom:identifier>
+	<lom:contribute>
+		<lom:role>creator</lom:role>
+		<lom:date>2015-03-24</lom:date>
+		<lom:entity>Grupo de Ambientes inteligentes Adaptativos- GAIA</lom:entity>
+	</lom:contribute>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>html</lom:format>
+	<lom:size>10.6</lom:size>
+	<lom:location>http://froac.manizales.unal.edu.co/embera/diccionario/colores.php</lom:location>
+	<lom:installationremarks> </lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration>PT25M</lom:duration>
+	<lom:requirements>
+		<lom:type>browser</lom:type>
+		<lom:name>google chrome</lom:name>
+		<lom:minimumversion> </lom:minimumversion>
+		<lom:maximumversion> </lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>1</lom:interactivitytype>
+	<lom:learningresourcetype>slide</lom:learningresourcetype>
+	<lom:interactivitylevel>medium</lom:interactivitylevel>
+	<lom:semanticdensity>medium</lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>school</lom:context>
+	<lom:typicalagerange>10-50</lom:typicalagerange>
+	<lom:difficulty>medium</lom:difficulty>
+	<lom:typicallearningtime>PT45M</lom:typicallearningtime>
+	<lom:description>Este objeto permite conocer y aprender las vocales en lengua Embera Chami</lom:description>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+<lom:resource>
+</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose> </lom:purpose>
+	<lom:description> </lom:description>
+</lom:classification>
+</lom:lom>
+EOD;
+
+echo $xml;
+

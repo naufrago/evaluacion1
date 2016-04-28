@@ -1,0 +1,88 @@
+body{background-color:#9A9A9A}
+
+div.contenedor{
+	background-color: #8FC6F7 ; 
+	height: 300px; 
+	width: 700px; 
+	color: white;
+	border-radius: 2%;
+	border-color: white;
+	border-style: solid;
+    border-width: 2px;
+    margin-top: 25px;
+}
+div.contenedor2{
+	background-color: #8FC6F7; 
+	width: 800px; 
+	color: #000000;
+	border-color: white;
+	border-style: solid;
+    border-width: 2px;
+    margin-top: 25px;
+}
+
+div#ruta,#ruta1{
+	
+	 height: 100px; width: 350px; 
+	 padding-top: 100px;
+	 border-radius: 5%
+	 
+	}
+
+header {
+	background-color: #1a237e;
+	
+	}
+
+header .logo{
+	float:left;width:60px;}
+
+header .logo img{width:60px;border-radius:8%}
+
+header .titular{margin:0 60px 0 70px;}
+
+header .titular .filtro{color:#fff;font-size:14px;font-style:italic;font-weight:bold;text-decoration:none}
+
+header .titular .publicar{
+	background:#ff6f00;
+	color:#fff;float:right;
+	font-style:italic;
+	margin:-5px 1em 0 0;padding:.2em .5em;
+	text-decoration:none;
+	text-shadow:1px 1px 0 #000;}
+
+header .titular .titulo{font-size:18px;color:white;font-weight:normal;margin:0;padding:0}
+#menu{margin-top:22px;background-color: #ffffff;}
+
+input#url{color: #1A237E}
+
+
+
+              /*Cambiar las propiedades del contenido: background, font-size, font-family ...*/
+
+              .ui-accordion .ui-accordion-content
+
+              {
+                background: #1A237E;
+                color: #FFFFFF;
+                font-size: 14px;
+              }
+
+              .ui-accordion .ui-accordion-header
+              {
+                color: #1A237E;
+                font-size: 18px;
+              }
+
+              .ui-accordion .ui-accordion-header-active
+              {
+                background: #0091EA;
+                color: white;
+              }
+
+              .ui-accordion .ui-accordion-header:hover
+              {
+                background: #53B3FC;
+                color: white;
+                font-style: italic;
+              }
