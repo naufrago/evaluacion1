@@ -11,7 +11,7 @@ function LOMMetadata(){
     var description;
     var language;
     var semanticdensity;
-    var context;
+    var context=[];
     var learningresourcetype;
     var interactivitytype;
     var typicalagerange;
@@ -41,43 +41,32 @@ function processXml(xml) {
             lom.description = $(xml).find("lom\\:description").first().text();
             lom.language = $(xml).find("lom\\:language").first().text();
             lom.semanticdensity = $(xml).find("lom\\:semanticdensity").text();
-            lom.context = $(xml).find("lom\\:context").text();
+
+            var can_cont =$(xml).find("lom\\:context").length;
+            console.log(can_cont);
+            for (var i = 0; i < can_cont; i++) {
+                lom.context[i]=$(xml).find("lom\\:context")[i].text();
+            }
+            //lom.context = $(xml).find("lom\\:context").text();
+
             lom.learningresourcetype = $(xml).find("lom\\:learningresourcetype").text();
             lom.interactivitytype = $(xml).find("lom\\:interactivitytype").text();
             lom.typicalagerange = $(xml).find("lom\\:typicalagerange").text();
             lom.interactivityLevel = $(xml).find("lom\\:interactivitylevel").text();
             lom.intendedenduserrole = $(xml).find("lom\\:intendedenduserrole").text();
             lom.difficulty = $(xml).find("lom\\:difficulty").text();
-            var ind =$(xml).find("lom\\:location").length;
-            console.log(ind);
 
-
-
-            //lom.location= $(xml).each("lom\\:location").text();
-            
-           $.each($(xml).find("lom\\:location"), function( index, value ) {
-                    for (var i = 0; i <= 0; i--) {
-                        lom.location[i]=value.text();
-                    }
-            });
-            
-            for (var i = 0; i < ind; i++) {
-                //lom.location.push( $(xml).getElementsByTagName("lom\\:location")[i].childNodes[0].text());
-                lom.location[i]= $(xml).find("lom\\:location")[i].text();
-                 console.log(lom.location[i]);
-            }
-            
+            var can_locat =$(xml).find("lom\\:location").length;
+            console.log(can_locat);
+            lom.location= $(xml).each("lom\\:location").text();
+           
             lom.format = $(xml).find("lom\\:format").text();
             lom.entity = $(xml).find("lom\\:entity").text();
             lom.rolelifecycle = $(xml).find("lom\\:role").first().text();
             lom.status = $(xml).find("lom\\:status").text();
             lom.cost = $(xml).find("lom\\:cost").text();
             lom.copyrightandotherrestrictions = $(xml).find("lom\\:varcopyrightandotherrestrictions").text();
-
-
             lom.role = $(xml).find("lom\\:metametadata").find("lom\\:role").text();
-            
-
             lom.purpose = $(xml).find("lom\\:purpose").text();
 
 
@@ -210,22 +199,22 @@ function reusabilidad(objeto1){
                                 }
 
                                 // imprime  la evaluacion de la metrica
-                        echo "* Reusabilidad de: ".$m_reusabilidad."; ".$evaluacion."<br>";
+                        //echo "* Reusabilidad de: ".$m_reusabilidad."; ".$evaluacion."<br>";
                         
 
 
 
                     }else{
                         // en caso tal  que las reglas sean cero imprime esto
-                        echo "* La métrica de reusabilidad no se puede aplicar no se cumple ninguna regla";
+                        //echo "* La métrica de reusabilidad no se puede aplicar no se cumple ninguna regla";
                     }
 
-   }
+}
 
   // funcion encargada de verificar si la ruta  si conduce a un objeto
 function disponibilidad(ruta){
                     var cantidad=ruta.length;
-                    echo "* Cantidad rutas ".cantidad."<br>";
+                    //echo "* Cantidad rutas ".cantidad."<br>";
                     var campos=0;
                     for (var y=0; y <cantidad ; y++) { 
                         // invoca la funcion si url_exist para verificar existencia con un llamado al servidor
@@ -234,10 +223,10 @@ function disponibilidad(ruta){
                         if (existe) {
                             
                             campos++;
-                            echo "      -El objeto almacenado en la ruta ".ruta[y].", si existe.<br> ";
+                            //echo "      -El objeto almacenado en la ruta ".ruta[y].", si existe.<br> ";
                         }   else{// 
                                 // si no existe el objeto
-                                echo "      -El objeto almacenado en la ruta ".ruta[y].", no fue encontrado.<br>";
+                                //echo "      -El objeto almacenado en la ruta ".ruta[y].", no fue encontrado.<br>";
                                 }
 
                         
@@ -253,7 +242,7 @@ function disponibilidad(ruta){
                                 }else if (m_disponibilidad>=0.75 ) {
                                         evaluacion="Exelente";
                                 }
-                        echo "      -Disponibilidad: ".evaluacion."<br>";
+                        //echo "      -Disponibilidad: ".evaluacion."<br>";
                     
 
                     }
@@ -362,16 +351,16 @@ function completitud(oa){
                         // valida que calidad de la completitud del objeto 
                         if (m_completitud<0.25) {
                             evaluacion="Regular";
-                        }elseif (m_completitud>=0.25 && m_completitud<0.5) {
+                        }else if (m_completitud>=0.25 && m_completitud<0.5) {
                                 evaluacion="Buena";
-                            }elseif (m_completitud>=0.5 && m_completitud<0.75) {
+                            }else if (m_completitud>=0.5 && m_completitud<0.75) {
                                     evaluacion="Muy buena";
-                                }elseif (m_completitud>=0.75 ) {
+                                }else if (m_completitud>=0.75 ) {
                                         evaluacion="Exelente";
                                 }
 
                                 // imprime  la evaluacion de la metrica
-                        echo "* Completitud de: ".m_completitud."; ".evaluacion."<br>";
+                        //echo "* Completitud de: ".m_completitud."; ".evaluacion."<br>";
                     }
 
 
@@ -525,7 +514,7 @@ function consistencia(oa){
                                 }
 
                                 // imprime  la evaluacion de la metrica
-                        echo "* Consistencia de: ".m_consistencia."; ".evaluacion."<br>";
+                       // echo "* Consistencia de: ".m_consistencia."; ".evaluacion."<br>";
             }
 
             // verifica que tan coherente son los metadatos del oa
@@ -655,7 +644,7 @@ function coherencia(objeto){
                                                                              tiporecursoeducativo.trim()==="lecture") ){
                                  r++;
                                  pesor3=1;
-                            }else if (tipointeractividad.trim)==="mixed" && (tiporecursoeducativo.trim()==="exercise" || 
+                            }else if (tipointeractividad.trim()==="mixed" && (tiporecursoeducativo.trim()==="exercise" || 
                                                                          tiporecursoeducativo.trim()==="simulation" || 
                                                                          tiporecursoeducativo.trim()==="questionnaire" || 
                                                                          tiporecursoeducativo.trim()==="exam" ||
@@ -669,7 +658,7 @@ function coherencia(objeto){
                                                                          tiporecursoeducativo.trim()==="slide" ||
                                                                          tiporecursoeducativo.trim()==="table" ||
                                                                          tiporecursoeducativo.trim()==="narrative text" ||
-                                                                         tiporecursoeducativo.trim()==="lecture" ){
+                                                                         tiporecursoeducativo.trim()==="lecture" )){
                                      r++;
                                      pesor3=1;  
                             }   
@@ -690,6 +679,6 @@ function coherencia(objeto){
                                 }
 
                         // imprime  la evaluacion de la metrica
-                            echo "* Coherencia de: ". m_coherencia."; ". evaluacion."<br><br>";
+                            //echo "* Coherencia de: ". m_coherencia."; ". evaluacion."<br><br>";
 
             }
