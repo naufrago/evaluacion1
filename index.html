@@ -65,15 +65,47 @@ function mostrarlista(valor){
 	}
 	
 }
-
-
-function ruta(id){
-	var  pag1 ="evaluacion.php";
-	if (boton==="0" && id==="formulario2") {
-		location.href=pag1;
-	}
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
 }
--->
+
+
+function oa(){
+	
+	
+	var xmlFile = $('#urlOA');
+	console.log(xmlFile.value);
+	//var fileName = xmlFile.file.name;
+	console.log(xmlFile[0].files[0].name);
+	var de=xmlFile[0].files[0].name;
+    alert("1");
+	var lom ;
+
+	var xmlString = (new XMLSerializer()).serializeToString(xmlFile);
+	console.log(xmlString);
+				$.get(de,function(xml){
+      			alert("entro");
+      			var xmlString = (new XMLSerializer()).serializeToString(xml);
+
+      			//console.log(xmlString);
+      		
+		      	lom = processXml(xmlString);
+		      	console.log(lom);
+		      	document.writeln(lom.title);
+
+      		});
+      	
+      	//location.href =lol;
+      	//
+      	return false;
+}
+
+
 </script>
 
 </head>
@@ -123,7 +155,7 @@ function ruta(id){
 						<input class="btn btn-success" value="Evaluar"id="campo" type="submit"  /></form></div>
 
 				<div id="ruta" name="ruta" style="display:none;">
-					<form id="formulario2" name="formulario" action= "evaluacion.php"  method="POST">
+					<form id="formulario2" name="formulario" action= "evaluacion.php" method="POST">
 						<input type="file"  id="url" name="url"  accept="text/xml" readonly="true"></input><br>
 						<input id="campo" class="btn btn-success" value="Evaluar" type="submit"  /></form></div>
 
@@ -140,14 +172,14 @@ function ruta(id){
            </select>
            		
 				<div id="url1" name="url" style="display:none;">
-					<form id="formulario" name="formulario" action= "evaluacion1.php" method="POST">URL DEL XML<BR>
-						<input id="url" name="url" type="text" style="width:500px;"></input><br><br>
-						<input class="btn btn-success" value="Evaluar"id="campo" type="submit"  /></form></div>
+					<form id="formulario" name="formulario" >URL DEL XML<BR>
+						<input id="url" name="urlOA" type="text" style="width:500px;"></input><br><br>
+						<input class="btn btn-success" value="Evaluar"id="campo" type="submit"  OnClick="oa()"/></form></div>
 
 				<div id="ruta1" name="ruta" style="display:none;">
-					<form id="formulario2" name="formulario" action= "evaluacion1.php"  method="POST">
-						<input type="file"  id="url" name="url"  accept="text/xml" readonly="true"></input><br>
-						<input id="campo" class="btn btn-success" value="Evaluar" type="submit"  /></form></div>
+					<form id="formulario2" name="formulario"   >
+						<input type="file"  id="urlOA" name="url"  accept="text/xml" readonly="true" value=""></input><br>
+						<input id="campo" class="btn btn-success" value="Evaluar"  type="submit" OnClick="oa()" /></form></div>
 
            </div>
 

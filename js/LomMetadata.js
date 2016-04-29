@@ -31,6 +31,7 @@ function LOMMetadata(){
 }
 
 function processXml(xml) {
+            alert("entro a la funcion");
 
             var lom = new LOMMetadata();
 
@@ -42,12 +43,15 @@ function processXml(xml) {
             lom.language = $(xml).find("lom\\:language").first().text();
             lom.semanticdensity = $(xml).find("lom\\:semanticdensity").text();
 
-            var can_cont =$(xml).find("lom\\:context").length;
-            console.log(can_cont);
-            for (var i = 0; i < can_cont; i++) {
-                lom.context[i]=$(xml).find("lom\\:context")[i].text();
-            }
-            //lom.context = $(xml).find("lom\\:context").text();
+            var arrayContext = [];
+
+            $(xml).find("lom\\:context").each(function(){
+                console.log($(this).text());
+                arrayContext.push($(this).text());
+            });
+
+            lom.context = arrayContext.slice(0);
+
 
             lom.learningresourcetype = $(xml).find("lom\\:learningresourcetype").text();
             lom.interactivitytype = $(xml).find("lom\\:interactivitytype").text();
@@ -56,10 +60,15 @@ function processXml(xml) {
             lom.intendedenduserrole = $(xml).find("lom\\:intendedenduserrole").text();
             lom.difficulty = $(xml).find("lom\\:difficulty").text();
 
-            var can_locat =$(xml).find("lom\\:location").length;
-            console.log(can_locat);
-            lom.location= $(xml).each("lom\\:location").text();
-           
+            
+           var arrayLocation = [];
+
+            $(xml).find("lom\\:location").each(function(){
+                console.log($(this).text());
+                arrayLocation.push($(this).text());
+            });
+            lom.location = arrayLocation.slice(0);
+
             lom.format = $(xml).find("lom\\:format").text();
             lom.entity = $(xml).find("lom\\:entity").text();
             lom.rolelifecycle = $(xml).find("lom\\:role").first().text();
