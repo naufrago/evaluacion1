@@ -6,22 +6,24 @@
 	<script src="js/LomMetadata.js"></script>
   <script type="text/javascript">
   
-  
+ function oa(ruta){ 
     var lom ;
          //var xmlDoc=loadXMLDoc('as.xml');
         $(document).ready(function(){
-          $.get("as.xml",function(xml){
+          $.get(ruta,function(xml){
 
             var xmlString = (new XMLSerializer()).serializeToString(xml);
 
             //console.log(xmlString);
           
             lom = processXml(xmlString);
-
-            document.writeln(lom.title);
+            console.log(lom.context[0]);
+            reusabilidad(lom);
+            //document.writeln(lom.title);
           });
         });
-
+  return lom;
+}
    
       
 </script>
@@ -29,9 +31,19 @@
 </head>
 <body>
 <div>
-buenas
+
 <?php  $llego=$_POST['url'];
-            echo "<div>".$llego."</div>";?>
+            //echo "<div>".$llego."</div><br>";
+
+     ?>       
+<script >
+  var ruta= "<?php echo $llego; ?>" ;
+  console.log(ruta);
+  //alert(ruta);
+  document.write("ruta que llego = " + ruta);
+  var datos=oa(ruta);
+  
+</script>
 
 </div>
 

@@ -86,12 +86,14 @@ function processXml(xml) {
 
 
 function reusabilidad(objeto1){
+                   
+
                     // extrae las variables nesesarias para la evaluacion
                    var densidadsemantica1=objeto1.semanticdensity;
                    var general1=objeto1.aggregationlevel;
                    var estructura1=objeto1.structure;
                    var contexto1=objeto1.context;
-                   var titulo1=$objeto1.title;
+                   var titulo1=objeto1.title;
                     //inicializa las reglas y las variables de los pesos
                     var r=0;
                     var pesor1=0;
@@ -125,7 +127,7 @@ function reusabilidad(objeto1){
                         }
                     }
                     if (general1!="") {
-                            $r++;
+                            r++;
                             switch (general1) {
                              case '1':
                                 pesor2=1;
@@ -174,11 +176,12 @@ function reusabilidad(objeto1){
                     }
 
                     var can_contex=0;
-                    for (i=0; i <can_contex ; i++) { 
+                    for (i=0; i <contexto1.length; i++) { 
                         if (contexto1[i]!="") {
                             can_contex++;
                         }
                     }
+                    
                     r++;
                     if (can_contex===1) {
                         pesor4=0.2;
@@ -187,7 +190,7 @@ function reusabilidad(objeto1){
                              }else if(can_contex>=3){
                                     pesor4=1;
                                 }
-                        
+
                     
                     var evaluacion="OA no reutilizable";
                     var m_reusabilidad=0;
@@ -205,17 +208,21 @@ function reusabilidad(objeto1){
                                     evaluacion="Muy buena";
                                 }else if (m_reusabilidad>=0.75 ) {
                                         evaluacion="Exelente";
+                                        
+
                                 }
 
                                 // imprime  la evaluacion de la metrica
-                        //echo "* Reusabilidad de: ".$m_reusabilidad."; ".$evaluacion."<br>";
+                        alert("* Reusabilidad de: "+ m_reusabilidad +"; "+evaluacion);
+                        
                         
 
 
 
                     }else{
                         // en caso tal  que las reglas sean cero imprime esto
-                        //echo "* La métrica de reusabilidad no se puede aplicar no se cumple ninguna regla";
+                        alert("* La métrica de reusabilidad no se puede aplicar no se cumple ninguna regla");
+                        
                     }
 
 }
