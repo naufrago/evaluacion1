@@ -230,11 +230,13 @@ function reusabilidad(objeto1){
   // funcion encargada de verificar si la ruta  si conduce a un objeto
 function disponibilidad(ruta){
                     var cantidad=ruta.length;
-                    //echo "* Cantidad rutas ".cantidad."<br>";
+
+                    
                     var campos=0;
                     for (var y=0; y <cantidad ; y++) { 
                         // invoca la funcion si url_exist para verificar existencia con un llamado al servidor
                         var existe= isURL( ruta[y] );
+                        alert("existe ruta "+ existe);
                         // si  es verdadero entrega  la existencia del objeto
                         if (existe) {
                             

@@ -19,6 +19,7 @@
             lom = processXml(xmlString);
             console.log(lom.context[0]);
             reusabilidad(lom);
+            disponibilidad(lom.location);
             //document.writeln(lom.title);
           });
         });
