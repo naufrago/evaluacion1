@@ -277,6 +277,8 @@ function disponibilidad(ruta){
 
 
             // verifica que tan completo es el oa en sus metadatos
+            // 
+            
 function completitud(oa){
                     var titulo=0; var keyword=0; var descripcion=0; var autor=0;
                     var tipoRE=0; var formato=0; var contexto=0; var idioma=0;
@@ -378,6 +380,7 @@ function completitud(oa){
                                 }
 
                                 // imprime  la evaluacion de la metrica
+                        alert("* Completitud de: "+m_completitud+ "; "+evaluacion);
                         //echo "* Completitud de: ".m_completitud."; ".evaluacion."<br>";
                     }
 
@@ -385,36 +388,38 @@ function completitud(oa){
 function consistencia(oa){
                 var nivelagregacion=0; var estructura=0; var rol=0; var estado=0; var metarol=0; var tipointer=0;
                 var tiporecursoeducativo=0; var nivelinter=0; var densidadsemantica=0; var rolusuariofinal=0;
-                var contexto=0; var dificultad=0; var copyright=0; var costo=0; var proposito=0; var r=14;
+                var contexto=0; var dificultad=0; var copyright=0; var costo=0; var proposito=0; var r=15;
 
-                if (oa.aggregationlevel.trim()===1 || 
-                    oa.aggregationlevel.trim()===2 || 
-                    oa.aggregationlevel.trim()===3 ||
-                    oa.aggregationlevel.trim()===4  ) {
+                if (oa.aggregationlevel.trim()==="1" || 
+                    oa.aggregationlevel.trim()==="2" || 
+                    oa.aggregationlevel.trim()==="3" ||
+                    oa.aggregationlevel.trim()==="4"  ) {
                         nivelagregacion=1;
+                    
                 }
+
                 if (oa.structure.trim()==="atomic" || 
                     oa.structure.trim()==="collection" || 
                     oa.structure.trim()==="networked" ||
                     oa.structure.trim()==="hierarchical" || 
                     oa.structure.trim()==="linear" ) {
-                        $estructura=1;
+                        estructura=1;
                 }
-                if (oa.role.trim()==="author" ||
-                    oa.role.trim()==="publisher" || 
-                    oa.role.trim()==="unknown" ||
-                    oa.role.trim()==="initiator" || 
-                    oa.role.trim()==="terminator" || 
-                    oa.role.trim()==="validator" || 
-                    oa.role.trim()==="editor" || 
-                    oa.role.trim()==="graphical designer" || 
-                    oa.role.trim()==="technical implementer" || 
-                    oa.role.trim()==="content provider" || 
-                    oa.role.trim()==="technical validator" || 
-                    oa.role.trim()==="educational validator" || 
-                    oa.role.trim()==="script writer" || 
-                    oa.role.trim()==="instructional designer" || 
-                    oa.role.trim()==="subject matter expert" ) {
+                if (oa.rolelifecycle.trim()==="author" ||
+                    oa.rolelifecycle.trim()==="publisher" || 
+                    oa.rolelifecycle.trim()==="unknown" ||
+                    oa.rolelifecycle.trim()==="initiator" || 
+                    oa.rolelifecycle.trim()==="terminator" || 
+                    oa.rolelifecycle.trim()==="validator" || 
+                    oa.rolelifecycle.trim()==="editor" || 
+                    oa.rolelifecycle.trim()==="graphical designer" || 
+                    oa.rolelifecycle.trim()==="technical implementer" || 
+                    oa.rolelifecycle.trim()==="content provider" || 
+                    oa.rolelifecycle.trim()==="technical validator" || 
+                    oa.rolelifecycle.trim()==="educational validator" || 
+                    oa.rolelifecycle.trim()==="script writer" || 
+                    oa.rolelifecycle.trim()==="instructional designer" || 
+                    oa.rolelifecycle.trim()==="subject matter expert" ) {
                         rol=1;
                 }
                 if (oa.status.trim()==="draft" || 
@@ -449,14 +454,18 @@ function consistencia(oa){
                     oa.learningresourcetype.trim()==="self assessment" || 
                     oa.learningresourcetype.trim()==="lecture" ) {
                         tiporecursoeducativo=1;
+
                 }
-                if (oa.interactivitylevel.trim()==="very low" ||
-                    oa.interactivitylevel.trim()==="low" || 
-                    oa.interactivitylevel.trim()==="medium" || 
-                    oa.interactivitylevel.trim()==="high" || 
-                    oa.interactivitylevel.trim()==="very high" ) {
+                
+                
+                if (oa.interactivityLevel.trim()==="very low" ||
+                    oa.interactivityLevel.trim()==="low" || 
+                    oa.interactivityLevel.trim()==="medium" || 
+                    oa.interactivityLevel.trim()==="high" || 
+                    oa.interactivityLevel.trim()==="very high" ) {
                         nivelinter=1;
                 }
+                
                 if (oa.semanticdensity.trim()==="very low" || 
                     oa.semanticdensity.trim()==="low" || 
                     oa.semanticdensity.trim()==="medium" || 
@@ -504,22 +513,22 @@ function consistencia(oa){
                     oa.cost.trim()==="no"  ) {
                         costo=1;
                 }
-                if (oa.learningresourcetype.trim()==="discipline" ||
-                    oa.learningresourcetype.trim()==="idea" || 
-                    oa.learningresourcetype.trim()==="prerequisite" ||
-                    oa.learningresourcetype.trim()==="educational objective" || 
-                    oa.learningresourcetype.trim()==="accessibility" || 
-                    oa.learningresourcetype.trim()==="restrictions" || 
-                    oa.learningresourcetype.trim()==="educational level" || 
-                    oa.learningresourcetype.trim()==="skill level" || 
-                    oa.learningresourcetype.trim()==="security level" || 
-                    oa.learningresourcetype.trim()==="competency"  ) {
+                if (oa.purpose.trim()==="discipline" ||
+                    oa.purpose.trim()==="idea" || 
+                    oa.purpose.trim()==="prerequisite" ||
+                    oa.purpose.trim()==="educational objective" || 
+                    oa.purpose.trim()==="accessibility" || 
+                    oa.purpose.trim()==="restrictions" || 
+                    oa.purpose.trim()==="educational level" || 
+                    oa.purpose.trim()==="skill level" || 
+                    oa.purpose.trim()==="security level" || 
+                    oa.purpose.trim()==="competency"  ) {
                         proposito=1;
                 }
                 var m_consistencia=(nivelagregacion + estructura + rol + estado + metarol + tipointer +
                                 tiporecursoeducativo + nivelinter + densidadsemantica + rolusuariofinal + 
                                 contexto + dificultad + copyright + costo + proposito) /  r;
-
+                var evaluacion="";
                 // valida que calidad de la completitud del objeto 
                         if (m_consistencia<0.25) {
                             evaluacion="Regular";
@@ -532,6 +541,7 @@ function consistencia(oa){
                                 }
 
                                 // imprime  la evaluacion de la metrica
+                        alert("* Consistencia de: "+m_consistencia+"; "+evaluacion);
                        // echo "* Consistencia de: ".m_consistencia."; ".evaluacion."<br>";
             }
 
@@ -551,48 +561,48 @@ function coherencia(objeto){
                 var pesor3=0;
 
                 //verifica las reglas que se van a evaluar
-                if (estructura.trim()==="atomic" && nivelagregacion.trim()===1){
+                if (estructura.trim()==="atomic" && nivelagregacion.trim()==="1"){
                     r++;
                     pesor1=1;
-                }else if (estructura.trim()==="atomic" && nivelagregacion.trim()===2){
+                }else if (estructura.trim()==="atomic" && nivelagregacion.trim()==="2"){
                         r++;
                         pesor1=0.5;
-                    }else if (estructura.trim()==="atomic" && nivelagregacion.trim()===3){
+                    }else if (estructura.trim()==="atomic" && nivelagregacion.trim()==="3"){
                             r++;
                             pesor1=0.25;
-                        }else if (estructura.trim()==="atomic" && nivelagregacion.trim()===4){
+                        }else if (estructura.trim()==="atomic" && nivelagregacion.trim()==="4"){
                                 r++;
                                 pesor1=0.125;
-                            }else if (estructura.trim()==="collection" && nivelagregacion.trim()===1){
+                            }else if (estructura.trim()==="collection" && nivelagregacion.trim()==="1"){
                                     r++;
                                     pesor1=0.5;
-                                }else if (estructura.trim()==="networked" && nivelagregacion.trim()===1){
+                                }else if (estructura.trim()==="networked" && nivelagregacion.trim()==="1"){
                                         r++;
                                         pesor1=0.5;    
-                                    }else if (estructura.trim()==="hierarchical" && nivelagregacion.trim()===1){
+                                    }else if (estructura.trim()==="hierarchical" && nivelagregacion.trim()==="1"){
                                             r++;
                                             pesor1=0.5;    
-                                        }else if (estructura.trim()==="linear" && nivelagregacion.trim()===1){
+                                        }else if (estructura.trim()==="linear" && nivelagregacion.trim()==="1"){
                                                 r++;
                                                 pesor1=0.5;    
-                                            }else if (estructura.trim()==="collection" && (nivelagregacion.trim()===2 || 
-                                                                                        nivelagregacion.trim()===3 || 
-                                                                                        nivelagregacion.trim()===4) ){
+                                            }else if (estructura.trim()==="collection" && (nivelagregacion.trim()==="2" || 
+                                                                                        nivelagregacion.trim()==="3" || 
+                                                                                        nivelagregacion.trim()==="4") ){
                                                     r++;
                                                     pesor1=1;  
-                                                }else if (estructura.trim()==="networked" && (nivelagregacion.trim()===2 || 
-                                                                                           nivelagregacion.trim()===3 || 
-                                                                                           nivelagregacion.trim()===4) ){
+                                                }else if (estructura.trim()==="networked" && (nivelagregacion.trim()==="2" || 
+                                                                                           nivelagregacion.trim()==="3" || 
+                                                                                           nivelagregacion.trim()==="4") ){
                                                         r++;
                                                         pesor1=1;  
-                                                    }else if (estructura.trim()==="hierarchical" && (nivelagregacion.trim()===2 || 
-                                                                                                  nivelagregacion.trim()===3 || 
-                                                                                                  nivelagregacion.trim()===4) ){
+                                                    }else if (estructura.trim()==="hierarchical" && (nivelagregacion.trim()==="2" || 
+                                                                                                  nivelagregacion.trim()==="3" || 
+                                                                                                  nivelagregacion.trim()==="4") ){
                                                             r++;
                                                             pesor1=1;  
-                                                        }else if (estructura.trim()==="linear" && (nivelagregacio.trim()===2 || 
-                                                                                                nivelagregacio.trim()===3 || 
-                                                                                                nivelagregacio.trim() ===4) ){
+                                                        }else if (estructura.trim()==="linear" && (nivelagregacio.trim()==="2" || 
+                                                                                                nivelagregacio.trim()==="3" || 
+                                                                                                nivelagregacio.trim() ==="4") ){
                                                                 r++;
                                                                 pesor1=1;  
                                                         }
@@ -684,7 +694,8 @@ function coherencia(objeto){
 
                 // hace la sumatoria de los pesos 
                          m_coherencia= ( pesor1 +  pesor2 +  pesor3) /  r;
-
+                         
+                         var evaluacion="";
                     // valida que calidad de objeto es
                         if ( m_coherencia<0.25) {
                              evaluacion="Regular";
@@ -697,6 +708,7 @@ function coherencia(objeto){
                                 }
 
                         // imprime  la evaluacion de la metrica
+                        alert("* Coherencia de: "+ m_coherencia+"; "+ evaluacion);
                             //echo "* Coherencia de: ". m_coherencia."; ". evaluacion."<br><br>";
 
             }

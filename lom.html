@@ -22,30 +22,15 @@
           });
         });*/
 
-function ping( URL, FUNCION, ESPERA ) {
- 
-    if ( ! URL || typeof( FUNCION ) != "function" )
-        return false;
- 
-    var hay_respuesta = false, 
-          iframe = document.createElement("iframe"),
-          tiempo_espera = Number( ESPERA ) || 5000,
-          proseguir = function () {
-              document.body.removeChild ( iframe );
-              FUNCION( hay_respuesta );
-          };
- 
-    with( iframe ) {
-        name = "iframe1";
-        style.display = "none";
-        src = URL;
-    }
-    iframe.onload = function() { hay_respuesta = true };
- 
-    document.body.appendChild( iframe );
-    setTimeout( proseguir, tiempo_espera );
- 
+function ping(){
+       var request = new XMLHttpRequest();  
+        request.open('GET', 'http://www.mozilla.org', true);  
+        request.send();  
+         
+        if (request.status === "404") {  
+            alert("No existe pagina");
 }
+    }
 
    
       
@@ -55,13 +40,11 @@ function ping( URL, FUNCION, ESPERA ) {
 <body>
 <div>
 <script type="text/javascript">
-  function z( respuesta ) {
-     alert( respuesta ); 
-}
+  
 //ping( "http://google.com", z, 4000 );
 // El resultado sería true.
  
-ping( "http://www.casrteras.com/", z, 4000 );
+ping( );
 // El resultado sería false.
 </script>
 

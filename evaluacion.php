@@ -738,7 +738,7 @@
             {
                 $nivelagregacion=0; $estructura=0; $rol=0; $estado=0; $metarol=0; $tipointer=0;
                 $tiporecursoeducativo=0; $nivelinter=0; $densidadsemantica=0; $rolusuariofinal=0;
-                $contexto=0; $dificultad=0; $copyright=0; $costo=0; $proposito=0; $r=14;
+                $contexto=0; $dificultad=0; $copyright=0; $costo=0; $proposito=0; $r=15;
 
                 if (trim($oa[$pos][1])==1 || trim($oa[$pos][1])==2 || trim($oa[$pos][1])==3 ||trim($oa[$pos][1])==4  ) {
                         $nivelagregacion=1;
@@ -828,12 +828,12 @@
                     trim($oa[$pos][22])=="idea" ||
                     trim($oa[$pos][22])=="prerequisite" ||
                     trim($oa[$pos][22])=="educational objective" ||
-                    trim($oa[$pos][9])=="accessibility" ||
-                    trim($oa[$pos][9])=="restrictions" ||
-                    trim($oa[$pos][9])=="educational level" ||
-                    trim($oa[$pos][9])=="skill level" ||
-                    trim($oa[$pos][9])=="security level" ||
-                    trim($oa[$pos][9])=="competency"  ) {
+                    trim($oa[$pos][22])=="accessibility" ||
+                    trim($oa[$pos][22])=="restrictions" ||
+                    trim($oa[$pos][22])=="educational level" ||
+                    trim($oa[$pos][22])=="skill level" ||
+                    trim($oa[$pos][22])=="security level" ||
+                    trim($oa[$pos][22])=="competency"  ) {
                         $proposito=1;
                 }
                 $m_consistencia=($nivelagregacion + $estructura + $rol + $estado + $metarol + $tipointer +

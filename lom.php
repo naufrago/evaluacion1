@@ -17,9 +17,12 @@
             //console.log(xmlString);
           
             lom = processXml(xmlString);
-            console.log(lom.context[0]);
+            console.log(lom);
             reusabilidad(lom);
-            disponibilidad(lom.location);
+            //disponibilidad(lom.location);
+            completitud(lom);
+            consistencia(lom);
+            coherencia(lom);
             //document.writeln(lom.title);
           });
         });
@@ -43,7 +46,6 @@
   //alert(ruta);
   document.write("ruta que llego = " + ruta);
   var datos=oa(ruta);
-  
 </script>
 
 </div>
