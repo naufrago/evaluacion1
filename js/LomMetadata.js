@@ -27,6 +27,7 @@ function LOMMetadata(){
     var copyrightandotherrestrictions;
     var role;
     var purpose;
+    var identifier;
  
 }
 
@@ -34,7 +35,7 @@ function processXml(xml) {
             alert("entro a la funcion");
 
             var lom = new LOMMetadata();
-
+            lom.identifier= $(xml).find("identifier").text();
             lom.aggregationlevel = $(xml).find("lom\\:aggregationlevel").text();
             lom.structure = $(xml).find("lom\\:structure").text();
             lom.title = $(xml).find("lom\\:title").text();
@@ -79,7 +80,7 @@ function processXml(xml) {
             lom.purpose = $(xml).find("lom\\:purpose").text();
 
 
-            
+
 
             return lom;
         }
@@ -600,9 +601,9 @@ function coherencia(objeto){
                                                                                                   nivelagregacion.trim()==="4") ){
                                                             r++;
                                                             pesor1=1;  
-                                                        }else if (estructura.trim()==="linear" && (nivelagregacio.trim()==="2" || 
-                                                                                                nivelagregacio.trim()==="3" || 
-                                                                                                nivelagregacio.trim() ==="4") ){
+                                                        }else if (estructura.trim()==="linear" && (nivelagregacion.trim()==="2" || 
+                                                                                                nivelagregacion.trim()==="3" || 
+                                                                                                nivelagregacion.trim() ==="4") ){
                                                                 r++;
                                                                 pesor1=1;  
                                                         }

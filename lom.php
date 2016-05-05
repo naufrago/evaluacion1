@@ -18,11 +18,17 @@
           
             lom = processXml(xmlString);
             console.log(lom);
-            reusabilidad(lom);
-            //disponibilidad(lom.location);
-            completitud(lom);
-            consistencia(lom);
-            coherencia(lom);
+            if (!lom.identifier) {
+              reusabilidad(lom);
+              //disponibilidad(lom.location);
+              completitud(lom);
+              consistencia(lom);
+              coherencia(lom);
+            }else{
+              alert("el archivo xml no corresponde a un solo OA");
+              location.href ="index.html";
+            }
+            
             //document.writeln(lom.title);
           });
         });

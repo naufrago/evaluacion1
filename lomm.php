@@ -32,7 +32,7 @@ function ping(ip)
     {
             input += oExec.StdOut.ReadLine() + "<br />";
     }
-    alert(input);
+    alert(input)
 }
 
    
@@ -47,35 +47,10 @@ function ping(ip)
 //ping( "http://google.com", z, 4000 );
 // El resultado sería true.
  
-//ping("https://www.google.com.co/?gfe_rd=cr&ei=SW0rV_WrOOKw8weX4IeQCA&gws_rd=ssl" );
+ping( );
 // El resultado sería false.
 </script>
 
-<?php
-// Elimino los mensajes de warning para
-// que no salgan en la respuesta
-error_reporting(E_ERROR);
-$url = $_GET["https://www.google.com.co/?gfe_rd=cr&ei=SW0rV_WrOOKw8weX4IeQCA&gws_rd=ssl"];
-$res = 0;
-// Miro si existe la URL
-$f = fopen($url, "r");
-if ($f===false) {
-// No existe
-$res = 0;
-} else {
-// Existe
-$res = 1;
-}
-fclose($f);
-$xml  = '<?xml version="1.0" standalone="yes"?>';
-$xml .= '<datos>';
-// Devuelvo el id del objeto para poder referenciarlo
-$xml .= '<id>'.$_GET["id"].'</id>';
-$xml .= '<ok>'.$res.'</ok>';
-$xml .= '</datos>';
-header('Content-type: text/xml');
-echo $xml;
-?>
 </div>
 
 
