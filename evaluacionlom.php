@@ -425,7 +425,7 @@
                 }
 
             // ciclo que realiza la evaluacion a todos los OAS
-                    echo "<div><h3>EVALUACIÓN DE LOS OBJETOS:</h3>";
+                    echo "<div><h3>EVALUACIÓN DE LOS OBJETOS ESTANDAR LOM:</h3>";
                                             echo"<TABLE table table-bordered\">";
 
                     for ($a=0; $a <$total_objetos ; $a++) {

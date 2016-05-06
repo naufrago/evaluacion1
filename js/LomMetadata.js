@@ -32,13 +32,14 @@ function LOMMetadata(){
 }
 
 function processXml(xml) {
-            alert("entro a la funcion");
+            alert("REALIZANDO EVALUACION");
 
             var lom = new LOMMetadata();
             lom.identifier= $(xml).find("identifier").text();
             lom.aggregationlevel = $(xml).find("lom\\:aggregationlevel").text();
             lom.structure = $(xml).find("lom\\:structure").text();
             lom.title = $(xml).find("lom\\:title").text();
+            alert("Objeto evaluado "+lom.title);
             lom.keyword = $(xml).find("lom\\:keyword").first().text();
             lom.description = $(xml).find("lom\\:description").first().text();
             lom.language = $(xml).find("lom\\:language").first().text();
@@ -101,7 +102,8 @@ function reusabilidad(objeto1){
                     var pesor2=0;
                     var pesor3=0;
                     var pesor4=0;
-                    //verifica cuantas reglas se van a evaluar
+                     var mensaje="* La métrica de reusabilidad no se puede aplicar no se cumple ninguna regla";
+                                         //verifica cuantas reglas se van a evaluar
                     
                     if (densidadsemantica1!="") {
                             r++;
@@ -214,7 +216,9 @@ function reusabilidad(objeto1){
                                 }
 
                                 // imprime  la evaluacion de la metrica
-                        alert("* Reusabilidad de: "+ m_reusabilidad +"; "+evaluacion);
+                        mensaje="* Reusabilidad de: "+ m_reusabilidad +"; "+evaluacion;
+                        alert(mensaje);
+                        return mensaje;
                         
                         
 
@@ -223,6 +227,7 @@ function reusabilidad(objeto1){
                     }else{
                         // en caso tal  que las reglas sean cero imprime esto
                         alert("* La métrica de reusabilidad no se puede aplicar no se cumple ninguna regla");
+                        return mensaje;
                         
                     }
 

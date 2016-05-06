@@ -32,13 +32,13 @@ function OBAAMetadata(){
 }
 
 function processXml(xml) {
-            alert("entro a la funcion");
-
+             alert("REALIZANDO EVALUACION");
             var obaa = new OBAAMetadata();
             obaa.identifier= $(xml).find("identifier").text();
             obaa.aggregationlevel = $(xml).find("obaa\\:aggregationlevel").text();
             obaa.structure = $(xml).find("obaa\\:structure").text();
             obaa.title = $(xml).find("obaa\\:title").text();
+            alert("Objeto evaluado "+obaa.title);
             obaa.keyword = $(xml).find("obaa\\:keyword").first().text();
             obaa.description = $(xml).find("obaa\\:description").first().text();
             obaa.language = $(xml).find("obaa\\:language").first().text();
