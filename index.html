@@ -16,7 +16,7 @@ var boton;
 function mostrarReferencia(valor){
 	switch (valor){
 		
-
+//LOM
 		case "ARCHIVO":
 			document.getElementById('ruta').style.display='block';
 			document.getElementById('url').style.display='none';
@@ -46,6 +46,37 @@ function mostrarReferencia(valor){
 			document.getElementById('ruta1').style.display='none';
 			document.getElementById('url1').style.display='block';
 			break;
+
+//OBAA
+		case "ARCHIVOobaa":
+			document.getElementById('rutaobaa').style.display='block';
+			document.getElementById('urlobaa').style.display='none';
+			break;
+
+		case "0obaa":
+			document.getElementById('rutaobaa').style.display='none';
+			document.getElementById('urlobaa').style.display='none';
+			break;
+
+		case "URLobaa":
+			document.getElementById('rutaobaa').style.display='none';
+			document.getElementById('urlobaa').style.display='block';
+			break;
+
+		case "ARCHIVO1obaa":
+			document.getElementById('ruta1obaa').style.display='block';
+			document.getElementById('url1obaa').style.display='none';
+			break;
+
+		case "00obaa":
+			document.getElementById('ruta1obaa').style.display='none';
+			document.getElementById('url1obaa').style.display='none';
+			break;
+
+		case "URL1obaa":
+			document.getElementById('ruta1obaa').style.display='none';
+			document.getElementById('url1obaa').style.display='block';
+			break;
 	}
 	
 }
@@ -54,13 +85,33 @@ function mostrarlista(valor){
 	switch (valor){
 		
 		case "object":
-			document.getElementById('tiporutaobjeto').style.display='block';
-			document.getElementById('tiporutalista').style.display='none';
+			document.getElementById('tiporutaobjetolom').style.display='block';
+			document.getElementById('tiporutalistalom').style.display='none';
 			break;
 
 		case "list":
-			document.getElementById('tiporutaobjeto').style.display='none';
-			document.getElementById('tiporutalista').style.display='block';
+			document.getElementById('tiporutaobjetolom').style.display='none';
+			document.getElementById('tiporutalistalom').style.display='block';
+			break;
+
+		case "object1":
+			document.getElementById('tiporutaobjetoobaa').style.display='block';
+			document.getElementById('tiporutalistaobaa').style.display='none';
+			break;
+
+		case "list1":
+			document.getElementById('tiporutaobjetoobaa').style.display='none';
+			document.getElementById('tiporutalistaobaa').style.display='block';
+			break;
+
+		case "LOM":
+			document.getElementById('lom').style.display='block';
+			document.getElementById('obaa').style.display='none';
+			break;
+
+		case "OBAA":
+			document.getElementById('lom').style.display='none';
+			document.getElementById('obaa').style.display='block';
 			break;
 	}
 	
@@ -138,10 +189,16 @@ function oa(){
 <body>
 	<center>
 		<div class="contenedor" ><h4>Evalua tus RED</h4>
-		<input type="radio" name="group1" value="object" onchange="mostrarlista(this.value)"> objeto 
-		<input type="radio" name="group1" value="list" onchange="mostrarlista(this.value)"> lista de objetos<br>
+
+		<input type="radio" name="group1" value="LOM" onchange="mostrarlista(this.value)"> ESTANDAR LOM 
+		<input type="radio" name="group1" value="OBAA" onchange="mostrarlista(this.value)"> ESTANDAR OBAA<br>
+
+<!--LOM-->
+		<div id="lom" name="lom" style="display:none;">
+		<input type="radio" name="group2" value="object" onchange="mostrarlista(this.value)"> objeto 
+		<input type="radio" name="group2" value="list" onchange="mostrarlista(this.value)"> varios objetos<br>
 <!--formulario de lista de objetos-->
-			<div id="tiporutalista" name="tiporutalista" style="display:none;">
+			<div id="tiporutalistalom" name="tiporutalistalom" style="display:none;">
 			<select class="form-control" name="tiporuta"  id="tiporuta"  onchange="mostrarReferencia(this.value)" style="width:390px">
 
                         <option selected="selected" value="0">Seleccione como cargara el xml de la lista de objetos </option>
@@ -150,11 +207,63 @@ function oa(){
            </select>
            		
 				<div id="url" name="url" style="display:none;">
-					<form id="formulario" name="formulario" action= "evaluacion.php" method="POST">URL DEL XML<BR>
+					<form id="formulario" name="formulario" action= "evaluacionlom.php" method="POST">URL DEL XML<BR>
 						<input id="url" name="url" type="text" style="width:500px;"></input><br><br>
 						<input class="btn btn-success" value="Evaluar"id="campo" type="submit"  /></form></div>
 
 				<div id="ruta" name="ruta" style="display:none;">
+					<form id="formulario2" name="formulario" action= "evaluacionlom.php" method="POST">
+						<input type="file"  id="url" name="url"  accept="text/xml" readonly="true"></input><br>
+						<input id="campo" class="btn btn-success" value="Evaluar" type="submit"  /></form></div>
+
+           </div>
+
+
+<!--formulario de un objeto-->
+			<div id="tiporutaobjetolom" name="tiporutaobjetolom" style="display:none;">
+				<select class="form-control" name="tiporuta"  id="tiporuta"  onchange="mostrarReferencia(this.value)" style="width:350px">
+
+	                        <option selected="selected" value="00">Seleccione como cargara el xml del objeto </option>
+	                        <option class="opt" value="URL1">URL</option>
+	                        <option class="opt" value="ARCHIVO1">ARCHIVO</option>
+	           </select>
+	           		
+				<div id="url1" name="url" style="display:none;">
+					<form id="formulario" name="formulario" action= "lom.php" method="POST">URL DEL XML<BR>
+						<input id="url" name="urlOA" type="text" style="width:500px;"></input><br><br>
+						<input class="btn btn-success" value="Evaluar"id="campo" type="submit"  /></form>
+				</div>
+
+				<div id="ruta1" name="ruta" style="display:none;">
+					<form id="formulario2" name="formulario"  action= "lom.php" method="POST" >
+						<input type="file"  id="urlOA" name="url"  accept="text/xml" readonly="true" value=""></input><br>
+						<input id="campo" class="btn btn-success" value="Evaluar"  type="submit"  /></form>
+				</div>
+
+           </div>
+        </div>
+
+
+
+<!--OBAA-->
+		<div id="obaa" name="obaa" style="display:none;">
+		<input type="radio" name="group1" value="object1" onchange="mostrarlista(this.value)"> objeto 
+		<input type="radio" name="group1" value="list1" onchange="mostrarlista(this.value)"> varios objetos<br>
+<!--formulario de lista de objetos-->
+			<div id="tiporutalistaobaa" name="tiporutalistaobaa" style="display:none;">
+			<select class="form-control" name="tiporuta"  id="tiporuta"  onchange="mostrarReferencia(this.value)" style="width:390px">
+
+                        <option selected="selected" value="0obaa">Seleccione como cargara el xml de la lista de objetos </option>
+                        <option class="opt" value="URLobaa">URL</option>
+                        <option class="opt" value="ARCHIVOobaa">ARCHIVO</option>
+           </select>
+           		
+				<div id="urlobaa" name="url" style="display:none;">
+					<form id="formulario" name="formulario" action= "evaluacionobaa.php" method="POST">URL DEL XML<BR>
+						<input id="url" name="url" type="text" style="width:500px;"></input><br><br>
+						<input class="btn btn-success" value="Evaluar"id="campo" type="submit"  /></form></div>
+
+				<div id="rutaobaa" name="ruta" style="display:none;">
 					<form id="formulario2" name="formulario" action= "evaluacionobaa.php" method="POST">
 						<input type="file"  id="url" name="url"  accept="text/xml" readonly="true"></input><br>
 						<input id="campo" class="btn btn-success" value="Evaluar" type="submit"  /></form></div>
@@ -163,23 +272,25 @@ function oa(){
 
 
 <!--formulario de un objeto-->
-			<div id="tiporutaobjeto" name="tiporutaobjeto" style="display:none;">
-			<select class="form-control" name="tiporuta"  id="tiporuta"  onchange="mostrarReferencia(this.value)" style="width:350px">
+			<div id="tiporutaobjetoobaa" name="tiporutaobjetoobaa" style="display:none;">
+				<select class="form-control" name="tiporuta"  id="tiporuta"  onchange="mostrarReferencia(this.value)" style="width:350px">
 
-                        <option selected="selected" value="00">Seleccione como cargara el xml del objeto </option>
-                        <option class="opt" value="URL1">URL</option>
-                        <option class="opt" value="ARCHIVO1">ARCHIVO</option>
-           </select>
-           		
-				<div id="url1" name="url" style="display:none;">
-					<form id="formulario" name="formulario" action= "lom.php" method="POST">URL DEL XML<BR>
+	                        <option selected="selected" value="00obaa">Seleccione como cargara el xml del objeto </option>
+	                        <option class="opt" value="URL1obaa">URL</option>
+	                        <option class="opt" value="ARCHIVO1obaa">ARCHIVO</option>
+	           </select>
+	           		
+				<div id="url1obaa" name="url" style="display:none;">
+					<form id="formulario" name="formulario" action= "obaa.php" method="POST">URL DEL XML<BR>
 						<input id="url" name="urlOA" type="text" style="width:500px;"></input><br><br>
-						<input class="btn btn-success" value="Evaluar"id="campo" type="submit"  /></form></div>
+						<input class="btn btn-success" value="Evaluar"id="campo" type="submit"  /></form>
+				</div>
 
-				<div id="ruta1" name="ruta" style="display:none;">
+				<div id="ruta1obaa" name="ruta" style="display:none;">
 					<form id="formulario2" name="formulario"  action= "obaa.php" method="POST" >
 						<input type="file"  id="urlOA" name="url"  accept="text/xml" readonly="true" value=""></input><br>
-						<input id="campo" class="btn btn-success" value="Evaluar"  type="submit"  /></form></div>
+						<input id="campo" class="btn btn-success" value="Evaluar"  type="submit"  /></form>
+				</div>
 
            </div>
 
@@ -188,7 +299,7 @@ function oa(){
 
 				
 		</div>
-		
+		</div>
 	</center>
 
 </body>
