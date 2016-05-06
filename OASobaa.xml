@@ -122,7 +122,7 @@ END:VCARD         </obaa:entity>
          N:;admin;;;
          FN:admin
          END:VCARD
-         </obaa:entity>
+                  </obaa:entity>
                   <obaa:date>2012-09-26</obaa:date>
                </obaa:contribute>
                <obaa:metadataSchema>OBAAv1.0</obaa:metadataSchema>
