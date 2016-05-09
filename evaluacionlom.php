@@ -72,7 +72,6 @@
 								</tr>
 							<tbody>
 								</table><br>";
-
                     $objeto;
         try {
                     for ($i=0; $i <$total_objetos ; $i++) {
@@ -99,13 +98,24 @@
                                     //define que namespace se busca
                                     $lomg = $lomgeneral->children($namespacesg['lom']);
 
-                                    try {
-                                        //*****variables capturadas*****
-                                        // guarda en variable el contenido de la etiqueta aggregationlevel pocion
-                                        $nivelagregacion = $lomg->aggregationlevel;
-                                    } catch (Exception $e) {
-                                        $nivelagregacion ="";
+                                    if($lomg->aggregationlevel){
+                                        try {
+                                            //*****variables capturadas*****
+                                            // guarda en variable el contenido de la etiqueta aggregationlevel pocion
+                                            $nivelagregacion = $lomg->aggregationlevel;
+                                        } catch (Exception $e) {
+                                            $nivelagregacion ="";
 
+                                        }
+                                    }else{
+                                        try {
+                                            //*****variables capturadas*****
+                                            // guarda en variable el contenido de la etiqueta aggregationlevel pocion
+                                            $nivelagregacion = $lomg->aggregationLevel;
+                                        } catch (Exception $e) {
+                                            $nivelagregacion ="";
+
+                                        }
                                     }
 
                                     try {
@@ -179,41 +189,84 @@
                                 } catch (Exception $e) {
                                         $contexto="";
                                 }
-
+                                if($lomed->learningresourcetype){
                                 try {
                                     // guarda en variable el contenido de la etiqueta learningresourcetype posicion 9
                                     $tiporecursoeducativo=$lomed->learningresourcetype;
                                 } catch (Exception $e) {
                                         $tiporecursoeducativo="";
                                 }
-
+                            }else{
+                                try {
+                                    // guarda en variable el contenido de la etiqueta learningresourcetype posicion 9
+                                    $tiporecursoeducativo=$lomed->learningResourceType;
+                                } catch (Exception $e) {
+                                        $tiporecursoeducativo="";
+                                }
+                            }
+                            if($lomed->interactivitytype){
                                 try {
                                     // guarda en variable el contenido de la etiqueta interactivitytype posicion 12
                                     $tipointeractividad=$lomed->interactivitytype;
                                 } catch (Exception $e) {
                                         $tipointeractividad="";
                                 }
+                            }else{
+                                try {
+                                    // guarda en variable el contenido de la etiqueta interactivitytype posicion 12
+                                    $tipointeractividad=$lomed->interactivityType;
+                                } catch (Exception $e) {
+                                        $tipointeractividad="";
+                                }
+                            }
 
+                            if($lomed->typicalagerange){
                                 try {
                                     // guarda en variable el contenido de la etiqueta typicalagerange posicion 13
                                     $tiporangoedad=$lomed->typicalagerange;
                                 } catch (Exception $e) {
                                         $tiporangoedad="";
                                 }
+                            }else{
+                                try {
+                                    // guarda en variable el contenido de la etiqueta typicalagerange posicion 13
+                                    $tiporangoedad=$lomed->typicalAgeRange;
+                                } catch (Exception $e) {
+                                        $tiporangoedad="";
+                                }
+                            }
 
+                            if($lomed->interactivitylevel){
                                 try {
                                     // guarda en variable el contenido de la etiqueta interactivitylevel posicion 19
                                     $nivelinteractivo=$lomed->interactivitylevel;
                                 } catch (Exception $e) {
                                         $nivelinteractivo="";
                                 }
+                            }else{
+                                try {
+                                    // guarda en variable el contenido de la etiqueta interactivitylevel posicion 19
+                                    $nivelinteractivo=$lomed->interactivityLevel;
+                                } catch (Exception $e) {
+                                        $nivelinteractivo="";
+                                }
+                            }
 
+                            if($lomed->intendedenduserrole){
                                 try {
                                     // guarda en variable el contenido de la etiqueta intendedenduserrole posicion 20
                                     $rolusuariofinal=$lomed->intendedenduserrole;
                                 } catch (Exception $e) {
                                         $rolusuariofinal="";
                                 }
+                            }else{
+                                try {
+                                    // guarda en variable el contenido de la etiqueta intendedenduserrole posicion 20
+                                    $rolusuariofinal=$lomed->intendedEndUserRole;
+                                } catch (Exception $e) {
+                                        $rolusuariofinal="";
+                                }
+                            }
 
                                 try {
                                     // guarda en variable el contenido de la etiqueta difficulty posicion 20
@@ -269,6 +322,9 @@
                     $formato= "";
                 }
 
+
+            if($loml->lifecycle){
+
                 try {
                 // etiqueta LIFECYCLE
                                 //hace el tercero analisis del  namespace mas externo PARA HIJOS DE LIFECYCLE
@@ -319,6 +375,59 @@
                     $rol= "";
                     $estado="";
                 }
+            }else{
+                try {
+                // etiqueta LIFECYCLE
+                                //hace el tercero analisis del  namespace mas externo PARA HIJOS DE LIFECYCLE
+                                foreach ($loml->lifeCycle as  $lomlifecycle) {
+                                    //verificar que exista el namespace
+                                    $namespacelife = $lomlifecycle->getNameSpaces(true);
+                                    //define que namespace se busca
+                                    $lomlife = $lomlifecycle->children($namespacelife['lom']);
+
+                                try {
+                                    //hace el tercero analisis del  namespace mas externo PARA HIJOS DE CONTRIBUTE
+                                    foreach ($lomlife->contribute as $lomcontribute) {
+                                        //verificar que exista el namespace
+                                        $namespacescontri = $lomcontribute->getNameSpaces(true);
+                                        //define que namespace se busca
+                                        $lomcon = $lomcontribute->children($namespacescontri['lom']);
+                                    try {
+                                        //*****variables capturadas*****
+                                        // guarda en variable el contenido de la etiqueta entity posicion 8
+                                        $autor = $lomcon->entity;
+                                    } catch (Exception $e) {
+                                        $autor ="";
+                                    }
+
+                                    try {
+                                        // guarda en variable el contenido de la etiqueta role posicion 17
+                                        $rol = $lomcon->role;
+                                    } catch (Exception $e) {
+                                        $rol ="";
+                                    }
+
+                                    }
+                                } catch (Exception $e) {
+                                            $autor ="";
+                                            $rol= "";
+                                }
+
+                                try {
+                                    //*****variables capturadas*****
+                                    // guarda en variable el contenido de la etiqueta status posicion 15
+                                        $estado= $lomlife->status;
+                                } catch (Exception $e) {
+                                        $estado ="";
+                                }
+                                }
+                } catch (Exception $e) {
+                    $autor ="";
+                    $rol= "";
+                    $estado="";
+                }
+
+            }
 
                 try {
                 // etiqueta RIGHTS
@@ -335,19 +444,28 @@
                                     } catch (Exception $e) {
                                             $costo ="";
                                     }
-
+                                    if($lomright->copyrightandotherrestrictions){
                                     try {
                                         // guarda en variable el contenido de la etiqueta copyrightandotherrestrictions posicion 16
                                         $copyrightotasrestricciones = $lomright->copyrightandotherrestrictions;
                                     } catch (Exception $e) {
                                                 $copyrightotasrestricciones ="";
                                        }
+                                   }else{
+                                        try {
+                                        // guarda en variable el contenido de la etiqueta copyrightandotherrestrictions posicion 16
+                                        $copyrightotasrestricciones = $lomright->copyright;
+                                    } catch (Exception $e) {
+                                                $copyrightotasrestricciones ="";
+                                       }
+                                   }
                                 }
                 } catch (Exception $e) {
                     $costo ="";
                     $copyrightotasrestricciones= "";
                 }
 
+            if ($loml->metametadata) {
                 try {
                 // etiqueta METAMETADATA
                                 //hace el tercero analisis del  namespace mas externo PARA HIJOS DE METAMETADATA
@@ -373,7 +491,12 @@
                     $metarol ="";
 
                 }
+            }else{
+                $metarol ="";
+            }
 
+            
+            if ($loml->classification) {    
                 try {
                 // etiqueta CLASSIFICATION
                                 //hace el tercero analisis del  namespace mas externo PARA HIJOS DE CLASSIFICATION
@@ -393,8 +516,12 @@
                     $proposito ="";
 
                 }
+            }else{
+                $proposito ="";
+            }
+            
                                 $ca=$i+1;
-                                    $objeto[$i][0]=    $densidadsemantica;
+                                    $objeto[$i][0]= $densidadsemantica;
                                     $objeto[$i][1]= $nivelagregacion;
                                     $objeto[$i][2]= $estructura;
                                     $objeto[$i][3]= $contexto;
@@ -552,7 +679,7 @@
                     }
 
                     $can_contex=0;
-                    for ($i=0; $i <$can_contex ; $i++) {
+                    for ($i=0; $i <count($contexto1) ; $i++) {
                         if ($contexto1[$i]!="") {
                             $can_contex++;
                         }
@@ -740,63 +867,87 @@
                 $tiporecursoeducativo=0; $nivelinter=0; $densidadsemantica=0; $rolusuariofinal=0;
                 $contexto=0; $dificultad=0; $copyright=0; $costo=0; $proposito=0; $r=15;
 
-                if (trim($oa[$pos][1])==1 || trim($oa[$pos][1])==2 || trim($oa[$pos][1])==3 ||trim($oa[$pos][1])==4  ) {
+                if (trim($oa[$pos][1])==1 || 
+                    trim($oa[$pos][1])==2 || 
+                    trim($oa[$pos][1])==3 ||
+                    trim($oa[$pos][1])==4  ) {
                         $nivelagregacion=1;
                 }
-                if (trim($oa[$pos][2])=="atomic" || trim($oa[$pos][2])=="collection" || trim($oa[$pos][2])=="networked" ||trim($oa[$pos][2])=="hierarchical" || trim($oa[$pos][2])=="linear" ) {
+                if (trim(strtolower($oa[$pos][2]))=="atomic" || 
+                    trim(strtolower($oa[$pos][2]))=="collection" || 
+                    trim(strtolower($oa[$pos][2]))=="networked" ||
+                    trim(strtolower($oa[$pos][2]))=="hierarchical" || 
+                    trim(strtolower($oa[$pos][2]))=="linear" ) {
                         $estructura=1;
                 }
-                if (trim($oa[$pos][17])=="author" ||
-                    trim($oa[$pos][17])=="publisher" ||
-                    trim($oa[$pos][17])=="unknown" ||
-                    trim($oa[$pos][17])=="initiator" ||
-                    trim($oa[$pos][17])=="terminator" ||
-                    trim($oa[$pos][17])=="validator" ||
-                    trim($oa[$pos][17])=="editor" ||
-                    trim($oa[$pos][17])=="graphical designer" ||
-                    trim($oa[$pos][17])=="technical implementer" ||
-                    trim($oa[$pos][17])=="content provider" ||
-                    trim($oa[$pos][17])=="technical validator" ||
-                    trim($oa[$pos][17])=="educational validator" ||
-                    trim($oa[$pos][17])=="script writer" ||
-                    trim($oa[$pos][17])=="instructional designer" ||
-                    trim($oa[$pos][17])=="subject matter expert" ) {
+                if (trim(strtolower($oa[$pos][17]))=="author" ||
+                    trim(strtolower($oa[$pos][17]))=="publisher" ||
+                    trim(strtolower($oa[$pos][17]))=="unknown" ||
+                    trim(strtolower($oa[$pos][17]))=="initiator" ||
+                    trim(strtolower($oa[$pos][17]))=="terminator" ||
+                    trim(strtolower($oa[$pos][17]))=="validator" ||
+                    trim(strtolower($oa[$pos][17]))=="editor" ||
+                    trim(strtolower($oa[$pos][17]))=="graphical designer" ||
+                    trim(strtolower($oa[$pos][17]))=="technical implementer" ||
+                    trim(strtolower($oa[$pos][17]))=="content provider" ||
+                    trim(strtolower($oa[$pos][17]))=="technical validator" ||
+                    trim(strtolower($oa[$pos][17]))=="educational validator" ||
+                    trim(strtolower($oa[$pos][17]))=="script writer" ||
+                    trim(strtolower($oa[$pos][17]))=="instructional designer" ||
+                    trim(strtolower($oa[$pos][17]))=="subject matter expert" ) {
                         $rol=1;
                 }
-                if (trim($oa[$pos][15])=="draft" || trim($oa[$pos][15])=="final" || trim($oa[$pos][15])=="revised" ||trim($oa[$pos][15])=="unavailable" ) {
+                if (trim(strtolower($oa[$pos][15]))=="draft" || 
+                    trim(strtolower($oa[$pos][15]))=="final" || 
+                    trim(strtolower($oa[$pos][15]))=="revised" ||
+                    trim(strtolower($oa[$pos][15]))=="unavailable" ) {
                         $estado=1;
                 }
-                if (trim($oa[$pos][18])=="creator" || trim($oa[$pos][18])=="validator"  ) {
+                if (trim(strtolower($oa[$pos][18]))=="creator" || 
+                    trim(strtolower($oa[$pos][18]))=="validator"  ) {
                         $metarol=1;
                 }
-                if (trim($oa[$pos][12])=="active" || trim($oa[$pos][12])=="expositive" || trim($oa[$pos][12])=="mixed" ) {
+                if (trim(strtolower($oa[$pos][12]))=="active" || 
+                    trim(strtolower($oa[$pos][12]))=="expositive" || 
+                    trim(strtolower($oa[$pos][12]))=="mixed" ) {
                         $tipointer=1;
                 }
-                if (trim($oa[$pos][9])=="exercise" ||
-                    trim($oa[$pos][9])=="simulation" ||
-                    trim($oa[$pos][9])=="questionnaire" ||
-                    trim($oa[$pos][9])=="diagram" ||
-                    trim($oa[$pos][9])=="figure" ||
-                    trim($oa[$pos][9])=="graph" ||
-                    trim($oa[$pos][9])=="index" ||
-                    trim($oa[$pos][9])=="slide" ||
-                    trim($oa[$pos][9])=="table" ||
-                    trim($oa[$pos][9])=="narrative text" ||
-                    trim($oa[$pos][9])=="exam" ||
-                    trim($oa[$pos][9])=="experiment" ||
-                    trim($oa[$pos][9])=="problem" ||
-                    trim($oa[$pos][9])=="statement" ||
-                    trim($oa[$pos][9])=="self assessment" ||
-                    trim($oa[$pos][9])=="lecture" ) {
+                if (trim(strtolower($oa[$pos][9]))=="exercise" ||
+                    trim(strtolower($oa[$pos][9]))=="simulation" ||
+                    trim(strtolower($oa[$pos][9]))=="questionnaire" ||
+                    trim(strtolower($oa[$pos][9]))=="diagram" ||
+                    trim(strtolower($oa[$pos][9]))=="figure" ||
+                    trim(strtolower($oa[$pos][9]))=="graph" ||
+                    trim(strtolower($oa[$pos][9]))=="index" ||
+                    trim(strtolower($oa[$pos][9]))=="slide" ||
+                    trim(strtolower($oa[$pos][9]))=="table" ||
+                    trim(strtolower($oa[$pos][9]))=="narrative text" ||
+                    trim(strtolower($oa[$pos][9]))=="exam" ||
+                    trim(strtolower($oa[$pos][9]))=="experiment" ||
+                    trim(strtolower($oa[$pos][9]))=="problem" ||
+                    trim(strtolower($oa[$pos][9]))=="statement" ||
+                    trim(strtolower($oa[$pos][9]))=="self assessment" ||
+                    trim(strtolower($oa[$pos][9]))=="lecture" ) {
                         $tiporecursoeducativo=1;
                 }
-                if (trim($oa[$pos][19])=="very low" || trim($oa[$pos][19])=="low" || trim($oa[$pos][19])=="medium" || trim($oa[$pos][19])=="high" || trim($oa[$pos][19])=="very high" ) {
+                if (trim(strtolower($oa[$pos][19]))=="very low" || 
+                    trim(strtolower($oa[$pos][19]))=="low" || 
+                    trim(strtolower($oa[$pos][19]))=="medium" || 
+                    trim(strtolower($oa[$pos][19]))=="high" || 
+                    trim(strtolower($oa[$pos][19]))=="very high" ) {
                         $nivelinter=1;
                 }
-                if (trim($oa[$pos][0])=="very low" || trim($oa[$pos][0])=="low" || trim($oa[$pos][0])=="medium" || trim($oa[$pos][0])=="high" || trim($oa[$pos][0])=="very high" ) {
+                if (trim(strtolower($oa[$pos][0]))=="very low" || 
+                    trim(strtolower($oa[$pos][0]))=="low" || 
+                    trim(strtolower($oa[$pos][0]))=="medium" || 
+                    trim(strtolower($oa[$pos][0]))=="high" || 
+                    trim(strtolower($oa[$pos][0]))=="very high" ) {
                         $densidadsemantica=1;
                 }
-                if (trim($oa[$pos][20])=="teacher" || trim($oa[$pos][20])=="author" || trim($oa[$pos][20])=="learner" || trim($oa[$pos][20])=="manager" ) {
+                if (trim(strtolower($oa[$pos][20]))=="teacher" || 
+                    trim(strtolower($oa[$pos][20]))=="author" || 
+                    trim(strtolower($oa[$pos][20]))=="learner" || 
+                    trim(strtolower($oa[$pos][20]))=="manager" ) {
                         $rolusuariofinal=1;
                 }
 
@@ -807,7 +958,10 @@
                 $cumple=true;
                 $s=0;
                 while ($cumple && $s<$cantidad) {
-                    if (trim($context[$s])=="school" || trim($context[$s])=="higher education" || trim($context[$s])=="training" || trim($context[$s])=="other" ) {
+                    if (trim(strtolower($context[$s]))=="school" || 
+                        trim(strtolower($context[$s]))=="higher education" || 
+                        trim(strtolower($context[$s]))=="training" || 
+                        trim(strtolower($context[$s]))=="other" ) {
                         $cumple=false;
                         $contexto=1;
                     } else {
@@ -815,13 +969,19 @@
                     }
                 }
 
-                if (trim($oa[$pos][21])=="very easy" || trim($oa[$pos][21])=="easy" || trim($oa[$pos][21])=="medium" || trim($oa[$pos][21])=="difficult" || trim($oa[$pos][21])=="very difficult" ) {
+                if (trim(strtolower($oa[$pos][21]))=="very easy" || 
+                    trim(strtolower($oa[$pos][21]))=="easy" || 
+                    trim(strtolower($oa[$pos][21]))=="medium" || 
+                    trim(strtolower($oa[$pos][21]))=="difficult" || 
+                    trim(strtolower($oa[$pos][21]))=="very difficult" ) {
                         $dificultad=1;
                 }
-                if (trim($oa[$pos][16])=="yes" || trim($oa[$pos][16])=="no"  ) {
+                if (trim(strtolower($oa[$pos][16]))=="yes" || 
+                    trim(strtolower($oa[$pos][16]))=="no"  ) {
                         $copyright=1;
                 }
-                if (trim($oa[$pos][14])=="yes" || trim($oa[$pos][14])=="no"  ) {
+                if (trim(strtolower($oa[$pos][14]))=="yes" || 
+                    trim(strtolower($oa[$pos][14]))=="no"  ) {
                         $costo=1;
                 }
                 if (trim($oa[$pos][22])=="discipline" ||
@@ -1001,7 +1161,7 @@
                                     $r++;
                                     $pesor3=1;
                             }
-
+                if($r>0){
                 // hace la sumatoria de los pesos
                            $m_coherencia= ($pesor1 + $pesor2 + $pesor3) / $r;
 
@@ -1018,6 +1178,9 @@
 
                            // imprime  la evaluacion de la metrica
                                echo "* Coherencia de: ".$m_coherencia."; ".$evaluacion."<br><br>";
+                }else{
+                    echo "* Coherencia N/A  no cumplio con ninguna regla de la metrica<br><br>";
+                }
 
             }
             ?>
