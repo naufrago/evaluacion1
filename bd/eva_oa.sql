@@ -1,0 +1,2 @@
+﻿CREATE TABLE objeto_a(id_obj varchar(255) not null primary key,nombre varchar (2000),estandar varchar (10),estado boolean, disponible boolean);
+CREATE TABLE evaluacion(id_eval serial not null primary key, id_obj varchar (255) references objeto_a(id_obj), fecha timestamp, reusabilidad double precision, disponibilidad double precision, completitud double precision, consistencia double precision, coherencia double precision, evaluacion double precision);
