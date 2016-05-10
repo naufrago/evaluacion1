@@ -45,12 +45,12 @@
 	<center>
 		<div class="contenedor2"><h4>Evalua tus RED</h4><br>
 			<?php
-            $llego=$_POST['url'];
+            $llego=$_FILES['url']['tmp_name'];
             if ($llego!="") {
 
                     //carga el xml  en la variable
-                    $objetos=simplexml_load_file($_POST['url']);
-
+                    $objetos=simplexml_load_file($_FILES['url']['tmp_name']);
+                    
                     if ($objetos->ListRecords) {
 
                     //$rut="http://froac.manizales.unal.edu.co/roap/oai.php?verb=ListRecords&metadataPrefix=lom";
@@ -62,7 +62,7 @@
 							<thead>
 								<tr>
 									<td>La ruta es:</td>
-									<td>".$_POST['url']."</td>
+									<td>".$_FILES['url']['tmp_name']."</td>
 								</tr>
 							</thead>
 							<tbody>
