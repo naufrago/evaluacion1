@@ -386,7 +386,10 @@ function completitud(oa){
                                 }
 
                                 // imprime  la evaluacion de la metrica
-                        alert("* Completitud de: "+m_completitud+ "; "+evaluacion);
+                        mensaje="* Completitud de: "+m_completitud+ "; "+evaluacion;
+                        alert(mensaje);
+                        return mensaje;
+                        
                         //echo "* Completitud de: ".m_completitud."; ".evaluacion."<br>";
                     }
 
@@ -547,7 +550,9 @@ function consistencia(oa){
                                 }
 
                                 // imprime  la evaluacion de la metrica
-                        alert("* Consistencia de: "+m_consistencia+"; "+evaluacion);
+                        mensaje="* Consistencia de: "+m_consistencia+"; "+evaluacion;
+                        alert(mensaje);
+                        return mensaje;
                        // echo "* Consistencia de: ".m_consistencia."; ".evaluacion."<br>";
             }
 
@@ -697,6 +702,7 @@ function coherencia(objeto){
                                      pesor3=1;  
                             }   
 
+                if (r>0) {
 
                 // hace la sumatoria de los pesos 
                          m_coherencia= ( pesor1 +  pesor2 +  pesor3) /  r;
@@ -714,7 +720,16 @@ function coherencia(objeto){
                                 }
 
                         // imprime  la evaluacion de la metrica
-                        alert("* Coherencia de: "+ m_coherencia+"; "+ evaluacion);
+                        mensaje="* Coherencia de: "+ m_coherencia+"; "+ evaluacion;
+                        alert(mensaje);
+                        return mensaje;
                             //echo "* Coherencia de: ". m_coherencia."; ". evaluacion."<br><br>";
+                }else{
+                    mensaje="* Metrica de coherencia  N/A";
+                        alert(mensaje);
+                        return mensaje;
+                    
+                }
+
 
             }

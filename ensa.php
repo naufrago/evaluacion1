@@ -1,29 +1,22 @@
-<!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-</head>
-<body>
-
-	<?php
-if ($_FILES['url']["error"] > 0)
-  {
-  echo "Error: " . $_FILES['url']['error'] . "<br>";
-  }
-else
-  {
-  echo "Nombre: " . $_FILES['url']['name'] . "<br>";
-  echo "Tipo: " . $_FILES['url']['type'] . "<br>";
-  echo "Tamaño: " . ($_FILES["url"]["size"] / 1024) . " kB<br>";
-  echo "Carpeta temporal: " . $_FILES['url']['tmp_name'];
-
-  $hoy = getdate();
-  $ruta=$hoy['year']."-".$hoy['mon']."-".$hoy['mday']."-".$hoy['hours']."-".$hoy['minutes']."-".$hoy['seconds'].".xml";
-  move_uploaded_file($_FILES['url']['tmp_name'], $ruta);}
-
-
-?>
-
-
-</body>
+  <head>
+    <script type="text/javascript">
+      function imprimir(){
+  var objeto=document.getElementById('imprimeme');  //obtenemos el objeto a imprimir
+  var ventana=window.open('','_blank');  //abrimos una ventana vacía nueva
+  ventana.document.write(objeto.innerHTML);  //imprimimos el HTML del objeto en la nueva ventana
+  ventana.document.close();  //cerramos el documento
+  ventana.print();  //imprimimos la ventana
+  ventana.close();  //cerramos la ventana
+}
+    </script>
+  </head>
+  <body>
+    <div id="imprimeme">
+      <p>EncodingTheCode</p>
+    </div>
+    <button onclick="imprimir();">
+  IMPRIMIR
+</button>
+  </body>
 </html>

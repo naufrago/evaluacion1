@@ -16,6 +16,7 @@
      heightStyle: "content" });
     });
   </script>
+
   <script src="js/LomMetadata.js"></script>
 </head>
 <header>
@@ -49,15 +50,22 @@
 
 <?php  
 
-if ($_FILES['url']["error"] > 0)
-  {
-  echo "Error: " . $_FILES['url']['error'] . "<br>";
-  }
-else
-  {
-  $hoy = getdate();
-  $ruta=$hoy['year']."-".$hoy['mon']."-".$hoy['mday']."-".$hoy['hours']."-".$hoy['minutes']."-".$hoy['seconds'].".xml";
-  move_uploaded_file($_FILES['url']['tmp_name'], $ruta);}
+error_reporting(E_ALL ^ E_NOTICE);
+            if($_POST['url']){
+                $ruta=simplexml_load_file($_POST['url']);
+                $nombreoa=$_POST['url'];
+            }elseif($_FILES['url']['tmp_name']){
+                    if ($_FILES['url']["error"] > 0){
+                      echo "Error: " . $_FILES['url']['error'] . "<br>";
+                    }else{
+                      $hoy = getdate();
+                      $ruta=$hoy['year']."-".$hoy['mon']."-".$hoy['mday']."-".$hoy['hours']."-".$hoy['minutes']."-".$hoy['seconds'].".xml";
+                      move_uploaded_file($_FILES['url']['tmp_name'], $ruta);}
+                      $nombreoa=$_FILES['url']['name'];
+                    }
+
+
+
 
 $llego=$ruta;
             //echo "<div>".$llego."</div><br>";
@@ -65,7 +73,7 @@ $llego=$ruta;
               <thead>
                 <tr>
                   <td>La ruta es:</td>
-                  <td>".$_FILES['url']['name']."</td>
+                  <td>".$nombreoa."</td>
                 </tr>
               </thead>
               <tbody>
@@ -77,18 +85,20 @@ $llego=$ruta;
                 </table><br>";
      ?>       
 <script >
+
   var ruta= "<?php echo $llego; ?>" ;
   console.log(ruta);
   //alert(ruta);
   
   //var datos=oa(ruta);
-
+  if (ruta!="") {
   var lom ;
   var m_completitud;
   var m_disponivilidad;
   var m_completitud;
   var m_consistencia;
   var m_coherencia;
+  var titulo;
          //var xmlDoc=loadXMLDoc('as.xml');
         $(document).ready(function(){
           $.get(ruta,function(xml){
@@ -98,14 +108,23 @@ $llego=$ruta;
             //console.log(xmlString);
           
             lom = processXml(xmlString);
+            titulo=lom.title;
             console.log(lom);
             if (!lom.identifier) {
-              m_completitud=reusabilidad(lom);
-              alert("desde afuera "+m_completitud);
+              m_reusabilidad=reusabilidad(lom);
+              alert("desde afuera "+m_reusabilidad);
+
              // m_disponivilidad=disponibilidad(lom.location);
+             // 
               m_completitud=completitud(lom);
+              alert("desde afuera "+m_completitud);
+
               m_consistencia=consistencia(lom);
+              alert("desde afuera "+m_consistencia);
+
               m_coherencia=coherencia(lom);
+              alert("desde afuera "+m_coherencia);
+
             }else{
               alert("el archivo xml no corresponde a un solo OA");
               location.href ="index.html";
@@ -115,12 +134,15 @@ $llego=$ruta;
           });
         });
 
-
+}else{
+  alert("NO CARGO  NINGUN ARCHIVO O URL");
+              location.href ="index.html";
+}
 
 </script>
 
 <?php
-  $titulo = "<script> document.write(lom.title) </script>";
+  $titulo = "<script> document.write(titulo); </script>";
   echo "<div><h3>EVALUACIÓN DE UN OBJETO ESTANDAR LOM:</h3>";
   echo"<TABLE table table-bordered\">";
   echo "<TBODY class=\"category\">
@@ -143,6 +165,8 @@ $llego=$ruta;
                           </TR>
                         </TBODY>";
   echo "</TABLE></div>";
+
+  
 ?>
 
 </div>

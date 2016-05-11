@@ -48,23 +48,31 @@
       <div>
 
 <?php  
-if ($_FILES['url']["error"] > 0)
-  {
-  echo "Error: " . $_FILES['url']['error'] . "<br>";
-  }
-else
-  {
 
-  move_uploaded_file($_FILES['url']['tmp_name'],"archivo.xml");
-}
+error_reporting(E_ALL ^ E_NOTICE);
+            if($_POST['url']){
+                $ruta=simplexml_load_file($_POST['url']);
+                $nombreoa=$_POST['url'];
+            }elseif($_FILES['url']['tmp_name']){
+                    if ($_FILES['url']["error"] > 0){
+                      echo "Error: " . $_FILES['url']['error'] . "<br>";
+                    }else{
+                      $hoy = getdate();
+                      $ruta=$hoy['year']."-".$hoy['mon']."-".$hoy['mday']."-".$hoy['hours']."-".$hoy['minutes']."-".$hoy['seconds'].".xml";
+                      move_uploaded_file($_FILES['url']['tmp_name'], $ruta);}
+                      $nombreoa=$_FILES['url']['name'];
+                    }
 
-$llego="archivo.xml";
+
+
+
+$llego=$ruta;
             //echo "<div>".$llego."</div><br>";
       echo "<table>
               <thead>
                 <tr>
                   <td>La ruta es:</td>
-                  <td>".$_FILES['url']['name']."</td>
+                  <td>".$nombreoa."</td>
                 </tr>
               </thead>
               <tbody>
@@ -74,7 +82,7 @@ $llego="archivo.xml";
                 </tr>
               <tbody>
                 </table><br>";
-     ?>       
+     ?>          
 <script >
   var ruta= "<?php echo $llego; ?>" ;
   console.log(ruta);
