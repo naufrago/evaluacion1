@@ -47,13 +47,24 @@
     <div class="contenedor2"><h4>Evalua tus RED</h4><br>
       <div>
 
-<?php  $llego=$_POST['url'];
+<?php  
+if ($_FILES['url']["error"] > 0)
+  {
+  echo "Error: " . $_FILES['url']['error'] . "<br>";
+  }
+else
+  {
+
+  move_uploaded_file($_FILES['url']['tmp_name'],"archivo.xml");
+}
+
+$llego="archivo.xml";
             //echo "<div>".$llego."</div><br>";
       echo "<table>
               <thead>
                 <tr>
                   <td>La ruta es:</td>
-                  <td>".$_POST['url']."</td>
+                  <td>".$_FILES['url']['name']."</td>
                 </tr>
               </thead>
               <tbody>
