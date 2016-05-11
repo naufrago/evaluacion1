@@ -799,6 +799,7 @@
                                 }
 
                     }
+                if($cantidad>0){
                     $m_disponibilidad=$campos/$cantidad;
                     
                         // valida que calidad de la completitud del objeto
@@ -813,7 +814,9 @@
                                    }
                         echo "      -Disponibilidad: ".$evaluacion."<br>";
                         return $m_disponibilidad;
-                    }
+                }
+                else return 0;
+            }
 
             //verfica la existenca del objeto
             function isURL($url)
