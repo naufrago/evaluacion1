@@ -45,10 +45,23 @@
 	<center>
 		<div class="contenedor2"><h4>Evalua tus RED</h4><br>
 			<?php
-            $llego=$_FILES['url']['tmp_name'];
+            error_reporting(0);
+            if($_POST['url']){
+                $llegada="yes";
+                $ruta=simplexml_load_file($_POST['url']);
+                $nombreoa=$_POST['url'];
+            }elseif($_FILES['url']['tmp_name']){
+                    $llegada="yes";
+                    $ruta=simplexml_load_file($_FILES['url']['tmp_name']);
+                    $nombreoa=$_FILES['url']['name'];
+                }else{
+                        $llegada="";
+                    }
+
+            $llego=$llegada;
             if ($llego!="") {
                 //carga el xml  en la variable
-                $objetos=simplexml_load_file($_FILES['url']['tmp_name']);
+                $objetos=$ruta;
                 if ($objetos->ListRecords){
                     // recorre  el xml y entrega la cantidad de objetos que contiene el xml
                     $total_objetos=count($objetos->ListRecords->record);
@@ -57,7 +70,7 @@
                             <thead>
                                 <tr>
                                     <td>La ruta es:</td>
-                                    <td>".$_FILES['url']['name']."</td>
+                                    <td>".$nombreoa."</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,6 +80,7 @@
                                 </tr>
                             <tbody>
                                 </table><br>";
+
 
                     $objeto;
                     $eliminados=0;
