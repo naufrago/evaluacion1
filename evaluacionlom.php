@@ -601,15 +601,22 @@
                                                 $consistencia = consistencia($objeto,$a);
                                                 $coherencia =  coherencia($objeto,$a);
                                                 //Almacenamiento en la BD
-                                                $query = "INSERT INTO objeto(id_obj, nombre, estandar) VALUES ($id, $ced, '$nom');";
-                                                $result = pg_query($conexion, $query) or die('ERROR AL INSERTAR DATOS: ' . pg_last_error());
+                                                $idBD = (string)$objeto[$a][24];
+                                                $tituloBD = (string)$objeto[$a][5];
+                                                $query = "INSERT INTO objeto_a(id_obj, nombre, estandar, estado) VALUES ('$idBD', '$tituloBD', 'lom', 'TRUE');";
+                                                $result = pg_query($conexion, $query) or die('ERROR AL INSERTAR OBJETOS MALDITASEA: ' . pg_last_error());
                                                 $cmdtuples = pg_affected_rows($result);
                                                 echo $cmdtuples . " datos registrados.\n";
-
                                                 // Free resultset liberar los datos
                                                 pg_free_result($result);
+                                                $query2 = "INSERT INTO evaluacion(id_obj, fecha, reusabilidad, disponibilidad, completitud, consistencia, coherencia) VALUES ('$idBD', 'Now()', '$reusabilidad', '$disponibilidad', '$completitud', '$consistencia', '$coherencia');";
                                                 // Closing connection cerrar la conexión
-                                                pg_close($conexion);
+                                                $result = pg_query($conexion, $query2) or die('ERROR AL INSERTAR EVALUACIONES MALDITASEA: ' . pg_last_error());
+                                                $cmdtuples = pg_affected_rows($result);
+                                                echo $cmdtuples . " datos registrados.\n";
+                                                // Free resultset liberar los datos
+                                                pg_free_result($result);
+
 
 
                                                 echo"</TD>
@@ -782,7 +789,7 @@
 
                     }
                     $m_disponibilidad=$campos/$cantidad;
-                    return $m_disponibilidad;
+                    
                         // valida que calidad de la completitud del objeto
                            if ($m_disponibilidad<0.25) {
                                $evaluacion="Regular";
@@ -794,7 +801,7 @@
                                            $evaluacion="Exelente";
                                    }
                         echo "      -Disponibilidad: ".$evaluacion."<br>";
-
+                        return $m_disponibilidad;
                     }
 
             //verfica la existenca del objeto
@@ -886,7 +893,7 @@
                         // hace la sumatoria de los pesos
                            $m_completitud=$titulo + $keyword + $descripcion + $autor + $tipoRE + $formato + $contexto + $idioma +
                                        $tipointer + $rangoedad + $nivelagregacion + $ubicacion + $costo + $estado + $copyright;
-
+                         
                            // valida que calidad de la completitud del objeto
                            if ($m_completitud<0.25) {
                                $evaluacion="Regular";
@@ -900,7 +907,7 @@
 
                                    // imprime  la evaluacion de la metrica
                            echo "* Completitud de: ".$m_completitud."; ".$evaluacion."<br>";
-                           return $m_completitud;
+                           return $m_completitud; 
                        }
 
             function consistencia($oa,$pos)
@@ -1224,6 +1231,7 @@
                                return $m_coherencia;
                 }else{
                     echo "* Coherencia N/A  no cumplio con ninguna regla de la metrica<br><br>";
+                    return 0;
                 }
 
             }
