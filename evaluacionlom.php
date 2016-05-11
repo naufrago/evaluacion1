@@ -67,7 +67,7 @@
 							<thead>
 								<tr>
 									<td>La ruta es:</td>
-									<td>".$_FILES['url']['tmp_name']."</td>
+									<td>".$_FILES['url']['name']."</td>
 								</tr>
 							</thead>
 							<tbody>
@@ -80,6 +80,15 @@
                     $objeto;
         try {
                     for ($i=0; $i <$total_objetos ; $i++) {
+                        //id del objeto
+                        $id=$objetos->ListRecords->record[$i]->header->identifier;
+
+                        //estatus del objeto activo o eliminado
+                        $atributo=$objetos->ListRecords->record[$i]->header->attributes();
+                        $estatus=$atributo['status'];
+
+                        if ($estatus=="") {
+
                         //hace el primer analisis del  namespace mas externo PARA HIJOS DE  METADATA
                         foreach ($objetos->ListRecords->record[$i]->metadata as $key) {
                             //verificar que exista el namespace
@@ -549,10 +558,19 @@
                                     $objeto[$i][20]= $rolusuariofinal;
                                     $objeto[$i][21]= $dificultad;
                                     $objeto[$i][22]= $proposito;
+                                    $objeto[$i][23]= "active";
+                                    $objeto[$i][24]= $id;
                             }
                         }
+                    }else{
+                                $objeto[$i][23]= $estatus;
+                                $objeto[$i][24]= $id;
+                                $eliminados++;
+                            }
                     }
                    } catch (Exception $e) {
+                     echo '<script >alert("ALGO SALIO MAL EN LA CARGA DE LA INFORMACION DEL ARCHIVO XML");
+                            location.href ="index.html"</script>';
 
                 }
 
@@ -565,8 +583,11 @@
                                     $r=$a+1;
                                     echo "<TBODY class=\"category\">
 											<TR>
-												<TD colspan=\"4\">ID: ".$r."</TD>
+												<TD colspan=\"4\">No: ".$r."</TD>
 											</TR>
+                                            <TR>
+                                                <TD colspan=\"4\">ID objeto: ".$objeto[$a][24]."</TD>
+                                            </TR>
 											<TR>
 												<TD colspan=\"4\">Titulo del objeto analizado: ".$objeto[$a][5]."
 											</TR>
@@ -600,12 +621,12 @@
                     echo "</TABLE></div>";
                 } else {
                     echo '<script >alert("EL XML CARGADO NO CUMPLE CON  EL ESTANDAR PARA REALIZAR LA EVALUACION O  NO ES UN XML");
-				location.href ="javascript:window.close();"</script>';
+				location.href ="index.html;"</script>';
 
                 }
             } else {
                     echo '<script >alert("DEBE SELECCIONAR  ALGUNA FORMA E INGRESAR LA URL O EL ARCHIVO XML");
-					location.href ="javascript:window.close();"</script>';
+					location.href ="index.html"</script>';
                     //header('Location: index.html');
                 }
 

@@ -57,7 +57,7 @@
                             <thead>
                                 <tr>
                                     <td>La ruta es:</td>
-                                    <td>".$_FILES['url']['tmp_name']."</td>
+                                    <td>".$_FILES['url']['name']."</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -423,7 +423,7 @@
                                         $objeto[$i][20]= $rolusuariofinal;
                                         $objeto[$i][21]= $dificultad;
                                         //$objeto[$i][22]= $proposito;
-                                        $objeto[$i][23]= $estatus;
+                                        $objeto[$i][23]= "active";
                                         $objeto[$i][24]= $id;
 
 
