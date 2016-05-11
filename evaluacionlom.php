@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <?php require('conexion.php') ?>
+   <?php require('conexion.php'); ?>
 	<meta charset="utf-8" />
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Evaluacion de OA</title>
+	<title>Evaluación de OA</title>
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<script src="plugins/jQuery/jQuery-2.2.1.min.js"></script>
@@ -44,8 +44,12 @@
 </nav>
 <body>
 	<center>
-		<div class="contenedor2"><h4>Evalua tus RED</h4><br>
+		<div class="contenedor2"><h4>Evalua tus Recursos Educativos Digitales</h4><br>
 			<?php
+            if($conexion)
+                {
+                    echo"<p>Se conecto satisfactoriamente con la base de datos EVAOA.</p>";
+        }
             $llego=$_FILES['url']['tmp_name'];
             if ($llego!="") {
 
@@ -570,11 +574,23 @@
 										<TBODY class=\"subcategory\">
 										      <TR>
 										      	<TD style=\"padding:5px;\">";
-                                                  reusabilidad($objeto,$a);
-                                                disponibilidad($objeto[$a][4]);
-                                                completitud($objeto,$a);
-                                                consistencia($objeto,$a);
-                                                coherencia($objeto,$a);
+                                                $reusabilidad = reusabilidad($objeto,$a);
+                                                $disponibilidad = disponibilidad($objeto[$a][4]);
+                                                $completitud = completitud($objeto,$a);
+                                                $consistencia = consistencia($objeto,$a);
+                                                $coherencia =  coherencia($objeto,$a);
+                                                //Almacenamiento en la BD
+                                                $query = "INSERT INTO objeto(id_obj, nombre, estandar) VALUES ($id, $ced, '$nom');";
+                                                $result = pg_query($conexion, $query) or die('ERROR AL INSERTAR DATOS: ' . pg_last_error());
+                                                $cmdtuples = pg_affected_rows($result);
+                                                echo $cmdtuples . " datos registrados.\n";
+
+                                                // Free resultset liberar los datos
+                                                pg_free_result($result);
+                                                // Closing connection cerrar la conexión
+                                                pg_close($conexion);
+
+
                                                 echo"</TD>
 										      </TR>
 										    </TBODY>
@@ -714,10 +730,12 @@
 
                                    // imprime  la evaluacion de la metrica
                            echo "* Reusabilidad de: ".$m_reusabilidad."; ".$evaluacion."<br>";
+                           return $m_reusabilidad;
 
                     } else {
                         // en caso tal  que las reglas sean cero imprime esto
                         echo "* La métrica de reusabilidad no se puede aplicar no se cumple ninguna regla";
+                        return 0;
                     }
 
                 };
@@ -743,6 +761,7 @@
 
                     }
                     $m_disponibilidad=$campos/$cantidad;
+                    return $m_disponibilidad;
                         // valida que calidad de la completitud del objeto
                            if ($m_disponibilidad<0.25) {
                                $evaluacion="Regular";
@@ -860,6 +879,7 @@
 
                                    // imprime  la evaluacion de la metrica
                            echo "* Completitud de: ".$m_completitud."; ".$evaluacion."<br>";
+                           return $m_completitud;
                        }
 
             function consistencia($oa,$pos)
@@ -1014,6 +1034,7 @@
 
                                    // imprime  la evaluacion de la metrica
                            echo "* Consistencia de: ".$m_consistencia."; ".$evaluacion."<br>";
+                           return $m_consistencia;
             }
 
             // verifica que tan coherente son los metadatos del oa
@@ -1179,6 +1200,7 @@
 
                            // imprime  la evaluacion de la metrica
                                echo "* Coherencia de: ".$m_coherencia."; ".$evaluacion."<br><br>";
+                               return $m_coherencia;
                 }else{
                     echo "* Coherencia N/A  no cumplio con ninguna regla de la metrica<br><br>";
                 }
