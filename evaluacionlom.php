@@ -50,34 +50,45 @@
                 {
                     echo"<p>Se conecto satisfactoriamente con la base de datos EVAOA.</p>";
         }
-            $llego=$_FILES['url']['tmp_name'];
+            //error_reporting(0);
+            error_reporting(E_ALL ^ E_NOTICE);
+            if($_POST['url']){
+                $llegada="yes";
+                $ruta=simplexml_load_file($_POST['url']);
+                $nombreoa=$_POST['url'];
+            }elseif($_FILES['url']['tmp_name']){
+                    $llegada="yes";
+                    $ruta=simplexml_load_file($_FILES['url']['tmp_name']);
+                    $nombreoa=$_FILES['url']['name'];
+                }else{
+                        $llegada="";
+                    }
+
+            $llego=$llegada;
             if ($llego!="") {
-
-                    //carga el xml  en la variable
-                    $objetos=simplexml_load_file($_FILES['url']['tmp_name']);
-                    
-                    if ($objetos->ListRecords) {
-
-                    //$rut="http://froac.manizales.unal.edu.co/roap/oai.php?verb=ListRecords&metadataPrefix=lom";
-                    //$objetos=simplexml_load_file($rut)	;
+                //carga el xml  en la variable
+                $objetos=$ruta;
+                if ($objetos->ListRecords){
                     // recorre  el xml y entrega la cantidad de objetos que contiene el xml
                     $total_objetos=count($objetos->ListRecords->record);
                     // imprime la cantidad de objetos analizados
                     echo "<table>
-							<thead>
-								<tr>
-									<td>La ruta es:</td>
-									<td>".$_FILES['url']['name']."</td>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Cantidad de OAS:</td>
-									<td>".$total_objetos."</td>
-								</tr>
-							<tbody>
-								</table><br>";
+                            <thead>
+                                <tr>
+                                    <td>La ruta es:</td>
+                                    <td>".$nombreoa."</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cantidad de OAS:</td>
+                                    <td>".$total_objetos."</td>
+                                </tr>
+                            <tbody>
+                                </table><br>";
+
                     $objeto;
+                    $eliminados=0;
         try {
                     for ($i=0; $i <$total_objetos ; $i++) {
                         //id del objeto

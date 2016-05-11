@@ -45,7 +45,8 @@
 	<center>
 		<div class="contenedor2"><h4>Evalua tus RED</h4><br>
 			<?php
-            error_reporting(0);
+            //error_reporting(0);
+            error_reporting(E_ALL ^ E_NOTICE);
             if($_POST['url']){
                 $llegada="yes";
                 $ruta=simplexml_load_file($_POST['url']);
