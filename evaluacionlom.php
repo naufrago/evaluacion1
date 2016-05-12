@@ -620,7 +620,8 @@
                                                 echo $cmdtuples . " datos registrados.\n";
                                                 // Free resultset liberar los datos
                                                 pg_free_result($result);
-                                                $query2 = "INSERT INTO evaluacion(id_obj, fecha, reusabilidad, disponibilidad, completitud, consistencia, coherencia) VALUES ('$idBD', 'Now()', '$reusabilidad', '$disponibilidad', '$completitud', '$consistencia', '$coherencia');";
+                                                $promedio = ($reusabilidad + $disponibilidad + $completitud + $consistencia + $coherencia)/5 ;
+                                                $query2 = "INSERT INTO evaluacion(id_obj, fecha, reusabilidad, disponibilidad, completitud, consistencia, coherencia, evaluacion) VALUES ('$idBD', 'Now()', '$reusabilidad', '$disponibilidad', '$completitud', '$consistencia', '$coherencia', '$promedio');";
                                                 // Closing connection cerrar la conexión
                                                 $result = pg_query($conexion, $query2) or die('ERROR AL INSERTAR EVALUACIONES MALDITASEA: ' . pg_last_error());
                                                 $cmdtuples = pg_affected_rows($result);
