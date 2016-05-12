@@ -217,7 +217,7 @@ function reusabilidad(objeto1){
 
                                 // imprime  la evaluacion de la metrica
                         mensaje="* Reusabilidad de: "+ m_reusabilidad +"; "+evaluacion;
-                        alert(mensaje);
+                        //alert(mensaje);
                         return mensaje;
                         
                         
@@ -226,7 +226,7 @@ function reusabilidad(objeto1){
 
                     }else{
                         // en caso tal  que las reglas sean cero imprime esto
-                        alert("* La métrica de reusabilidad no se puede aplicar no se cumple ninguna regla");
+                        mensaje"* La métrica de reusabilidad no se puede aplicar no se cumple ninguna regla";
                         return mensaje;
                         
                     }
@@ -387,7 +387,7 @@ function completitud(oa){
 
                                 // imprime  la evaluacion de la metrica
                         mensaje="* Completitud de: "+m_completitud+ "; "+evaluacion;
-                        alert(mensaje);
+                        //alert(mensaje);
                         return mensaje;
                         
                         //echo "* Completitud de: ".m_completitud."; ".evaluacion."<br>";
@@ -551,7 +551,7 @@ function consistencia(oa){
 
                                 // imprime  la evaluacion de la metrica
                         mensaje="* Consistencia de: "+m_consistencia+"; "+evaluacion;
-                        alert(mensaje);
+                        //alert(mensaje);
                         return mensaje;
                        // echo "* Consistencia de: ".m_consistencia."; ".evaluacion."<br>";
             }

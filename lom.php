@@ -10,11 +10,12 @@
   <script src="plugins/jQuery/jQuery-2.2.1.min.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <link rel="stylesheet" href="css/estilo.css">
-  <script>
-    $(document).ready(function () {
-        $('table').accordion({header: '.category', collapsible: true,
-     heightStyle: "content" });
-    });
+  <script type="text/javascript">
+    function  acordeon() {
+                  $('table').accordion({header: '.category', collapsible: true,
+               heightStyle: "content" });
+                }
+
   </script>
 
   <script src="js/LomMetadata.js"></script>
@@ -112,23 +113,62 @@ $llego=$ruta;
             console.log(lom);
             if (!lom.identifier) {
               m_reusabilidad=reusabilidad(lom);
-              alert("desde afuera "+m_reusabilidad);
+              //alert("desde afuera "+m_reusabilidad);
 
-             // m_disponivilidad=disponibilidad(lom.location);
+              //m_disponivilidad=disponibilidad(lom.location);
              // 
               m_completitud=completitud(lom);
-              alert("desde afuera "+m_completitud);
+              //alert("desde afuera "+m_completitud);
 
               m_consistencia=consistencia(lom);
-              alert("desde afuera "+m_consistencia);
+              //alert("desde afuera "+m_consistencia);
 
               m_coherencia=coherencia(lom);
-              alert("desde afuera "+m_coherencia);
+              //alert("desde afuera "+m_coherencia);
+              
+              //realiza el borrado del archivo temporal
+            var data = {ruta:ruta};
+              $.post("borrar.php", data, function(dato){
+                alert(dato);
+              });
 
             }else{
               alert("el archivo xml no corresponde a un solo OA");
+              //realiza el borrado del archivo temporal
+            var data = {ruta:ruta};
+              $.post("borrar.php", data, function(dato){
+                alert(dato);
+              });
               location.href ="index.html";
             }
+
+            $('#oa').append('' +
+              "<div><h3>EVALUACIÓN DE UN OBJETO ESTANDAR LOM:</h3>"+
+              "<TABLE table table-bordered\">"+
+              "<TBODY class=\"category\">"+
+                      "<TR>"+
+                        "<TD colspan=\"4\">ID: 1</TD>"+
+                      "</TR>"+
+                      "<TR>"+
+                        "<TD colspan=\"4\">Titulo del objeto analizado: "+titulo+
+                      "</TR>"+
+                    "</TBODY>"+
+                    "<TBODY class=\"subcategory\">"+
+                          "<TR>"+
+                            "<TD style=\"padding:5px;\">"+
+                                m_reusabilidad+"<br>"+
+                                //m_disponivilidad+"<br>"+
+                                m_completitud+"<br>"+
+                                m_consistencia+"<br>"+
+                                m_coherencia+"<br>"+
+                            "</TD>"+
+                          "</TR>"+
+                        "</TBODY>"+
+              "</TABLE></div>");
+              acordeon();
+              
+  
+
             
             //document.writeln(lom.title);
           });
@@ -141,33 +181,7 @@ $llego=$ruta;
 
 </script>
 
-<?php
-  $titulo = "<script> document.write(titulo); </script>";
-  echo "<div><h3>EVALUACIÓN DE UN OBJETO ESTANDAR LOM:</h3>";
-  echo"<TABLE table table-bordered\">";
-  echo "<TBODY class=\"category\">
-                      <TR>
-                        <TD colspan=\"4\">ID: 1</TD>
-                      </TR>
-                      <TR>
-                        <TD colspan=\"4\">Titulo del objeto analizado: ".$titulo."
-                      </TR>
-                    </TBODY>
-                    <TBODY class=\"subcategory\">
-                          <TR>
-                            <TD style=\"padding:5px;\">";
-                                                  /*reusabilidad($objeto,$a);
-                                                disponibilidad($objeto[$a][4]);
-                                                completitud($objeto,$a);
-                                                consistencia($objeto,$a);
-                                                coherencia($objeto,$a);*/
-                                                echo"</TD>
-                          </TR>
-                        </TBODY>";
-  echo "</TABLE></div>";
 
-  
-?>
 
 </div>
 <div id="oa" name="oa"> </div>
@@ -185,4 +199,6 @@ $llego=$ruta;
      <!-- Bootstrap 3.3.6 -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="plugins/filestyle.js"></script>
+
+    
 </html>
