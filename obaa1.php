@@ -10,13 +10,15 @@
   <script src="plugins/jQuery/jQuery-2.2.1.min.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <link rel="stylesheet" href="css/estilo.css">
-  <script>
-    $(document).ready(function () {
-        $('table').accordion({header: '.category', collapsible: true,
-     heightStyle: "content" });
-    });
+  <script type="text/javascript">
+    function  acordeon() {
+                  $('table').accordion({header: '.category', collapsible: true,
+               heightStyle: "content" });
+                }
+
   </script>
-  <script src="js/ObaaMetadata.js"></script>
+
+  <script src="js/ObaaMetadata1.js"></script>
 </head>
 <header>
     <div class="logo">
@@ -58,7 +60,7 @@ error_reporting(E_ALL ^ E_NOTICE);
                       echo "Error: " . $_FILES['url']['error'] . "<br>";
                     }else{
                       $hoy = getdate();
-                      $ruta=$hoy['year']."-".$hoy['mon']."-".$hoy['mday']."-".$hoy['hours']."-".$hoy['minutes']."-".$hoy['seconds'].".xml";
+                      $ruta="OBAA-".$hoy['year']."-".$hoy['mon']."-".$hoy['mday']."-".$hoy['hours']."-".$hoy['minutes']."-".$hoy['seconds'].rand().".xml";
                       move_uploaded_file($_FILES['url']['tmp_name'], $ruta);}
                       $nombreoa=$_FILES['url']['name'];
                     }
@@ -82,75 +84,104 @@ $llego=$ruta;
                 </tr>
               <tbody>
                 </table><br>";
-     ?>          
+     ?>       
 <script >
+
   var ruta= "<?php echo $llego; ?>" ;
   console.log(ruta);
   //alert(ruta);
   
   //var datos=oa(ruta);
-
-  
-  var m_completitud;
+  if (ruta!="") {
+  var obaa ;
+  var m_reusabilidad;
   var m_disponivilidad;
   var m_completitud;
   var m_consistencia;
   var m_coherencia;
-         var obaa ;
+  var titulo;
          //var xmlDoc=loadXMLDoc('as.xml');
         $(document).ready(function(){
           $.get(ruta,function(xml){
-
+            //console.log(xml);
             var xmlString = (new XMLSerializer()).serializeToString(xml);
-
+            
             //console.log(xmlString);
-          
             obaa = processXml(xmlString);
+            
+            titulo=obaa.title;
             console.log(obaa);
             if (!obaa.identifier) {
-              reusabilidadobaa(obaa);
-              disponibilidadobaa(obaa.location);
-              completitudobaa(obaa);
-              consistenciaobaa(obaa);
-              coherenciaobaa(obaa);
+              m_reusabilidad=reusabilidadobaa(obaa);
+              //alert("desde afuera "+m_reusabilidad);
+
+             // m_disponivilidad=disponibilidadobaa(obaa.location);
+             // 
+              m_completitud=completitudobaa(obaa);
+              //alert("desde afuera "+m_completitud);
+
+              m_consistencia=consistenciaobaa(obaa);
+              //alert("desde afuera "+m_consistencia);
+
+              m_coherencia=coherenciaobaa(obaa);
+              //alert("desde afuera "+m_coherencia);
+              
+              //realiza el borrado del archivo temporal
+            var data = {ruta:ruta};
+              $.post("borrar.php", data, function(dato){
+                //alert(dato);
+              });
+
             }else{
               alert("el archivo xml no corresponde a un solo OA");
+              //realiza el borrado del archivo temporal
+            var data = {ruta:ruta};
+              $.post("borrar.php", data, function(dato){
+                //alert(dato);
+              });
               location.href ="index.html";
             }
+
+            $('#oa').append('' +
+              "<div><h3>EVALUACIÓN DE UN OBJETO ESTANDAR OBAA:</h3>"+
+              "<TABLE table table-bordered\">"+
+              "<TBODY class=\"category\">"+
+                      "<TR>"+
+                        "<TD colspan=\"4\">ID: 1</TD>"+
+                      "</TR>"+
+                      "<TR>"+
+                        "<TD colspan=\"4\">Titulo del objeto analizado: "+titulo+
+                      "</TR>"+
+                    "</TBODY>"+
+                    "<TBODY class=\"subcategory\">"+
+                          "<TR>"+
+                            "<TD style=\"padding:5px;\">"+
+                                m_reusabilidad+"<br>"+
+                                //m_disponivilidad+"<br>"+
+                                m_completitud+"<br>"+
+                                m_consistencia+"<br>"+
+                                m_coherencia+"<br>"+
+                            "</TD>"+
+                          "</TR>"+
+                        "</TBODY>"+
+              "</TABLE></div>");
+              acordeon();
+              
+  
+
             
             //document.writeln(lom.title);
           });
         });
 
-
+}else{
+  alert("NO CARGO  NINGUN ARCHIVO O URL");
+              location.href ="index.html";
+}
 
 </script>
 
-<?php
-  $titulo = "<script> document.write(lom.title) </script>";
-  echo "<div><h3>EVALUACIÓN DE UN OBJETO ESTANDAR OBAA:</h3>";
-  echo"<TABLE table table-bordered\">";
-  echo "<TBODY class=\"category\">
-                      <TR>
-                        <TD colspan=\"4\">ID: 1</TD>
-                      </TR>
-                      <TR>
-                        <TD colspan=\"4\">Titulo del objeto analizado: ".$titulo."
-                      </TR>
-                    </TBODY>
-                    <TBODY class=\"subcategory\">
-                          <TR>
-                            <TD style=\"padding:5px;\">";
-                                                  /*reusabilidad($objeto,$a);
-                                                disponibilidad($objeto[$a][4]);
-                                                completitud($objeto,$a);
-                                                consistencia($objeto,$a);
-                                                coherencia($objeto,$a);*/
-                                                echo"</TD>
-                          </TR>
-                        </TBODY>";
-  echo "</TABLE></div>";
-?>
+
 
 </div>
 <div id="oa" name="oa"> </div>
@@ -168,4 +199,6 @@ $llego=$ruta;
      <!-- Bootstrap 3.3.6 -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="plugins/filestyle.js"></script>
+
+    
 </html>

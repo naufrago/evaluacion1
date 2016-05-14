@@ -126,35 +126,7 @@ function sleep(milliseconds) {
 }
 
 
-function oa(){
-	
-	
-	var xmlFile = $('#urlOA');
-	console.log(xmlFile.value);
-	//var fileName = xmlFile.file.name;
-	console.log(xmlFile[0].files[0].name);
-	var de=xmlFile[0].files[0].name;
-    alert("1");
-	var lom ;
 
-	var xmlString = (new XMLSerializer()).serializeToString(xmlFile);
-	console.log(xmlString);
-				$.get(de,function(xml){
-      			alert("entro");
-      			var xmlString = (new XMLSerializer()).serializeToString(xml);
-
-      			//console.log(xmlString);
-      		
-		      	lom = processXml(xmlString);
-		      	console.log(lom);
-		      	document.writeln(lom.title);
-
-      		});
-      	
-      	//location.href =lol;
-      	//
-      	return false;
-}
 
 
 </script>
@@ -281,13 +253,13 @@ function oa(){
 	           </select>
 	           		
 				<div id="url1obaa" name="url" style="display:none;">
-					<form id="formulario" name="formulario" action= "obaa.php" method="POST">URL DEL XML<BR>
+					<form id="formulario" name="formulario" action= "obaa1.php" method="POST">URL DEL XML<BR>
 						<input id="url" name="url" type="text" style="width:500px;"></input><br><br>
 						<input class="btn btn-success" value="Evaluar"id="campo" type="submit"  /></form>
 				</div>
 
 				<div id="ruta1obaa" name="ruta" style="display:none;">
-					<form id="formulario2" name="formulario"  enctype="multipart/form-data" action= "obaa.php" method="POST" >
+					<form id="formulario2" name="formulario"  enctype="multipart/form-data" action= "obaa1.php" method="POST" >
 						<input type="file"  id="urlOA" name="url"  accept="text/xml" readonly="true" value=""></input><br>
 						<input id="campo" class="btn btn-success" value="Evaluar"  type="submit"  /></form>
 				</div>
