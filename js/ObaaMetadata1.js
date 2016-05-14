@@ -3,7 +3,7 @@
  */
 
 
-function LOMMetadata(){
+function OBAAMetadata(){
     var aggregationlevel;
     var structure;
     var title;
@@ -32,62 +32,61 @@ function LOMMetadata(){
 }
 
 function processXml(xml) {
-            alert("REALIZANDO EVALUACION");
-
-            var lom = new LOMMetadata();
-            lom.identifier= $(xml).find("identifier").text();
-            lom.aggregationlevel = $(xml).find("lom\\:aggregationlevel").text();
-            lom.structure = $(xml).find("lom\\:structure").text();
-            lom.title = $(xml).find("lom\\:title").text();
-            alert("Objeto evaluado "+lom.title);
-            lom.keyword = $(xml).find("lom\\:keyword").first().text();
-            lom.description = $(xml).find("lom\\:description").first().text();
-            lom.language = $(xml).find("lom\\:language").first().text();
-            lom.semanticdensity = $(xml).find("lom\\:semanticdensity").text();
+             //alert("REALIZANDO EVALUACION");
+            var obaa = new OBAAMetadata();
+            obaa.identifier= $(xml).find("identifier").text();
+            obaa.aggregationlevel = $(xml).find("obaa\\:aggregationlevel").text();
+            obaa.structure = $(xml).find("obaa\\:structure").text();
+            obaa.title = $(xml).find("obaa\\:title").text();
+            //alert("Objeto evaluado "+obaa.title);
+            obaa.keyword = $(xml).find("obaa\\:keyword").first().text();
+            obaa.description = $(xml).find("obaa\\:description").first().text();
+            obaa.language = $(xml).find("obaa\\:language").first().text();
+            obaa.semanticdensity = $(xml).find("obaa\\:semanticdensity").text();
 
             var arrayContext = [];
 
-            $(xml).find("lom\\:context").each(function(){
+            $(xml).find("obaa\\:context").each(function(){
                 console.log($(this).text());
                 arrayContext.push($(this).text());
             });
 
-            lom.context = arrayContext.slice(0);
+            obaa.context = arrayContext.slice(0);
 
 
-            lom.learningresourcetype = $(xml).find("lom\\:learningresourcetype").text();
-            lom.interactivitytype = $(xml).find("lom\\:interactivitytype").text();
-            lom.typicalagerange = $(xml).find("lom\\:typicalagerange").text();
-            lom.interactivityLevel = $(xml).find("lom\\:interactivitylevel").text();
-            lom.intendedenduserrole = $(xml).find("lom\\:intendedenduserrole").text();
-            lom.difficulty = $(xml).find("lom\\:difficulty").text();
+            obaa.learningresourcetype = $(xml).find("obaa\\:learningresourcetype").text();
+            obaa.interactivitytype = $(xml).find("obaa\\:interactivitytype").text();
+            obaa.typicalagerange = $(xml).find("obaa\\:typicalagerange").text();
+            obaa.interactivityLevel = $(xml).find("obaa\\:interactivitylevel").text();
+            obaa.intendedenduserrole = $(xml).find("obaa\\:intendedenduserrole").text();
+            obaa.difficulty = $(xml).find("obaa\\:difficulty").text();
 
             
            var arrayLocation = [];
 
-            $(xml).find("lom\\:location").each(function(){
+            $(xml).find("obaa\\:location").each(function(){
                 console.log($(this).text());
                 arrayLocation.push($(this).text());
             });
-            lom.location = arrayLocation.slice(0);
+            obaa.location = arrayLocation.slice(0);
 
-            lom.format = $(xml).find("lom\\:format").text();
-            lom.entity = $(xml).find("lom\\:entity").text();
-            lom.rolelifecycle = $(xml).find("lom\\:role").first().text();
-            lom.status = $(xml).find("lom\\:status").text();
-            lom.cost = $(xml).find("lom\\:cost").text();
-            lom.copyrightandotherrestrictions = $(xml).find("lom\\:varcopyrightandotherrestrictions").text();
-            lom.role = $(xml).find("lom\\:metametadata").find("lom\\:role").text();
-            lom.purpose = $(xml).find("lom\\:purpose").text();
-
-
+            obaa.format = $(xml).find("obaa\\:format").text();
+            obaa.entity = $(xml).find("obaa\\:entity").text();
+            obaa.rolelifecycle = $(xml).find("obaa\\:role").first().text();
+            obaa.status = $(xml).find("obaa\\:status").text();
+            obaa.cost = $(xml).find("obaa\\:cost").text();
+            obaa.copyrightandotherrestrictions = $(xml).find("obaa\\:varcopyrightandotherrestrictions").text();
+            obaa.role = $(xml).find("obaa\\:metametadata").find("obaa\\:role").text();
+            obaa.purpose = $(xml).find("obaa\\:purpose").text();
 
 
-            return lom;
+
+
+            return obaa;
         }
 
 
-function reusabilidad(objeto1){
+function reusabilidadobaa(objeto1){
                    
 
                     // extrae las variables nesesarias para la evaluacion
@@ -102,8 +101,9 @@ function reusabilidad(objeto1){
                     var pesor2=0;
                     var pesor3=0;
                     var pesor4=0;
-                     var mensaje="* La métrica de reusabilidad no se puede aplicar no se cumple ninguna regla";
-                                         //verifica cuantas reglas se van a evaluar
+
+                    var mensaje="* La métrica de reusabilidad no se puede aplicar no se cumple ninguna regla";
+                    //verifica cuantas reglas se van a evaluar
                     
                     if (densidadsemantica1!="") {
                             r++;
@@ -219,22 +219,16 @@ function reusabilidad(objeto1){
                         mensaje="* Reusabilidad de: "+ m_reusabilidad +"; "+evaluacion;
                         //alert(mensaje);
                         return mensaje;
-                        
-                        
-
-
-
+                  
                     }else{
                         // en caso tal  que las reglas sean cero imprime esto
-                        mensaje"* La métrica de reusabilidad no se puede aplicar no se cumple ninguna regla";
                         return mensaje;
-                        
                     }
 
 }
 
   // funcion encargada de verificar si la ruta  si conduce a un objeto
-function disponibilidad(ruta){
+function disponibilidadobaa(ruta){
                     var cantidad=ruta.length;
 
                     
@@ -242,7 +236,7 @@ function disponibilidad(ruta){
                     for (var y=0; y <cantidad ; y++) { 
                         // invoca la funcion si url_exist para verificar existencia con un llamado al servidor
                         var existe= isURL( ruta[y] );
-                        alert("existe ruta "+ existe);
+                        
                         // si  es verdadero entrega  la existencia del objeto
                         if (existe) {
                             
@@ -267,7 +261,7 @@ function disponibilidad(ruta){
                                         evaluacion="Exelente";
                                 }
                         //echo "      -Disponibilidad: ".evaluacion."<br>";
-                    
+                        alert("-Disponibilidad: "+evaluacion);
 
                     }
 
@@ -285,7 +279,7 @@ function disponibilidad(ruta){
             // verifica que tan completo es el oa en sus metadatos
             // 
             
-function completitud(oa){
+function completitudobaa(oa){
                     var titulo=0; var keyword=0; var descripcion=0; var autor=0;
                     var tipoRE=0; var formato=0; var contexto=0; var idioma=0;
                     var tipointer=0; var rangoedad=0; var nivelagregacion=0;
@@ -386,18 +380,17 @@ function completitud(oa){
                                 }
 
                                 // imprime  la evaluacion de la metrica
-                        mensaje="* Completitud de: "+m_completitud+ "; "+evaluacion;
+                         mensaje="* Completitud de: "+m_completitud+ "; "+evaluacion;
                         //alert(mensaje);
                         return mensaje;
-                        
                         //echo "* Completitud de: ".m_completitud."; ".evaluacion."<br>";
                     }
 
 
-function consistencia(oa){
+function consistenciaobaa(oa){
                 var nivelagregacion=0; var estructura=0; var rol=0; var estado=0; var metarol=0; var tipointer=0;
                 var tiporecursoeducativo=0; var nivelinter=0; var densidadsemantica=0; var rolusuariofinal=0;
-                var contexto=0; var dificultad=0; var copyright=0; var costo=0; var proposito=0; var r=15;
+                var contexto=0; var dificultad=0; var copyright=0; var costo=0; var proposito=0; var r=14;
 
                 if (oa.aggregationlevel.trim()==="1" || 
                     oa.aggregationlevel.trim()==="2" || 
@@ -522,7 +515,7 @@ function consistencia(oa){
                     oa.cost.trim()==="no"  ) {
                         costo=1;
                 }
-                if (oa.purpose.trim()==="discipline" ||
+               /* if (oa.purpose.trim()==="discipline" ||
                     oa.purpose.trim()==="idea" || 
                     oa.purpose.trim()==="prerequisite" ||
                     oa.purpose.trim()==="educational objective" || 
@@ -533,7 +526,7 @@ function consistencia(oa){
                     oa.purpose.trim()==="security level" || 
                     oa.purpose.trim()==="competency"  ) {
                         proposito=1;
-                }
+                }*/
                 var m_consistencia=(nivelagregacion + estructura + rol + estado + metarol + tipointer +
                                 tiporecursoeducativo + nivelinter + densidadsemantica + rolusuariofinal + 
                                 contexto + dificultad + copyright + costo + proposito) /  r;
@@ -550,14 +543,14 @@ function consistencia(oa){
                                 }
 
                                 // imprime  la evaluacion de la metrica
-                        mensaje="* Consistencia de: "+m_consistencia+"; "+evaluacion;
+                         mensaje="* Consistencia de: "+m_consistencia+"; "+evaluacion;
                         //alert(mensaje);
                         return mensaje;
                        // echo "* Consistencia de: ".m_consistencia."; ".evaluacion."<br>";
             }
 
             // verifica que tan coherente son los metadatos del oa
-function coherencia(objeto){
+function coherenciaobaa(objeto){
                 // extrae las variables nesesarias para la evaluacion
                 var estructura= objeto.structure;
                 var nivelagregacion=objeto.aggregationlevel;
@@ -632,18 +625,19 @@ function coherencia(objeto){
                                                             nivelinteractivo.trim()==="very low") ){
                         r++;
                         pesor2=1;
-                    }else if (tipointeractividad.trim()==="expositive" && (nivelinteractivo.trim()==="very high" || 
-                                                                         nivelinteractivo.trim()==="high") ){
+                    }else if (tipointeractividad.trim()==="expositive" && (nivelinteractivo==="very high" || 
+                                                            nivelinteractivo==="high") ){
                              r++;
                              pesor2=0;
-                        }else if (tipointeractividad.trim()==="expositive" && nivelinteractivo.trim()==="medium" ){
+                        }else if (tipointeractividad.trim()==="expositive" &&  nivelinteractivo==="medium"  ){
                                  r++;
                                  pesor2=0.5;
-                            }else if (tipointeractividad.trim()==="expositive" && ( nivelinteractivo.trim()==="low" ||
-                                                                                    nivelinteractivo.trim()==="very low") ){
+                            }else if (tipointeractividad.trim()==="expositive" && (nivelinteractivo==="low" ||
+                                                            nivelinteractivo==="very low") ){
                                      r++;
                                      pesor2=1;
-                            }   
+                            } 
+
                 if ( tipointeractividad.trim()==="active" && (tiporecursoeducativo.trim()==="exercise" || 
                                                             tiporecursoeducativo.trim()==="simulation" || 
                                                             tiporecursoeducativo.trim()==="questionnaire" || 
@@ -703,7 +697,6 @@ function coherencia(objeto){
                             }   
 
                 if (r>0) {
-
                 // hace la sumatoria de los pesos 
                          m_coherencia= ( pesor1 +  pesor2 +  pesor3) /  r;
                          
@@ -720,16 +713,14 @@ function coherencia(objeto){
                                 }
 
                         // imprime  la evaluacion de la metrica
-                        mensaje="* Coherencia de: "+ m_coherencia+"; "+ evaluacion;
-                        alert(mensaje);
+                       mensaje="* Coherencia de: "+ m_coherencia+"; "+ evaluacion;
+                        //alert(mensaje);
                         return mensaje;
                             //echo "* Coherencia de: ". m_coherencia."; ". evaluacion."<br><br>";
                 }else{
-                    mensaje="* Metrica de coherencia  N/A";
-                        alert(mensaje);
+                     mensaje="* Metrica de coherencia  N/A";
+                        //alert(mensaje);
                         return mensaje;
-                    
                 }
-
 
             }

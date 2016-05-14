@@ -18,7 +18,7 @@
 
   </script>
 
-  <script src="js/LomMetadata.js"></script>
+  <script src="js/LomMetadata1.js"></script>
 </head>
 <header>
     <div class="logo">
@@ -60,7 +60,7 @@ error_reporting(E_ALL ^ E_NOTICE);
                       echo "Error: " . $_FILES['url']['error'] . "<br>";
                     }else{
                       $hoy = getdate();
-                      $ruta=$hoy['year']."-".$hoy['mon']."-".$hoy['mday']."-".$hoy['hours']."-".$hoy['minutes']."-".$hoy['seconds'].".xml";
+                      $ruta="LOM-".$hoy['year']."-".$hoy['mon']."-".$hoy['mday']."-".$hoy['hours']."-".$hoy['minutes']."-".$hoy['seconds'].rand().".xml";
                       move_uploaded_file($_FILES['url']['tmp_name'], $ruta);}
                       $nombreoa=$_FILES['url']['name'];
                     }
@@ -94,7 +94,7 @@ $llego=$ruta;
   //var datos=oa(ruta);
   if (ruta!="") {
   var lom ;
-  var m_completitud;
+  var m_reusabilidad;
   var m_disponivilidad;
   var m_completitud;
   var m_consistencia;
@@ -103,12 +103,12 @@ $llego=$ruta;
          //var xmlDoc=loadXMLDoc('as.xml');
         $(document).ready(function(){
           $.get(ruta,function(xml){
-
+            //console.log(xml);
             var xmlString = (new XMLSerializer()).serializeToString(xml);
-
+            
             //console.log(xmlString);
-          
             lom = processXml(xmlString);
+            
             titulo=lom.title;
             console.log(lom);
             if (!lom.identifier) {
@@ -129,7 +129,7 @@ $llego=$ruta;
               //realiza el borrado del archivo temporal
             var data = {ruta:ruta};
               $.post("borrar.php", data, function(dato){
-                alert(dato);
+                //alert(dato);
               });
 
             }else{
@@ -137,7 +137,7 @@ $llego=$ruta;
               //realiza el borrado del archivo temporal
             var data = {ruta:ruta};
               $.post("borrar.php", data, function(dato){
-                alert(dato);
+                //alert(dato);
               });
               location.href ="index.html";
             }
