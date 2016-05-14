@@ -1,4 +1,4 @@
-select * from evaluacion
+select * from evaluacion;
 
 CREATE FUNCTION calc_disponible() RETURNS TRIGGER AS $ControlDisponibilidad$
 	BEGIN

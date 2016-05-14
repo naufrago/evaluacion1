@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<?php require('conexion.php'); ?>
 	<meta charset="utf-8" />
 	<meta name="viewport" 
 		content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -9,7 +8,9 @@
 	    <!-- Bootstrap 3.3.6 -->
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/estilo.css">
-	
+	<script type="text/javascript" src="plugins/jquery-1.7.1.min.js" ></script>
+	<script type="text/javascript" src="plugins/highcharts.js" ></script>
+	<script type="text/javascript" src="plugins/themes/dark-blue.js"></script>
 
 	<script type="text/javascript">
 var chart;
@@ -22,7 +23,7 @@ var chart;
 						marginBottom: 25
 					},
 					title: {
-						text: 'Hourly Visits',
+						text: 'Evaluaciones por fecha',
 						x: -20 //center
 					},
 					subtitle: {
@@ -45,7 +46,7 @@ var chart;
 					},
 					yAxis: {
 						title: {
-							text: 'Visits'
+							text: 'Evaluaciones'
 						},
 						plotLines: [{
 							value: 0,
@@ -67,14 +68,14 @@ var chart;
 						borderWidth: 0
 					},
 					series: [{
-						name: 'Count'
+						name: 'Cantidad'
 					}]
 				}
 				// Load data asynchronously using jQuery. On success, add the data
 				// to the options and initiate the chart.
 				// This data is obtained by exporting a GA custom report to TSV.
 				// http://api.jquery.com/jQuery.get/
-				jQuery.get('data.php', null, function(tsv) {
+				jQuery.get('conexion.php', null, function(tsv) {
 					var lines = [];
 					traffic = [];
 					try {
@@ -124,12 +125,8 @@ var chart;
 	</nav>
 
 <body>
-	<center>
-		<div class="contenedor" ><h4>Evalua tus RED</h4>
 
 		<div id="container" style="width: 100%; height: 400px; margin: 0 auto"></div>
-		</div>
-	</center>
 
 </body>
 
