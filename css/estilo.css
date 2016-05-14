@@ -1,10 +1,10 @@
-body{background-color:#9A9A9A}
+body{background-color:#0d47a1}
 
 div.contenedor{
-	background-color: #8FC6F7 ; 
+	background-color: #01579B ; 
 	height: 300px; 
 	width: 700px; 
-	color: black;
+	color: white;
 	border-radius: 2%;
 	border-color: white;
 	border-style: solid;
@@ -12,16 +12,16 @@ div.contenedor{
     margin-top: 25px;
 }
 div.contenedor2{
-	background-color: #8FC6F7; 
+	background-color: #01579B; 
 	width: 800px; 
-	color: #000000;
+	color: white;
 	border-color: white;
 	border-style: solid;
     border-width: 2px;
     margin-top: 25px;
 }
 
-div#ruta,#ruta1, #rutaobaa,#ruta1obaa{
+div#ruta{
 	
 	 height: 100px; width: 350px; 
 	 padding-top: 100px;
