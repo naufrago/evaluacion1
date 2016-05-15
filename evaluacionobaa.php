@@ -34,12 +34,11 @@
 		</div>
 </header>
 <nav>
-		<ul id="menu"class="nav nav-pills">
-			<li> <a href="index.html">Evaluar</a> </li>
-			<li> <a href="#">Estadisticas</a> </li>
-			<li> <a  href="#">Contacto</a> </li>
-
-		</ul>
+    <ul id="menu"class="nav nav-pills">
+        <li> <a href="index.html">Evaluar</a> </li>
+        <li> <a href="estadistica.php">Estadisticas</a> </li>
+        <li> <a  href="contacto.html">Contacto</a> </li>
+    </ul>
 </nav>
 <body>
 	<center>
