@@ -617,7 +617,7 @@
                                                 $resultado=pg_query($consulta) or die (pg_last_error());
                                                 if (pg_num_rows($resultado)==1)
                                                 {
-                                                   echo "Ya registrado";
+                                                   echo "Ya registrado ";
                                                  } else {
                                                     $query = "INSERT INTO objeto_a(id_obj, nombre, estandar, estado) VALUES ('$idBD', '$tituloBD', 'lom', 'TRUE');";
                                                     $result = pg_query($conexion, $query) or die('ERROR AL INSERTAR OBJETOS: ' . pg_last_error());
@@ -626,16 +626,19 @@
                                                     // Free resultset liberar los datos
                                                     pg_free_result($result);
                                                   }
+                                                $num = "SELECT * FROM num_eva ORDER BY eva DESC LIMIT 1";
+                                                $numEva = pg_query($conexion, $num);
+                                                $row = pg_fetch_array($numEva);
+                                                $numero_eva = $row['eva'];
+
                                                 $promedio = ($reusabilidad + $disponibilidad + $completitud + $consistencia + $coherencia)/5 ;
-                                                $query2 = "INSERT INTO evaluacion(id_obj, fecha, reusabilidad, disponibilidad, completitud, consistencia, coherencia, evaluacion) VALUES ('$idBD', 'Now()', '$reusabilidad', '$disponibilidad', '$completitud', '$consistencia', '$coherencia', '$promedio');";
+                                                $query2 = "INSERT INTO evaluacion(id_obj, fecha, reusabilidad, disponibilidad, completitud, consistencia, coherencia, evaluacion, num_eva) VALUES ('$idBD', 'Now()', '$reusabilidad', '$disponibilidad', '$completitud', '$consistencia', '$coherencia', '$promedio', '$numero_eva');";
                                                 // Closing connection cerrar la conexión
                                                 $result2 = pg_query($conexion, $query2) or die('ERROR AL INSERTAR EVALUACIONES: ' . pg_last_error());
                                                 $cmdtuples = pg_affected_rows($result2);
                                                 echo $cmdtuples . " datos registrados.\n";
                                                 // Free resultset liberar los datos
                                                 pg_free_result($result2);
-
-
 
                                                 echo"</TD>
 										      </TR>
@@ -644,6 +647,10 @@
 
                                     }
                     echo "</TABLE></div>";
+                    $numero_eva+=1;
+                    $query3 = "INSERT INTO num_eva VALUES ('$numero_eva');";
+                    $result3 = pg_query($conexion, $query3) or die('ERROR AL INSERTAR num_eva: ' . pg_last_error());
+
                 } else {
                     echo '<script >alert("EL XML CARGADO NO CUMPLE CON  EL ESTANDAR PARA REALIZAR LA EVALUACION O  NO ES UN XML");
 				location.href ="index.html;"</script>';
