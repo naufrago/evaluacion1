@@ -12,77 +12,88 @@
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript">
-        $(function () {
-            $('#container').highcharts({
-                chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: null,
-                    plotShadow: false,
-                    type: 'pie'
-                },
-                title: {
-                    text: 'Calidad de los objetos evaluados'
-                },
-                tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        dataLabels: {
-                            enabled: true,
-                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                            style: {
-                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                            }
-                        },
-                        showInLegend: true
-                    }
-                },
-                series: [{
-                    name: 'Objetos',
-                    colorByPoint: true,
-                    data: [
-                        <?php $db =  new Conect_Postgres();
-                        $sql =  "SELECT COUNT(evaluacion) AS b FROM evaluacion WHERE evaluacion>=0.25 and evaluacion<0.5;";
-                        $query = $db->execute($sql);
-                        while($row=$db->fetch_row($query)){?>
-                        {
-                            name: 'Buena',
-                            y: <?php echo $row['b']?>
-                        },                        <?php } ?>
-                        <?php $db =  new Conect_Postgres();
-                        $sql =  "SELECT COUNT(evaluacion) AS r FROM evaluacion WHERE evaluacion<0.25;";
-                        $query = $db->execute($sql);
-                        while($row=$db->fetch_row($query)){?>
-                        {
-                            name: 'Regular',
-                            y: <?php echo $row['r']?>
-                        },                        <?php } ?>
+        function graficar (eva) {
 
-                        <?php $db =  new Conect_Postgres();
-                        $sql =  "SELECT COUNT(evaluacion) AS e FROM evaluacion WHERE evaluacion>=0.75;";
-                        $query = $db->execute($sql);
-                        while($row=$db->fetch_row($query)){?>
-                        {
-                            name: 'Excelente',
-                            y: <?php echo $row['e']?>
-                        },                        <?php } ?>
+            $(function () {
+                document.cookie ='variable='+eva+'; expires=Thu, 2 Aug 2021 20:47:11 UTC; path=/';
+                <?php
+                $myEva =  $_COOKIE["variable"];
 
-                        <?php $db =  new Conect_Postgres();
-                        $sql =  "SELECT COUNT(evaluacion) AS mb FROM evaluacion WHERE evaluacion>=0.5 and evaluacion<0.75;";
-                        $query = $db->execute($sql);
-                        while($row=$db->fetch_row($query)){?>
-                        {
-                            name: 'Muy buena',
-                            y: <?php echo $row['mb']?>
-                        },                        <?php } ?>
+                ?>
+                $('#container').highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Calidad de los objetos evaluados'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                style: {
+                                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                }
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        name: 'Objetos',
+                        colorByPoint: true,
+                        data: [
+                            <?php $db = new Conect_Postgres();
+                            $sql = "SELECT COUNT(evaluacion) AS b FROM evaluacion WHERE evaluacion>=0.25 and evaluacion<0.5 and evaluacion.num_eva = '$myEva' ;";
+                            $query = $db->execute($sql);
+                            while($row = $db->fetch_row($query)){?>
+                            {
+                                name: 'Buena',
+                                y: <?php echo $row['b']?>
+                            },                        <?php } ?>
+                            <?php
+                            $db = new Conect_Postgres();
+                            $sql = "SELECT COUNT(evaluacion) AS r FROM evaluacion WHERE evaluacion<0.25 and evaluacion.num_eva = '$myEva';";
+                            $query = $db->execute($sql);
+                            while($row = $db->fetch_row($query)){?>
+                            {
+                                name: 'Regular',
+                                y: <?php echo $row['r']?>
+                            },                        <?php } ?>
 
-                    ]
-                }]
+                            <?php
+                            $db = new Conect_Postgres();
+                            $sql = "SELECT COUNT(evaluacion) AS e FROM evaluacion WHERE evaluacion>=0.75 and evaluacion.num_eva = '$myEva';";
+                            $query = $db->execute($sql);
+                            while($row = $db->fetch_row($query)){?>
+                            {
+                                name: 'Excelente',
+                                y: <?php echo $row['e']?>
+                            },                        <?php } ?>
+
+                            <?php
+                            $db = new Conect_Postgres();
+                            $sql = "SELECT COUNT(evaluacion) AS mb FROM evaluacion WHERE evaluacion>=0.5 and evaluacion<0.75 and evaluacion.num_eva = '$myEva';";
+                            $query = $db->execute($sql);
+                            while($row = $db->fetch_row($query)){?>
+                            {
+                                name: 'Muy buena',
+                                y: <?php echo $row['mb']?>
+                            },                        <?php } ?>
+
+                        ]
+                    }]
+                });
             });
-        });
+        }
     </script>
 </head>
 <header>
@@ -112,7 +123,13 @@
 <body>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
-
+<div id="s_Eva" style="min-width: 200px; height: 100px; max-width: 600px; margin: 0 auto">
+    <select class="form-control" name="evaluaciones"  id="num_eva"  onchange="graficar(this.value)" style="width:70px; margin: 10px auto;;">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+</div>
 <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 
 </body>
