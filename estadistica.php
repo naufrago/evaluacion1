@@ -36,21 +36,14 @@
                             style: {
                                 color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                             }
-                        }
+                        },
+                        showInLegend: true
                     }
                 },
                 series: [{
                     name: 'Objetos',
                     colorByPoint: true,
                     data: [
-                        <?php $db =  new Conect_Postgres();
-                        $sql =  "SELECT COUNT(evaluacion) AS r FROM evaluacion WHERE evaluacion<0.25;";
-                        $query = $db->execute($sql);
-                        while($row=$db->fetch_row($query)){?>
-                        {
-                            name: 'Regular',
-                            y: <?php echo $row['r']?>
-                        },                        <?php } ?>
                         <?php $db =  new Conect_Postgres();
                         $sql =  "SELECT COUNT(evaluacion) AS b FROM evaluacion WHERE evaluacion>=0.25 and evaluacion<0.5;";
                         $query = $db->execute($sql);
@@ -60,6 +53,24 @@
                             y: <?php echo $row['b']?>
                         },                        <?php } ?>
                         <?php $db =  new Conect_Postgres();
+                        $sql =  "SELECT COUNT(evaluacion) AS r FROM evaluacion WHERE evaluacion<0.25;";
+                        $query = $db->execute($sql);
+                        while($row=$db->fetch_row($query)){?>
+                        {
+                            name: 'Regular',
+                            y: <?php echo $row['r']?>
+                        },                        <?php } ?>
+
+                        <?php $db =  new Conect_Postgres();
+                        $sql =  "SELECT COUNT(evaluacion) AS e FROM evaluacion WHERE evaluacion>=0.75;";
+                        $query = $db->execute($sql);
+                        while($row=$db->fetch_row($query)){?>
+                        {
+                            name: 'Excelente',
+                            y: <?php echo $row['e']?>
+                        },                        <?php } ?>
+
+                        <?php $db =  new Conect_Postgres();
                         $sql =  "SELECT COUNT(evaluacion) AS mb FROM evaluacion WHERE evaluacion>=0.5 and evaluacion<0.75;";
                         $query = $db->execute($sql);
                         while($row=$db->fetch_row($query)){?>
@@ -67,14 +78,7 @@
                             name: 'Muy buena',
                             y: <?php echo $row['mb']?>
                         },                        <?php } ?>
-                        <?php $db =  new Conect_Postgres();
-                        $sql =  "SELECT COUNT(evaluacion) AS e FROM evaluacion WHERE evaluacion>=0.75;";
-                        $query = $db->execute($sql);
-                        while($row=$db->fetch_row($query)){?>
-                        {
-                            name: 'excelente',
-                            y: <?php echo $row['e']?>
-                        },                        <?php } ?>
+
                     ]
                 }]
             });
