@@ -13,13 +13,9 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript">
         function graficar (eva) {
-
             $(function () {
                 document.cookie ='variable='+eva+'; expires=Thu, 2 Aug 2021 20:47:11 UTC; path=/';
-                <?php
-                $myEva =  $_COOKIE["variable"];
-
-                ?>
+                <?php $myEva =  $_COOKIE["variable"];?>
                 $('#container').highcharts({
                     chart: {
                         plotBackgroundColor: null,
@@ -52,7 +48,7 @@
                         colorByPoint: true,
                         data: [
                             <?php $db = new Conect_Postgres();
-                            $sql = "SELECT COUNT(evaluacion) AS b FROM evaluacion WHERE evaluacion>=0.25 and evaluacion<0.5 and evaluacion.num_eva = '$myEva' ;";
+                            $sql = "SELECT COUNT(evaluacion) AS b FROM evaluacion WHERE evaluacion>=0.25 and evaluacion<0.5 and evaluacion.num_eva = '$myEva';";
                             $query = $db->execute($sql);
                             while($row = $db->fetch_row($query)){?>
                             {
@@ -94,6 +90,64 @@
                 });
             });
         }
+
+       function graficar2 () {
+
+                $(function () {
+                    $('#container').highcharts({
+                        chart: {
+                            plotBackgroundColor: null,
+                            plotBorderWidth: null,
+                            plotShadow: false,
+                            type: 'pie'
+                        },
+                        title: {
+                            text: 'Calidad de los objetos evaluados'
+                        },
+                        tooltip: {
+                            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                        },
+                        plotOptions: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                    style: {
+                                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                    }
+                                },
+                                showInLegend: true
+                            }
+                        },
+                        series: [{
+                            name: 'Objetos',
+                            colorByPoint: true,
+                            data: [
+                                <?php $db = new Conect_Postgres();
+                                $sql = "SELECT COUNT(disponible) AS d FROM objeto_a WHERE disponible = True;";
+                                $query = $db->execute($sql);
+                                while($row = $db->fetch_row($query)){?>
+                                {
+                                    name: 'Disponibles',
+                                    y: <?php echo $row['d']?>
+                                },                        <?php } ?>
+                                <?php
+                                $db = new Conect_Postgres();
+                                $sql = "SELECT COUNT(disponible) AS nd FROM objeto_a WHERE disponible = False;";
+                                $query = $db->execute($sql);
+                                while($row = $db->fetch_row($query)){?>
+                                {
+                                    name: 'No disponibles',
+                                    y: <?php echo $row['nd']?>
+                                },                        <?php } ?>
+
+                            ]
+                        }]
+                    });
+                });
+            }
     </script>
 </head>
 <header>
@@ -129,6 +183,10 @@
         <option value="2">2</option>
         <option value="3">3</option>
     </select>
+</div>
+
+<div>
+    <button id="eva2" onclick="graficar2()">Disponibilidad</button>
 </div>
 <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 

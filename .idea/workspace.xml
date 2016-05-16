@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9fd31575-8cd9-4775-8895-d1af5bf76bfa" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016-5-13-0-58-43.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bd/scripts.sql" afterPath="$PROJECT_DIR$/bd/scripts.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/estadistica.php" afterPath="$PROJECT_DIR$/estadistica.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/graficar.php" afterPath="$PROJECT_DIR$/graficar.php" />
     </list>
     <ignored path="evaluacion1.iws" />
@@ -35,11 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="estadistica.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="estadistica.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/estadistica.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="79" column="158" selection-start-line="79" selection-start-column="158" selection-end-line="79" selection-end-column="158" />
+            <state relative-caret-position="259">
+              <caret line="85" column="23" selection-start-line="14" selection-start-column="6" selection-end-line="91" selection-end-column="9" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#select#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -56,29 +52,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="graficar.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="graficar.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/graficar.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="179" column="39" selection-start-line="179" selection-start-column="39" selection-end-line="179" selection-end-column="39" />
+            <state relative-caret-position="425">
+              <caret line="91" column="9" selection-start-line="91" selection-start-column="9" selection-end-line="91" selection-end-column="9" />
               <folding>
-                <marker date="1463358926193" expanded="true" signature="2219:2331" placeholder="SELECT COUNT... evaluacion" />
-                <marker date="1463358926193" expanded="true" signature="2219:2340" placeholder="SELECT COUNT... evaluacion" />
-                <marker date="1463358926193" expanded="true" signature="2219:2341" placeholder="SELECT COUNT... evaluacion" />
-                <marker date="1463358926193" expanded="true" signature="2797:2889" placeholder="SELECT COUNT... evaluacion" />
-                <marker date="1463358926193" expanded="true" signature="2797:2890" placeholder="SELECT COUNT... evaluacion" />
-                <marker date="1463358926193" expanded="true" signature="2797:2891" placeholder="SELECT COUNT... evaluacion" />
-                <marker date="1463358926193" expanded="true" signature="2797:2898" placeholder="SELECT COUNT... evaluacion" />
-                <marker date="1463358926193" expanded="true" signature="3357:3450" placeholder="SELECT COUNT... evaluacion" />
-                <marker date="1463358926193" expanded="true" signature="3357:3458" placeholder="SELECT COUNT... evaluacion" />
-                <marker date="1463358926193" expanded="true" signature="3357:3459" placeholder="SELECT COUNT... evaluacion" />
-                <marker date="1463358926193" expanded="true" signature="3920:4033" placeholder="SELECT COUNT... evaluacion" />
-                <marker date="1463358926193" expanded="true" signature="3920:4034" placeholder="SELECT COUNT... evaluacion" />
-                <marker date="1463358926193" expanded="true" signature="3920:4042" placeholder="SELECT COUNT... evaluacion" />
-                <marker date="1463358926193" expanded="true" signature="3920:4043" placeholder="SELECT COUNT... evaluacion" />
-                <marker date="1463358926193" expanded="true" signature="6310:6377" placeholder="SELECT COUNT... objeto_a" />
-                <marker date="1463358926193" expanded="true" signature="6869:6938" placeholder="SELECT COUNT... objeto_a" />
-                <marker date="1463358926193" expanded="true" signature="7676:7698" placeholder="..." />
+                <marker date="1463360294165" expanded="true" signature="2184:2305" placeholder="SELECT COUNT... evaluacion" />
+                <marker date="1463360294165" expanded="true" signature="2761:2862" placeholder="SELECT COUNT... evaluacion" />
+                <marker date="1463360294165" expanded="true" signature="3321:3423" placeholder="SELECT COUNT... evaluacion" />
+                <marker date="1463360294165" expanded="true" signature="3884:4006" placeholder="SELECT COUNT... evaluacion" />
+                <marker date="1463360294165" expanded="true" signature="4006:4007" placeholder="SELECT COUNT... evaluacion" />
+                <marker date="1463360294165" expanded="true" signature="6066:6133" placeholder="SELECT COUNT... objeto_a" />
+                <marker date="1463360294165" expanded="true" signature="6631:6700" placeholder="SELECT COUNT... objeto_a" />
+                <marker date="1463360294165" expanded="true" signature="7445:7467" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -103,8 +90,8 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/css/estilo.css" />
         <option value="$PROJECT_DIR$/bd/scripts.sql" />
-        <option value="$PROJECT_DIR$/graficar.php" />
         <option value="$PROJECT_DIR$/estadistica.php" />
+        <option value="$PROJECT_DIR$/graficar.php" />
       </list>
     </option>
   </component>
@@ -272,12 +259,12 @@
       <workItem from="1463346407654" duration="2773000" />
       <workItem from="1463331212163" duration="15101000" />
       <workItem from="1463356517801" duration="1935000" />
-      <workItem from="1463358857845" duration="769000" />
+      <workItem from="1463358857845" duration="1436000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46529000" />
+    <option name="totallyTimeSpent" value="47196000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -353,23 +340,14 @@
         <state relative-caret-position="204">
           <caret line="12" column="63" selection-start-line="12" selection-start-column="63" selection-end-line="12" selection-end-column="63" />
           <folding>
-            <marker date="1463358926193" expanded="true" signature="2219:2331" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="2219:2340" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="2219:2341" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="2797:2889" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="2797:2890" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="2797:2891" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="2797:2898" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="3357:3450" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="3357:3458" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="3357:3459" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="3920:4033" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="3920:4034" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="3920:4042" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="3920:4043" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="6310:6377" placeholder="SELECT COUNT... objeto_a" />
-            <marker date="1463358926193" expanded="true" signature="6869:6938" placeholder="SELECT COUNT... objeto_a" />
-            <marker date="1463358926193" expanded="true" signature="7676:7698" placeholder="..." />
+            <marker date="1463360294165" expanded="true" signature="2184:2305" placeholder="SELECT COUNT... evaluacion" />
+            <marker date="1463360294165" expanded="true" signature="2761:2862" placeholder="SELECT COUNT... evaluacion" />
+            <marker date="1463360294165" expanded="true" signature="3321:3423" placeholder="SELECT COUNT... evaluacion" />
+            <marker date="1463360294165" expanded="true" signature="3884:4006" placeholder="SELECT COUNT... evaluacion" />
+            <marker date="1463360294165" expanded="true" signature="4006:4007" placeholder="SELECT COUNT... evaluacion" />
+            <marker date="1463360294165" expanded="true" signature="6066:6133" placeholder="SELECT COUNT... objeto_a" />
+            <marker date="1463360294165" expanded="true" signature="6631:6700" placeholder="SELECT COUNT... objeto_a" />
+            <marker date="1463360294165" expanded="true" signature="7445:7467" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -398,23 +376,14 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1463358926193" expanded="true" signature="2219:2331" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="2219:2340" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="2219:2341" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="2797:2889" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="2797:2890" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="2797:2891" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="2797:2898" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="3357:3450" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="3357:3458" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="3357:3459" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="3920:4033" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="3920:4034" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="3920:4042" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="3920:4043" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="6310:6377" placeholder="SELECT COUNT... objeto_a" />
-            <marker date="1463358926193" expanded="true" signature="6869:6938" placeholder="SELECT COUNT... objeto_a" />
-            <marker date="1463358926193" expanded="true" signature="7676:7698" placeholder="..." />
+            <marker date="1463360294165" expanded="true" signature="2184:2305" placeholder="SELECT COUNT... evaluacion" />
+            <marker date="1463360294165" expanded="true" signature="2761:2862" placeholder="SELECT COUNT... evaluacion" />
+            <marker date="1463360294165" expanded="true" signature="3321:3423" placeholder="SELECT COUNT... evaluacion" />
+            <marker date="1463360294165" expanded="true" signature="3884:4006" placeholder="SELECT COUNT... evaluacion" />
+            <marker date="1463360294165" expanded="true" signature="4006:4007" placeholder="SELECT COUNT... evaluacion" />
+            <marker date="1463360294165" expanded="true" signature="6066:6133" placeholder="SELECT COUNT... objeto_a" />
+            <marker date="1463360294165" expanded="true" signature="6631:6700" placeholder="SELECT COUNT... objeto_a" />
+            <marker date="1463360294165" expanded="true" signature="7445:7467" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -565,13 +534,6 @@
     <entry file="file://$PROJECT_DIR$/js/ObaaMetadata.js" />
     <entry file="file://$PROJECT_DIR$/js/LomMetadata.js" />
     <entry file="file://$PROJECT_DIR$/2016-5-13-0-58-43.xml" />
-    <entry file="file://$PROJECT_DIR$/config.inc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="14" column="100" selection-start-line="14" selection-start-column="100" selection-end-line="14" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/obaa1.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -663,36 +625,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/graficar.php">
+    <entry file="file://$PROJECT_DIR$/config.inc.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="179" column="39" selection-start-line="179" selection-start-column="39" selection-end-line="179" selection-end-column="39" />
-          <folding>
-            <marker date="1463358926193" expanded="true" signature="2219:2331" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="2219:2340" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="2219:2341" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="2797:2889" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="2797:2890" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="2797:2891" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="2797:2898" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="3357:3450" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="3357:3458" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="3357:3459" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="3920:4033" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="3920:4034" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="3920:4042" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="3920:4043" placeholder="SELECT COUNT... evaluacion" />
-            <marker date="1463358926193" expanded="true" signature="6310:6377" placeholder="SELECT COUNT... objeto_a" />
-            <marker date="1463358926193" expanded="true" signature="6869:6938" placeholder="SELECT COUNT... objeto_a" />
-            <marker date="1463358926193" expanded="true" signature="7676:7698" placeholder="..." />
-          </folding>
+        <state relative-caret-position="272">
+          <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/estadistica.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="79" column="158" selection-start-line="79" selection-start-column="158" selection-end-line="79" selection-end-column="158" />
+        <state relative-caret-position="259">
+          <caret line="85" column="23" selection-start-line="14" selection-start-column="6" selection-end-line="91" selection-end-column="9" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#select#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -704,6 +648,23 @@
             <marker date="1463359598350" expanded="true" signature="3321:3423" placeholder="SELECT COUNT... evaluacion" />
             <marker date="1463359598350" expanded="true" signature="3884:3998" placeholder="SELECT COUNT... evaluacion" />
             <marker date="1463359598350" expanded="true" signature="3884:4006" placeholder="SELECT COUNT... evaluacion" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graficar.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="91" column="9" selection-start-line="91" selection-start-column="9" selection-end-line="91" selection-end-column="9" />
+          <folding>
+            <marker date="1463360294165" expanded="true" signature="2184:2305" placeholder="SELECT COUNT... evaluacion" />
+            <marker date="1463360294165" expanded="true" signature="2761:2862" placeholder="SELECT COUNT... evaluacion" />
+            <marker date="1463360294165" expanded="true" signature="3321:3423" placeholder="SELECT COUNT... evaluacion" />
+            <marker date="1463360294165" expanded="true" signature="3884:4006" placeholder="SELECT COUNT... evaluacion" />
+            <marker date="1463360294165" expanded="true" signature="4006:4007" placeholder="SELECT COUNT... evaluacion" />
+            <marker date="1463360294165" expanded="true" signature="6066:6133" placeholder="SELECT COUNT... objeto_a" />
+            <marker date="1463360294165" expanded="true" signature="6631:6700" placeholder="SELECT COUNT... objeto_a" />
+            <marker date="1463360294165" expanded="true" signature="7445:7467" placeholder="..." />
           </folding>
         </state>
       </provider>
