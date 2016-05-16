@@ -13,13 +13,9 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript">
         function graficar (eva) {
-
             $(function () {
                 document.cookie ='variable='+eva+'; expires=Thu, 2 Aug 2021 20:47:11 UTC; path=/';
-                <?php
-                $myEva =  $_COOKIE["variable"];
-
-                ?>
+                <?php $myEva =  $_COOKIE["variable"];?>
                 $('#container').highcharts({
                     chart: {
                         plotBackgroundColor: null,
@@ -52,7 +48,7 @@
                         colorByPoint: true,
                         data: [
                             <?php $db = new Conect_Postgres();
-                            $sql = "SELECT COUNT(evaluacion) AS b FROM evaluacion WHERE evaluacion>=0.25 and evaluacion<0.5 and evaluacion.num_eva = '$myEva' ;";
+                            $sql = "SELECT COUNT(evaluacion) AS b FROM evaluacion WHERE evaluacion>=0.25 and evaluacion<0.5 and evaluacion.num_eva = '$myEva';";
                             $query = $db->execute($sql);
                             while($row = $db->fetch_row($query)){?>
                             {

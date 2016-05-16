@@ -27,3 +27,6 @@ SELECT COUNT(evaluacion) AS evaluacionBuena FROM evaluacion
 WHERE evaluacion BETWEEN 0.7 AND 0.9 AND fecha BETWEEN  ('2016-05-15 16:35:56') AND ('2016-05-15 16:37:19.591985');
 
 SELECT * FROM num_eva ORDER BY eva DESC LIMIT 1;
+
+SELECT COUNT(disponible) AS disponibles FROM objeto_a
+WHERE disponible = True;
