@@ -30,3 +30,9 @@ SELECT * FROM num_eva ORDER BY eva DESC LIMIT 1;
 
 SELECT COUNT(disponible) AS disponibles FROM objeto_a
 WHERE disponible = True;
+
+SELECT (evaluacion),(fecha) AS eva FROM evaluacion
+WHERE id_obj = '11';
+
+SELECT (evaluacion),(fecha) AS f FROM evaluacion
+WHERE id_eval = '3203';

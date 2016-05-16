@@ -148,6 +148,95 @@
                     });
                 });
             }
+
+        function graficar3() {
+            $(function () {
+                $('#container3').highcharts({
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Historial de evaluación OA'
+                    },
+                    subtitle: {
+                        text: 'Objeto de prueba'
+                    },
+                    xAxis: {
+                        categories: [
+                            <?php $db = new Conect_Postgres();
+                            $sql = "SELECT (evaluacion),(fecha) AS f FROM evaluacion WHERE id_obj = '11';";
+                            $query = $db->execute($sql);
+                            while($row = $db->fetch_row($query)){?>
+                                '<?php echo $row['f']?>'
+                            ,  <?php } ?>
+
+                        ],
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Evaluacion (gral)'
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.2,
+                            borderWidth: 0
+                        }
+                    },
+                    series: [{
+                        name: 'Obj 1',
+                        data: [
+                            <?php $db = new Conect_Postgres();
+                            $sql = "SELECT (evaluacion),(fecha) AS f FROM evaluacion WHERE id_obj = '11';";
+                            $query = $db->execute($sql);
+                            while($row = $db->fetch_row($query)){?>
+                            <?php echo $row['evaluacion']?>
+                            ,  <?php } ?>
+                        ]
+
+                    }, {
+                        name: 'Obj 2',
+                        data: [<?php $db = new Conect_Postgres();
+                            $sql = "SELECT (evaluacion),(fecha) AS f FROM evaluacion WHERE id_eval = '3203';";
+                            $query = $db->execute($sql);
+                            while($row = $db->fetch_row($query)){?>
+                            <?php echo $row['evaluacion']?>
+                            ,  <?php } ?>]
+
+                    }, {
+                        name: 'Obj 3',
+                        data: [<?php $db = new Conect_Postgres();
+                            $sql = "SELECT (evaluacion),(fecha) AS f FROM evaluacion WHERE id_eval = '3216';";
+                            $query = $db->execute($sql);
+                            while($row = $db->fetch_row($query)){?>
+                            <?php echo $row['evaluacion']?>
+                            ,  <?php } ?>]
+
+                    }, {
+                        name: 'Obj 4',
+                        data: [<?php $db = new Conect_Postgres();
+                            $sql = "SELECT (evaluacion),(fecha) AS f FROM evaluacion WHERE id_eval = '3245';";
+                            $query = $db->execute($sql);
+                            while($row = $db->fetch_row($query)){?>
+                            <?php echo $row['evaluacion']?>
+                            ,  <?php } ?>]
+
+                    }]
+                });
+            });
+
+
+        }
     </script>
 </head>
 <header>
@@ -187,8 +276,10 @@
 
 <div>
     <button id="eva2" onclick="graficar2()">Disponibilidad</button>
+    <button id="eva3" onclick="graficar3()">Barras</button>
 </div>
 <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+<div id="container3" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 
 </body>
 </html>
