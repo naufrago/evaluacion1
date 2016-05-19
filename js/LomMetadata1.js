@@ -191,7 +191,7 @@ function reusabilidad(objeto1){
                                     pesor4=1;
                                 }
 
-                    var evaluacion="OA no reutilizable";
+                    
                     var m_reusabilidad=0;
                     //alert(r);
                     //condiciona la evaluacion del objeto
@@ -200,25 +200,11 @@ function reusabilidad(objeto1){
                     // hace la sumatoria de los pesos 
                         m_reusabilidad=(pesor1/r)+(pesor2/r)+(pesor3/r)+(pesor4/r);
 
-                        // valida que calidad de objeto es
-                        if (m_reusabilidad<0.25) {
-                            evaluacion="Regular";
-                        }else if (m_reusabilidad>=0.25 && m_reusabilidad<0.5) {
-                                evaluacion="Buena";
-                            }else if (m_reusabilidad>=0.5 && m_reusabilidad<0.75) {
-                                    evaluacion="Muy buena";
-                                }else if (m_reusabilidad>=0.75 ) {
-                                        evaluacion="Exelente";
-                                        
-
-                                }
-
-                                // imprime  la evaluacion de la metrica
-                        mensaje="* Reusabilidad de: "+ m_reusabilidad +"; "+evaluacion;
+                        
                         //alert(mensaje);
-                        return mensaje;
+                        return m_reusabilidad;
                     }else {
-                        return mensaje;
+                        return m_reusabilidad;
                     }
 
 }
@@ -275,7 +261,7 @@ function disponibilidad(ruta){
             // verifica que tan completo es el oa en sus metadatos
             
 
-function completitud(oa){
+function completitud(oa, es){
                     var titulo=0; var keyword=0; var descripcion=0; var autor=0;
                     var tipoRE=0; var formato=0; var contexto=0; var idioma=0;
                     var tipointer=0; var rangoedad=0; var nivelagregacion=0;
@@ -363,22 +349,9 @@ function completitud(oa){
                         var m_completitud=titulo + keyword + descripcion + autor + tipoRE + formato + contexto + idioma +
                                        tipointer + rangoedad + nivelagregacion + ubicacion + costo + estado + copyright;
 
-                        var evaluacion;
-                        // valida que calidad de la completitud del objeto 
-                        if (m_completitud<0.25) {
-                            evaluacion="Regular";
-                        }else if (m_completitud>=0.25 && m_completitud<0.5) {
-                                evaluacion="Buena";
-                            }else if (m_completitud>=0.5 && m_completitud<0.75) {
-                                    evaluacion="Muy buena";
-                                }else if (m_completitud>=0.75 ) {
-                                        evaluacion="Exelente";
-                                }
-
-                                // imprime  la evaluacion de la metrica
-                        mensaje="* Completitud de: "+m_completitud+ "; "+evaluacion;
+                        
                         //alert(mensaje);
-                        return mensaje;
+                        return m_completitud;
                         
                         //echo "* Completitud de: ".m_completitud."; ".evaluacion."<br>";
                     }
@@ -526,22 +499,10 @@ function consistencia(oa){
                 var m_consistencia=(nivelagregacion + estructura + rol + estado + metarol + tipointer +
                                 tiporecursoeducativo + nivelinter + densidadsemantica + rolusuariofinal + 
                                 contexto + dificultad + copyright + costo + proposito) /  r;
-                var evaluacion="";
-                // valida que calidad de la completitud del objeto 
-                        if (m_consistencia<0.25) {
-                            evaluacion="Regular";
-                        }else if (m_consistencia>=0.25 && m_consistencia<0.5) {
-                                evaluacion="Buena";
-                            }else if (m_consistencia>=0.5 && m_consistencia<0.75) {
-                                    evaluacion="Muy buena";
-                                }else if (m_consistencia>=0.75 ) {
-                                        evaluacion="Exelente";
-                                }
-
-                                // imprime  la evaluacion de la metrica
-                        mensaje="* Consistencia de: "+m_consistencia+"; "+evaluacion;
+                
+                
                         //alert(mensaje);
-                        return mensaje;
+                        return m_consistencia;
                        // echo "* Consistencia de: ".m_consistencia."; ".evaluacion."<br>";
             }
 
@@ -690,33 +651,19 @@ function coherencia(objeto){
                                      r++;
                                      pesor3=1;  
                             }   
-
+                m_coherencia=0;
                 if (r>0) {
 
                 // hace la sumatoria de los pesos 
                          m_coherencia= ( pesor1 +  pesor2 +  pesor3) /  r;
                          
-                         var evaluacion="";
-                    // valida que calidad de objeto es
-                        if ( m_coherencia<0.25) {
-                             evaluacion="Regular";
-                        }else if ( m_coherencia>=0.25 &&  m_coherencia<0.5) {
-                                 evaluacion="Buena";
-                            }else if ( m_coherencia>=0.5 &&  m_coherencia<0.75) {
-                                     evaluacion="Muy buena";
-                                }else if ( m_coherencia>=0.75 ) {
-                                         evaluacion="Exelente";
-                                }
-
-                        // imprime  la evaluacion de la metrica
-                        mensaje="* Coherencia de: "+ m_coherencia+"; "+ evaluacion;
+                    
                         //alert(mensaje);
-                        return mensaje;
+                        return m_coherencia;
                             //echo "* Coherencia de: ". m_coherencia."; ". evaluacion."<br><br>";
                 }else{
-                    mensaje="* Metrica de coherencia  N/A";
-                        //alert(mensaje);
-                        return mensaje;
+                    
+                        return m_coherencia;
                     
                 }
 

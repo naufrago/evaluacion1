@@ -113,17 +113,69 @@ $llego=$ruta;
             if (!obaa.identifier) {
               m_reusabilidad=reusabilidadobaa(obaa);
               //alert("desde afuera "+m_reusabilidad);
+              // valida que calidad de objeto es
+                        if (m_reusabilidad<0.25) {
+                            evaluacion="Regular";
+                        }else if (m_reusabilidad>=0.25 && m_reusabilidad<0.5) {
+                                evaluacion="Buena";
+                            }else if (m_reusabilidad>=0.5 && m_reusabilidad<0.75) {
+                                    evaluacion="Muy buena";
+                                }else if (m_reusabilidad>=0.75 ) {
+                                        evaluacion="Exelente";
+                                }
+
+                                // imprime  la evaluacion de la metrica
+                        m_reusabilidad="* Reusabilidad de: "+ m_reusabilidad +"; "+evaluacion;
 
              // m_disponivilidad=disponibilidadobaa(obaa.location);
              // 
               m_completitud=completitudobaa(obaa);
               //alert("desde afuera "+m_completitud);
+              // valida que calidad de la completitud del objeto 
+                        if (m_completitud<0.25) {
+                            evaluacion="Regular";
+                        }else if (m_completitud>=0.25 && m_completitud<0.5) {
+                                evaluacion="Buena";
+                            }else if (m_completitud>=0.5 && m_completitud<0.75) {
+                                    evaluacion="Muy buena";
+                                }else if (m_completitud>=0.75 ) {
+                                        evaluacion="Exelente";
+                                }
+
+                                // imprime  la evaluacion de la metrica
+                         m_completitud="* Completitud de: "+m_completitud+ "; "+evaluacion;
 
               m_consistencia=consistenciaobaa(obaa);
               //alert("desde afuera "+m_consistencia);
+              // valida que calidad de la completitud del objeto 
+                        if (m_consistencia<0.25) {
+                            evaluacion="Regular";
+                        }else if (m_consistencia>=0.25 && m_consistencia<0.5) {
+                                evaluacion="Buena";
+                            }else if (m_consistencia>=0.5 && m_consistencia<0.75) {
+                                    evaluacion="Muy buena";
+                                }else if (m_consistencia>=0.75 ) {
+                                        evaluacion="Exelente";
+                                }
+
+                                // imprime  la evaluacion de la metrica
+                         m_consistencia="* Consistencia de: "+m_consistencia+"; "+evaluacion;
 
               m_coherencia=coherenciaobaa(obaa);
               //alert("desde afuera "+m_coherencia);
+              // valida que calidad de objeto es
+                        if ( m_coherencia<0.25) {
+                             evaluacion="Regular";
+                        }else if ( m_coherencia>=0.25 &&  m_coherencia<0.5) {
+                                 evaluacion="Buena";
+                            }else if ( m_coherencia>=0.5 &&  m_coherencia<0.75) {
+                                     evaluacion="Muy buena";
+                                }else if ( m_coherencia>=0.75 ) {
+                                         evaluacion="Exelente";
+                                }
+
+                        // imprime  la evaluacion de la metrica
+                       m_coherencia="* Coherencia de: "+ m_coherencia+"; "+ evaluacion;
               
               //realiza el borrado del archivo temporal
             var data = {ruta:ruta};
