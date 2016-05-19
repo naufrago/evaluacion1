@@ -105,6 +105,12 @@
                             array_xmls.push(xml);
                             array_xmls.push(calificacion);
                             xmls.push(array_xmls);
+                            // usando el array que tienes de ejemplo;
+                            xmls.sort(function(a,b){
+                                if(a[1] < b[1])return 1;
+                                if(a[1] > b[1])return -1;
+                                return 0;
+                            });
 
                                 showLO(lom);
                             
@@ -144,6 +150,7 @@
                     '</div>' +
                     '</div>');
         }
+
 
         
     </script>
