@@ -66,6 +66,7 @@
 
 <script>
 		var xmls=[];
+		var items1 = [];
         $(document).ready(function (){
 
             
@@ -86,6 +87,7 @@
                         var dataJson = eval(datos);
 
                         var items = [];
+                        
                         $.each(dataJson, function(key, val) {
                             items.push(val);
                         });
@@ -111,9 +113,19 @@
                                 if(a[1] > b[1])return -1;
                                 return 0;
                             });
-
-                                showLO(lom);
                             
+                           	
+                            
+                        });
+                        for (var i = 0; i < xmls.length; i++) {
+                           		items1.push(xmls[i][0]);
+                           	}
+
+                                
+
+                        $.each(items1, function(index, xml){
+                        	var lom = processXml(xml);
+                        	showLO(lom);
                         });
 
                     },
@@ -140,8 +152,8 @@
                     '<div class="panel-heading">' +
                     '<a href="' + lom.location + '" target="_blank" class="">' + lom.title + '</a>' +
                     '</div>' +
-                    '<div class="panel-body" style="text-align: justify;">' +
-                    '<strong>Ubicación: </strong>' + lom.coverage + '<br>' +
+                    '<div class="panel-body" style="text-align: justify; color: #2E9AFE;">' +
+                    '<strong>Ubicación: </strong>' + lom.location + '<br>' +
                     '<strong>Descripción: </strong>' + lom.description + '<br>' +
                     '<strong>Palabras clave: </strong>' + lom.keyword.toUpperCase() + '<br>' +
                     '<strong>Formato: </strong>' + lom.format + '<br>' +
