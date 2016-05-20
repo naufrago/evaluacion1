@@ -12,6 +12,7 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<link rel="stylesheet" href="css/estilo.css">
 	<script src="js/LomMetadata1.js"></script>
+    
 
 	
 </head>
@@ -44,7 +45,7 @@
 
 <body>
 	<center>
-		<div class="contenedor" >
+		<div class="contenedor"  >
 		<div class="contentHeader row"><h1 >Buscador de Objetos de Aprendizaje</h1></div>
 
 		<div class="row">
@@ -52,30 +53,40 @@
 
             <div class="form-group">
                 <label for="text" class="">Buscar objetos:</label>
-                <input type="text" id="text" class="" placeholder="Buscar">
+                <input type="text" id="url" name="url" class="" placeholder="Buscar">
             </div>
 
             <input type="submit" class="btn btn-success" value="Buscar objetos" name="submit">
 
         </form>
     </div>
-    <div class="row" id="lo"></div>
-		</div>
+    </div>
+    <div class="contenedor2" >
+    <div class="row" id="lo" name="io"></div>
+    <div>
+		
 		</div>
 	</center>
 
 <script>
 		var xmls=[];
 		var items1 = [];
+        var calif=[];
         $(document).ready(function (){
-
             
             $('#formulario').submit(function (){
 
                 $('#lo').html('');
 
                 //Obtiene la palabra de busqueda del formulario
-                var searchString = $('#text').val();
+                var searchString = $('#url').val();
+                xmls.length=0;
+            items1.length=0;
+            calif.length=0;
+            $("#io").empty();
+
+          
+            
 
                 $.ajax({
                     type: "GET",
@@ -90,6 +101,7 @@
                         
                         $.each(dataJson, function(key, val) {
                             items.push(val);
+
                         });
 
                         $.each(items, function(index, xml){
@@ -103,7 +115,6 @@
                             m_coherencia=coherencia(lom);
 
                             calificacion=(m_coherencia+m_completitud+m_consistencia+m_coherencia)/4;
-
                             array_xmls.push(xml);
                             array_xmls.push(calificacion);
                             xmls.push(array_xmls);
@@ -119,13 +130,20 @@
                         });
                         for (var i = 0; i < xmls.length; i++) {
                            		items1.push(xmls[i][0]);
+                                calif.push(xmls[i][1]);
                            	}
 
                                 
-
+                        $('#lo').append('' +'<div class="col-lg-12 col-md-12">' +
+                    '<div class="col.md-2">' +
+                    '<div class="panel panel-default">' +
+                    '<div class="panel-heading"># de objetos encontrados ' +xmls.length+'</div></div></div></div>');
+                        i=0;
                         $.each(items1, function(index, xml){
                         	var lom = processXml(xml);
-                        	showLO(lom);
+
+                        	showLO(lom,calif[i],xml);
+                            i++;
                         });
 
                     },
@@ -144,7 +162,7 @@
 
 
 
-        function showLO(lom){
+        function showLO(lom, calif,xml){
             $('#lo').append('' +
                     '<div class="col-lg-12 col-md-12">' +
                     '<div class="col.md-2">' +
@@ -157,6 +175,7 @@
                     '<strong>Descripción: </strong>' + lom.description + '<br>' +
                     '<strong>Palabras clave: </strong>' + lom.keyword.toUpperCase() + '<br>' +
                     '<strong>Formato: </strong>' + lom.format + '<br>' +
+                    '<strong>calificacion general del OA: </strong>' + calif + '<br>' +
                     '</div>' +
                     '</div>' +
                     '</div>' +
