@@ -8,129 +8,120 @@
 	    <!-- Bootstrap 3.3.6 -->
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/estilo.css">
-
-
+	<script type="text/javascript" src="plugins/filestyle.js"> </script>
 	<script type="text/javascript">
-<!--
-var boton;
-function mostrarReferencia(valor){
-	switch (valor){
-		
-//LOM
-		case "ARCHIVO":
-			document.getElementById('ruta').style.display='block';
-			document.getElementById('url').style.display='none';
-			break;
+		var boton;
+		function mostrarReferencia(valor){
+			switch (valor){
 
-		case "0":
-			document.getElementById('ruta').style.display='none';
-			document.getElementById('url').style.display='none';
-			break;
+		//LOM
+				case "ARCHIVO":
+					document.getElementById('ruta').style.display='block';
+					document.getElementById('url').style.display='none';
+					break;
 
-		case "URL":
-			document.getElementById('ruta').style.display='none';
-			document.getElementById('url').style.display='block';
-			break;
+				case "0":
+					document.getElementById('ruta').style.display='none';
+					document.getElementById('url').style.display='none';
+					break;
 
-		case "ARCHIVO1":
-			document.getElementById('ruta1').style.display='block';
-			document.getElementById('url1').style.display='none';
-			break;
+				case "URL":
+					document.getElementById('ruta').style.display='none';
+					document.getElementById('url').style.display='block';
+					break;
 
-		case "00":
-			document.getElementById('ruta1').style.display='none';
-			document.getElementById('url1').style.display='none';
-			break;
+				case "ARCHIVO1":
+					document.getElementById('ruta1').style.display='block';
+					document.getElementById('url1').style.display='none';
+					break;
 
-		case "URL1":
-			document.getElementById('ruta1').style.display='none';
-			document.getElementById('url1').style.display='block';
-			break;
+				case "00":
+					document.getElementById('ruta1').style.display='none';
+					document.getElementById('url1').style.display='none';
+					break;
 
-//OBAA
-		case "ARCHIVOobaa":
-			document.getElementById('rutaobaa').style.display='block';
-			document.getElementById('urlobaa').style.display='none';
-			break;
+				case "URL1":
+					document.getElementById('ruta1').style.display='none';
+					document.getElementById('url1').style.display='block';
+					break;
 
-		case "0obaa":
-			document.getElementById('rutaobaa').style.display='none';
-			document.getElementById('urlobaa').style.display='none';
-			break;
+		//OBAA
+				case "ARCHIVOobaa":
+					document.getElementById('rutaobaa').style.display='block';
+					document.getElementById('urlobaa').style.display='none';
+					break;
 
-		case "URLobaa":
-			document.getElementById('rutaobaa').style.display='none';
-			document.getElementById('urlobaa').style.display='block';
-			break;
+				case "0obaa":
+					document.getElementById('rutaobaa').style.display='none';
+					document.getElementById('urlobaa').style.display='none';
+					break;
 
-		case "ARCHIVO1obaa":
-			document.getElementById('ruta1obaa').style.display='block';
-			document.getElementById('url1obaa').style.display='none';
-			break;
+				case "URLobaa":
+					document.getElementById('rutaobaa').style.display='none';
+					document.getElementById('urlobaa').style.display='block';
+					break;
 
-		case "00obaa":
-			document.getElementById('ruta1obaa').style.display='none';
-			document.getElementById('url1obaa').style.display='none';
-			break;
+				case "ARCHIVO1obaa":
+					document.getElementById('ruta1obaa').style.display='block';
+					document.getElementById('url1obaa').style.display='none';
+					break;
 
-		case "URL1obaa":
-			document.getElementById('ruta1obaa').style.display='none';
-			document.getElementById('url1obaa').style.display='block';
-			break;
+				case "00obaa":
+					document.getElementById('ruta1obaa').style.display='none';
+					document.getElementById('url1obaa').style.display='none';
+					break;
+
+				case "URL1obaa":
+					document.getElementById('ruta1obaa').style.display='none';
+					document.getElementById('url1obaa').style.display='block';
+					break;
+		}
+
 	}
-	
-}
+		function mostrarlista(valor){
+			switch (valor){
 
-function mostrarlista(valor){
-	switch (valor){
-		
-		case "object":
-			document.getElementById('tiporutaobjetolom').style.display='block';
-			document.getElementById('tiporutalistalom').style.display='none';
-			break;
+				case "object":
+					document.getElementById('tiporutaobjetolom').style.display='block';
+					document.getElementById('tiporutalistalom').style.display='none';
+					break;
 
-		case "list":
-			document.getElementById('tiporutaobjetolom').style.display='none';
-			document.getElementById('tiporutalistalom').style.display='block';
-			break;
+				case "list":
+					document.getElementById('tiporutaobjetolom').style.display='none';
+					document.getElementById('tiporutalistalom').style.display='block';
+					break;
 
-		case "object1":
-			document.getElementById('tiporutaobjetoobaa').style.display='block';
-			document.getElementById('tiporutalistaobaa').style.display='none';
-			break;
+				case "object1":
+					document.getElementById('tiporutaobjetoobaa').style.display='block';
+					document.getElementById('tiporutalistaobaa').style.display='none';
+					break;
 
-		case "list1":
-			document.getElementById('tiporutaobjetoobaa').style.display='none';
-			document.getElementById('tiporutalistaobaa').style.display='block';
-			break;
+				case "list1":
+					document.getElementById('tiporutaobjetoobaa').style.display='none';
+					document.getElementById('tiporutalistaobaa').style.display='block';
+					break;
 
-		case "LOM":
-			document.getElementById('lom').style.display='block';
-			document.getElementById('obaa').style.display='none';
-			break;
+				case "LOM":
+					document.getElementById('lom').style.display='block';
+					document.getElementById('obaa').style.display='none';
+					break;
 
-		case "OBAA":
-			document.getElementById('lom').style.display='none';
-			document.getElementById('obaa').style.display='block';
-			break;
-	}
-	
-}
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
-}
+				case "OBAA":
+					document.getElementById('lom').style.display='none';
+					document.getElementById('obaa').style.display='block';
+					break;
+			}
 
-
-
-
-
+		}
+		function sleep(milliseconds) {
+		  var start = new Date().getTime();
+		  for (var i = 0; i < 1e7; i++) {
+			if ((new Date().getTime() - start) > milliseconds){
+			  break;
+			}
+		  }
+		}
 </script>
-
 </head>
 <header>
 		<div class="logo">
@@ -152,7 +143,7 @@ function sleep(milliseconds) {
 	<nav>
 		<ul id="menu"class="nav nav-pills">
 			<li> <a href="index.html">Evaluar</a> </li>
-			<li> <a href="estadistica.php">Estadisticas</a> </li>
+			<li> <a href="graficar.php">Estadisticas</a> </li>
 			<li> <a  href="busquedas.html">Busqueda OA´S</a> </li>
 			<li> <a  href="contacto.html">Contacto</a> </li>
 
@@ -181,14 +172,13 @@ function sleep(milliseconds) {
            		
 				<div id="url" name="url" style="display:none;">
 					<form id="formulario" name="formulario" action= "evaluacionlom.php" method="POST">URL DEL XML<BR>
-						<input id="url" name="url" type="text" style="width:500px;"></input><br><br>
+						<input id="url" name="url" type="text" style="width:500px;"><br><br>
 						<input class="btn btn-success" value="Evaluar"id="campo" type="submit"  /></form></div>
 
 				<div id="ruta" name="ruta" style="display:none;">
 					<form id="formulario2" name="formulario" enctype="multipart/form-data" action= "evaluacionlom.php" method="POST">
-						<input type="file"  id="url" name="url"  accept="text/xml" readonly="true"></input><br>
+						<input type="file" id="url" name="url"  accept="text/xml" readonly="true"><br>
 						<input id="campo" class="btn btn-success" value="Evaluar" type="submit"  /></form></div>
-
            </div>
 
 
@@ -203,13 +193,13 @@ function sleep(milliseconds) {
 	           		
 				<div id="url1" name="url" style="display:none;">
 					<form id="formulario" name="formulario" action= "lom.php" method="POST">URL DEL XML<BR>
-						<input id="url" name="url" type="text" style="width:500px;"></input><br><br>
+						<input id="url" name="url" type="text" style="width:500px;"><br><br>
 						<input class="btn btn-success" value="Evaluar"id="campo" type="submit"  /></form>
 				</div>
 
 				<div id="ruta1" name="ruta" style="display:none;">
 					<form id="formulario2" name="formulario"   enctype="multipart/form-data" action= "lom.php" method="POST" >
-						<input type="file"  id="urlOA" name="url"  accept="text/xml" readonly="true" value=""></input><br>
+						<input type="file" id="urlOA" name="url"  accept="text/xml" readonly="true" value=""><br>
 						<input id="campo" class="btn btn-success" value="Evaluar"  type="submit"  /></form>
 				</div>
 
@@ -233,12 +223,12 @@ function sleep(milliseconds) {
            		
 				<div id="urlobaa" name="url" style="display:none;">
 					<form id="formulario" name="formulario" action= "evaluacionobaa.php" method="POST">URL DEL XML<BR>
-						<input id="url" name="url" type="text" style="width:500px;"></input><br><br>
+						<input id="url" name="url" type="text" style="width:500px;"><br><br>
 						<input class="btn btn-success" value="Evaluar"id="campo" type="submit"  /></form></div>
 
 				<div id="rutaobaa" name="ruta" style="display:none;">
 					<form id="formulario2" name="formulario" enctype="multipart/form-data" action= "evaluacionobaa.php" method="POST">
-						<input type="file"  id="url" name="url"  accept="text/xml" readonly="true"></input><br>
+						<input type="file"  id="url" name="url"  accept="text/xml" readonly="true"><br>
 						<input id="campo" class="btn btn-success" value="Evaluar" type="submit"  /></form></div>
 
            </div>
@@ -261,16 +251,11 @@ function sleep(milliseconds) {
 
 				<div id="ruta1obaa" name="ruta" style="display:none;">
 					<form id="formulario2" name="formulario"  enctype="multipart/form-data" action= "obaa1.php" method="POST" >
-						<input type="file"  id="urlOA" name="url"  accept="text/xml" readonly="true" value=""></input><br>
+						<input type="file" id="urlOA" name="url"  accept="text/xml" readonly="true" value=""><br>
 						<input id="campo" class="btn btn-success" value="Evaluar"  type="submit"  /></form>
 				</div>
 
            </div>
-
-           
-           			
-
-				
 		</div>
 		</div>
 	</center>
@@ -280,9 +265,7 @@ function sleep(milliseconds) {
   <!-- jQuery 2.2.1 -->
     <script src="plugins/jQuery/jQuery-2.2.1.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
      <!-- Bootstrap 3.3.6 -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="plugins/filestyle.js"> </script>
 </html>

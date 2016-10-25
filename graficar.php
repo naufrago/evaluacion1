@@ -259,7 +259,7 @@
 <nav>
     <ul id="menu"class="nav nav-pills">
         <li> <a href="index.html">Evaluar</a> </li>
-        <li> <a href="estadistica.php">Estadisticas</a> </li>
+        <li> <a href="graficar.php">Estadisticas</a> </li>
         <li> <a  href="contacto.html">Contacto</a> </li>
     </ul>
 </nav>
@@ -274,9 +274,10 @@
     </select>
 </div>
 
-<div>
-    <button id="eva2" onclick="graficar2()">Disponibilidad</button>
-    <button id="eva3" onclick="graficar3()">Historico</button>
+<div><center>
+    <button id="eva2"  class="btn btn-default" onclick="graficar2()">Disponibilidad</button>
+    <button id="eva3"   class="btn btn-default"onclick="graficar3()">Historico</button>
+    </center>
 </div>
 <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 <div id="container3" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
